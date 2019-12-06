@@ -6,8 +6,8 @@ import java.util.Scanner;
 /**
  * 任意给一个年月，请输出该月的所有日期，按日历格式输出
  * 
- * 1、类与对象，使用 java api（应用程序接口） 
- * 		Scanner 类，用于屏幕录入
+ * 1、类与对象，使用 java api（应用程序接口）
+ * 		Scanner 类，用于屏幕录入 
  * 2、定义函数 或 方法，帮助我们简化编程
  * 
  */
@@ -22,9 +22,22 @@ public class Calendar {
 			// 快捷键 syso（alt + /）
 			System.out.println("请输入年份：");
 			int year = scanner.nextInt(); // 程序会停下来，等待用户的输入
+
+			// 输入 0 则退出
+			if (year == 0) {
+				System.out.println("再见！");
+				break;
+			}
+			
 			System.out.println("请输入月份：");
 			int month = scanner.nextInt();
-
+			
+			// 输入 0 则退出
+			if (month == 0) {
+				System.out.println("再见！");
+				break;
+			}
+			
 			// 2、 根据输入的年月，显示这个月每一天，不考虑1号星期几
 			int days = getDays(year, month);
 
@@ -50,17 +63,25 @@ public class Calendar {
 
 			System.out.println(year + "年" + month + "月");
 			// 输出星期数
-			System.out.println("一\t二\t三\t四\t五\t六\t日");
-			// 输出1号前的空格
-			for (int i = 0; i < lastDayWeek; i++) {
+			System.out.println("日\t一\t二\t三\t四\t五\t六");
+
+			// 输出1号前的空格，周日在前
+			for (int i = 0; i < (lastDayWeek + 1) % 7; i++) {
 				System.out.print("\t");
 			}
 
 			// 4、根据1号星期数，修正日历的输出结果
 			for (int i = 1; i <= days; i++) {
-				System.out.print(i + "\t");
+				// 计算星期数，注意这是周日在前的算法
+				int week = (lastDayWeek + i + 1) % 7;
+				// 逢周六日，给日期加上小括号
+				if (week == 1 || week == 0) {
+					System.out.print("(" + i + ")\t");
+				} else {
+					System.out.print(i + "\t");
+				}
 				// 如果 除 7 余 0 那么就换行
-				if ((lastDayWeek + i) % 7 == 0) {
+				if (week == 0) {
 					System.out.println();
 				}
 			}
@@ -68,10 +89,10 @@ public class Calendar {
 
 		}
 		/**
-		 * 作业：
-		 * 1、如果用户输入 0 年 或 0月，就退出运行 *
-		 * 2、请实现使周日显示在日历的第一列   	  ***
-		 * 3、请将周六和周日的日期，两边加上括号  **
+		 * 作业： 
+		 * 1、如果用户输入 0 年 或 0月，就退出运行 	* 
+		 * 2、请实现使周日显示在日历的第一列 		***
+		 * 3、请将周六和周日的日期，两边加上括号 	**
 		 */
 
 	}
@@ -85,9 +106,12 @@ public class Calendar {
 
 	/**
 	 * 请定义计算指定年月的天数的函数
-	 * @param year  年份
-	 * @param month 月份
-	 * @return		该月天数
+	 * 
+	 * @param year
+	 *            年份
+	 * @param month
+	 *            月份
+	 * @return 该月天数
 	 */
 	public static int getDays(int year, int month) {
 		// 判断闰年
