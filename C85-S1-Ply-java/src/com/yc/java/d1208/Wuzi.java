@@ -46,14 +46,42 @@ public class Wuzi {
 			}
 			printXPos();
 			// 用户输入棋子坐标
-			System.out.print("请输入棋子的横坐标：");
-			int i = s.nextInt();
-			System.out.print("请输入棋子的纵坐标：");
-			int j = s.nextInt();
+			int i = 0;
+			while (i < 1 || i > 15) {
+				System.out.print("请输入棋子的横坐标：");
+				i = s.nextInt();
+			}
+			int j = 0;
+			while (j < 1 || j > 15) {
+				System.out.print("请输入棋子的纵坐标：");
+				j = s.nextInt();
+			}
 
-			qipan[j][i] = color;
-			// 交换棋子颜色
-			color = color == BLACK ? WHITE : BLACK;
+			System.out.println();
+			if (qipan[j - 1][i - 1] != '+') {
+				System.out.println("您不能在这里下子！");
+			} else {
+				j--;
+				i--;
+
+				qipan[j][i] = color;
+
+				// 横向判断 -
+				if (checkHeng(qipan, color, i, j)
+						// 纵向判断 |
+						||checkZong(qipan, color, i, j)
+						// 斜向判断 \
+						||checkXie1(qipan, color, i, j)
+						// 斜向判断 /
+						||checkXie2(qipan, color, i, j)) {
+					// 终局前最后再打印一次棋盘
+					printYPos(i + 1);
+					break;
+				}
+
+				// 交换棋子颜色
+				color = color == BLACK ? WHITE : BLACK;
+			}
 		}
 		/**
 		 * 作业：
@@ -84,6 +112,143 @@ public class Wuzi {
 	 */
 	public static void printYPos(int y) {
 		System.out.print(y < 10 ? y + " " : y);
+	}
+
+	/**
+	 * 判断横向五子是否成立
+	 * @param qipan  棋盘
+	 * @param color	 棋子颜色
+	 * @param i		横坐标
+	 * @param j		纵坐标
+	 */
+	public static boolean checkHeng(char[][] qipan, char color, int i, int j) {
+
+		// 定义进行运算 x y
+		int x = i, y = j;
+		// 判断横向（左）
+		int num = 1;
+		while (x > 0 && qipan[y][--x] == color) {
+			num++;
+		}
+		// 恢复 x y 的值
+		x = i;
+		y = j;
+		// 判断横向（右）
+		while (x < 14 && qipan[y][++x] == color) {
+			num++;
+		}
+
+		if (num >= 5) {
+			System.out.println(color + "赢了！");
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * 判断纵向五子是否成立
+	 * @param qipan
+	 * @param color
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	public static boolean checkZong(char[][] qipan, char color, int i, int j) {
+		/**
+		 * 判断纵向
+		 */
+		int x = i;
+		int y = j;
+		// 判断纵向（上）
+		int num = 1;
+		while (y > 0 && qipan[--y][x] == color) {
+			num++;
+		}
+		// 恢复 x y 的值
+		x = i;
+		y = j;
+		// 判断纵向（下）
+		while (y < 14 && qipan[++y][x] == color) {
+			num++;
+		}
+
+		if (num >= 5) {
+			System.out.println(color + "赢了！");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 判断斜向（ \ ）五子是否成立
+	 * @param qipan
+	 * @param color
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	public static boolean checkXie1(char[][] qipan, char color, int i, int j) {
+		/**
+		 * 判断斜向
+		 */
+		int x = i;
+		int y = j;
+		// 判断斜向（左上）
+		int num = 1;
+		while (y > 0 && x > 0 && qipan[--y][--x] == color) {
+			num++;
+		}
+		// 恢复 x y 的值
+		x = i;
+		y = j;
+		// 判断斜向（右下）
+		while (y < 14 && x <14 && qipan[++y][++x] == color) {
+			num++;
+		}
+
+		if (num >= 5) {
+			System.out.println(color + "赢了！");
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 判断斜向（ / ）五子是否成立
+	 * @param qipan
+	 * @param color
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	public static boolean checkXie2(char[][] qipan, char color, int i, int j) {
+		/**
+		 * 判断斜向
+		 */
+		int x = i;
+		int y = j;
+		// 判断斜向（右上）
+		int num = 1;
+		while (y > 0 && x < 14 && qipan[--y][++x] == color) {
+			num++;
+		}
+		// 恢复 x y 的值
+		x = i;
+		y = j;
+		// 判断斜向（左下）
+		while (y < 14 && x > 0 && qipan[++y][--x] == color) {
+			num++;
+		}
+
+		if (num >= 5) {
+			System.out.println(color + "赢了！");
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
