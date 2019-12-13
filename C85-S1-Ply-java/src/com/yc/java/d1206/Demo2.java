@@ -102,8 +102,14 @@ public class Demo2 {
 
 	}
 
+	/**
+	 * 
+	 * @param poke  1~52
+	 * @return
+	 */
 	public static String castDisplay(int poke) {
 		String ret = null;
+		poke -= 1;
 		switch (poke / 13) {
 		case 0:
 			ret = "ºÚÌÒ";
@@ -115,26 +121,25 @@ public class Demo2 {
 			ret = "Ã·»¨";
 			break;
 		case 3:
-		case 4:
 			ret = "·½¿é";
 			break;
 		}
 		int i = poke % 13;
 		switch (i) {
-		case 1:
+		case 0:
 			ret += "A";
 			break;
-		case 11:
+		case 10:
 			ret += "J";
 			break;
-		case 12:
+		case 11:
 			ret += "Q";
 			break;
-		case 0:
+		case 12:
 			ret += "K";
 			break;
 		default:
-			ret += i;
+			ret += (i + 1);
 		}
 		return ret;
 	}
