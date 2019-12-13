@@ -50,18 +50,16 @@ public class Calendar {
 				boolean isleap = isLeap(i);
 				allDays += isleap ? 366 : 365;
 			}
-			System.out.println(allDays);
 			// 求该年该月过去的天数
 			for (int i = 1; i < month; i++) {
 				// i 表示的是当前的月份
 				// Duplicate local variable days 重复的定义变量 days
 				allDays += getDays(year, i); // 将函数的返回值直接加到 allDays
 			}
-			System.out.println(allDays);
 			// 上月最后一天是星期几
 			int lastDayWeek = allDays % 7;
 
-			System.out.println(year + "年" + month + "月");
+			System.out.println("====================="+year + "年" + month + "月=====================");
 			// 输出星期数
 			System.out.println("日\t一\t二\t三\t四\t五\t六");
 

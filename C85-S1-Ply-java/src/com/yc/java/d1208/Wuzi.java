@@ -10,20 +10,15 @@ import java.util.Scanner;
 public class Wuzi {
 
 	// 定义常量
-	public static final char BLACK = '@';
-	public static final char WHITE = 'O';
-	public static final int SIZE = 15;
+	public static final char BLACK = '@';	// 黑子
+	public static final char WHITE = 'O';	// 白子
+	public static final int SIZE = 15;		// 棋盘大小
 
-	/**
-	 * 黑子 @
-	 * 白子 O 
-	 * 
-	 */
 	public static void main(String[] args) {
 
 		// 定义棋盘
 		char[][] qipan = new char[SIZE][SIZE];
-
+		// 初始化棋盘，空格处显示 + 号
 		for (int i = 0; i < qipan.length; i++) {
 			for (int j = 0; j < qipan[i].length; j++) {
 				qipan[i][j] = '+';
@@ -31,20 +26,13 @@ public class Wuzi {
 		}
 
 		Scanner s = new Scanner(System.in);
+		// 黑先下子
 		char color = BLACK;
 		// 开始游戏
 		while (true) {
 			// 打印棋盘
-			printXPos();
-			for (int i = 0; i < qipan.length; i++) {
-				printYPos(i + 1);
-				for (int j = 0; j < qipan[i].length; j++) {
-					System.out.print(qipan[i][j] + " ");
-				}
-				printYPos(i + 1);
-				System.out.println();
-			}
-			printXPos();
+			printQipan(qipan);
+
 			// 用户输入棋子坐标
 			int i = 0;
 			while (i < 1 || i > 15) {
@@ -58,24 +46,24 @@ public class Wuzi {
 			}
 
 			System.out.println();
-			if (qipan[j - 1][i - 1] != '+') {
+
+			// 左边减一，用户输入的是 1~15， 数组下标是 0~14
+			j--;
+			i--;
+			if (qipan[j][i] != '+') {
 				System.out.println("您不能在这里下子！");
 			} else {
-				j--;
-				i--;
-
+				// 下子
 				qipan[j][i] = color;
 
 				// 横向判断 -
 				if (checkHeng(qipan, color, i, j)
 						// 纵向判断 |
-						||checkZong(qipan, color, i, j)
+						|| checkZong(qipan, color, i, j)
 						// 斜向判断 \
-						||checkXie1(qipan, color, i, j)
+						|| checkXie1(qipan, color, i, j)
 						// 斜向判断 /
-						||checkXie2(qipan, color, i, j)) {
-					// 终局前最后再打印一次棋盘
-					printYPos(i + 1);
+						|| checkXie2(qipan, color, i, j)) {
 					break;
 				}
 
@@ -83,6 +71,10 @@ public class Wuzi {
 				color = color == BLACK ? WHITE : BLACK;
 			}
 		}
+
+		// 终局前最后再打印一次棋盘
+		printQipan(qipan);
+
 		/**
 		 * 作业：
 		 * 	1、判断用户的输入（1~15），如果用户输入不正确，则提示用户再次输入   ***
@@ -93,6 +85,23 @@ public class Wuzi {
 		 * 		3、最后考虑如何判断斜向的五子
 		 *  
 		 */
+	}
+
+	/**
+	 * 打印棋盘
+	 * @param qipan
+	 */
+	public static void printQipan(char[][] qipan) {
+		printXPos();
+		for (int i = 0; i < qipan.length; i++) {
+			printYPos(i + 1);
+			for (int j = 0; j < qipan[i].length; j++) {
+				System.out.print(qipan[i][j] + " ");
+			}
+			printYPos(i + 1);
+			System.out.println();
+		}
+		printXPos();
 	}
 
 	/**
@@ -180,7 +189,7 @@ public class Wuzi {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 判断斜向（ \ ）五子是否成立
 	 * @param qipan
@@ -204,7 +213,7 @@ public class Wuzi {
 		x = i;
 		y = j;
 		// 判断斜向（右下）
-		while (y < 14 && x <14 && qipan[++y][++x] == color) {
+		while (y < 14 && x < 14 && qipan[++y][++x] == color) {
 			num++;
 		}
 
@@ -215,7 +224,7 @@ public class Wuzi {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 判断斜向（ / ）五子是否成立
 	 * @param qipan
