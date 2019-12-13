@@ -30,34 +30,66 @@ public class Demo2 {
 		 */
 		int[] poke = new int[52];
 		for (int i = 1; i <= poke.length; i++) {
-			System.out.print(i + ",");
+			System.out.print(castDisplay(i) + ",");
 			poke[i - 1] = i;
 		}
 
 		System.out.println();
-		
+
 		// 定义随机对象
 		Random rand = new Random();
-		// 产生切牌点   0 ~ 51
-		int size = rand.nextInt(52); 
-		
-		System.out.println("切牌点：" + size);
 
-		// 创建临时保存切牌点上面的牌的数组
-		int[] poke1 = new int[size];
-		// 保存切出的牌
-		System.arraycopy(poke, 0, poke1, 0, size);
-		// 将下面的牌复制到上面
-		System.arraycopy(poke, size, poke, 0, poke.length - size);
-		// 将临时保存的牌，复制回poke
-		System.arraycopy(poke1, 0, poke, poke.length - size, size);
+		/**
+		 * 实现10次切牌
+		 */
+		for (int i = 0; i < 10; i++) {
+			// 产生切牌点   0 ~ 51
+			int size = rand.nextInt(52);
+			// System.out.println("切牌点：" + size);
+			// 创建临时保存切牌点上面的牌的数组
+			int[] poke1 = new int[size];
+			// 保存切出的牌
+			System.arraycopy(poke, 0, poke1, 0, size);
+			// 将下面的牌复制到上面
+			System.arraycopy(poke, size, poke, 0, poke.length - size);
+			// 将临时保存的牌，复制回poke
+			System.arraycopy(poke1, 0, poke, poke.length - size, size);
+		}
+
 		// 打印切牌后的结果
 		for (int i = 0; i < poke.length; i++) {
-			System.out.print(poke[i] + ",");
+			System.out.print(castDisplay(poke[i]) + ",");
 		}
 		
-		// 请切牌十次
+		/**
+		 * 发牌，将52牌分给4个数组
+		 */
+		int[] p1 = new int[13];
+		int[] p2 = new int[13];
+		int[] p3 = new int[13];
+		int[] p4 = new int[13];
+		System.arraycopy(poke, 0, p1, 0, 13);
+		System.arraycopy(poke, 13, p2, 0, 13);
+		System.arraycopy(poke, 26, p3, 0, 13);
+		System.arraycopy(poke, 39, p4, 0, 13);
 		
+		System.out.println();
+		for (int i = 0; i < p1.length; i++) {
+			System.out.print(castDisplay(p1[i]) + ",");
+		}
+		System.out.println();
+		for (int i = 0; i < p2.length; i++) {
+			System.out.print(castDisplay(p2[i]) + ",");
+		}
+		System.out.println();
+		for (int i = 0; i < p3.length; i++) {
+			System.out.print(castDisplay(p3[i]) + ",");
+		}
+		System.out.println();
+		for (int i = 0; i < p4.length; i++) {
+			System.out.print(castDisplay(p4[i]) + ",");
+		}
+
 		/**
 		 * 作业：
 		 * 1、将扑克牌显示对应的花色：
@@ -67,8 +99,44 @@ public class Demo2 {
 		 * 		40~52 方块 A ~ K
 		 * 2、发牌，将52牌分给4个数组
 		 */
-		
 
+	}
+
+	public static String castDisplay(int poke) {
+		String ret = null;
+		switch (poke / 13) {
+		case 0:
+			ret = "黑桃";
+			break;
+		case 1:
+			ret = "红桃";
+			break;
+		case 2:
+			ret = "梅花";
+			break;
+		case 3:
+		case 4:
+			ret = "方块";
+			break;
+		}
+		int i = poke % 13;
+		switch (i) {
+		case 1:
+			ret += "A";
+			break;
+		case 11:
+			ret += "J";
+			break;
+		case 12:
+			ret += "Q";
+			break;
+		case 0:
+			ret += "K";
+			break;
+		default:
+			ret += i;
+		}
+		return ret;
 	}
 
 	/**
@@ -138,10 +206,6 @@ public class Demo2 {
 
 }
 
+class Demo3 {
 
-class Demo3{
-	
 }
-
-
-
