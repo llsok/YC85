@@ -27,19 +27,19 @@ public class Poker {
 		for (int i = 0; i < poker.length; i++) {
 			poker[i] = i;
 		}
-
+		System.out.println("===============初始牌================");
 		// 打印52扑克牌
 		print(poker);
 
-		// 洗牌
+		System.out.println("===============洗牌================");
 		shuffle();
-
 		// 打印52扑克牌
 		print(poker);
 
-		// 发牌
+		System.out.println("===============发牌================");
 		licensing();
-
+		
+		System.out.println("===============整牌================");
 		// 整牌（冒泡排序）
 		for (int i = 0; i < player.length; i++) {
 			// 整理当前玩家的牌
