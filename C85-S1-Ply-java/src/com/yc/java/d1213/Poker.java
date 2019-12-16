@@ -61,6 +61,7 @@ public class Poker {
 		 */
 		// 注意：外循环定义了名称 f1，这就是命名循环
 		f1: for (int i = 0; i < player.length; i++) {
+			// 遍历玩家手中的牌
 			for (int j = 0; j < player[i].length; j++) {
 				// 黑桃3 的值是 0
 				if (player[i][j] == 0) {
@@ -78,7 +79,7 @@ public class Poker {
 		System.out.print("系统出牌：" + displayCard(card) + "，");
 		int iCardColor = card / 13; // 计算该牌的花色
 		int iCardNumber = card % 13; // 计算该牌的牌号
-		int winCard = -1;
+		int winCard = -1;			// 存储玩家手中第一张大于 该牌 的牌
 		for (int i = 0; i < player[0].length; i++) { // 判断玩家一要不要的起该牌
 			int iColor = player[0][i] / 13; // 计算玩家当前这张牌的花色
 			int iNumber = player[0][i] % 13; // 计算玩家当前这张牌的牌号
@@ -87,6 +88,7 @@ public class Poker {
 			 */
 			if (iCardColor == iColor && iCardNumber < iNumber) {
 				winCard = player[0][i];
+				break; // 找到大于该牌就终止循环
 			}
 		}
 		if (winCard >= 0) {
