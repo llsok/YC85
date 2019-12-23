@@ -27,6 +27,9 @@ public class Person {
 	 */
 	private Person partner;
 	
+	// 定义一个无参数的构造函数
+	public Person(){}
+	
 	public Person(String name, int age, String gender, Person partner) {
 		this.name = name;
 		this.age = age;
