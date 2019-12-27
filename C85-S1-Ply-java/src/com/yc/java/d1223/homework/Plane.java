@@ -13,7 +13,7 @@ public class Plane {
 	private int lengthNum;
 	
 	// 乘客数组
-	private Client[] clients = new Client[400];
+	private Client[] clients = new Client[placeNum];
 	// 当前乘客座位号
 	private int index = 0;
 	
