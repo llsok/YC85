@@ -1,4 +1,4 @@
-package com.yc.java.d0216.homework;
+package com.yc.java.d0216.homework.参考;
 
 import java.util.Random;
 
@@ -24,6 +24,15 @@ public class Company {
 		Company company = new Company("华为", 100);
 
 		// 作业代码: 打...打...打劫! 留下你的代码!!!
+
+		// 分别统计出: 会 Java, Html, MySQL 的人数
+		company.count1();
+
+		// 分别统计出: 会一项技术, 两项技术, 三项技术的人数
+		company.count2();
+
+		// 请辞退年龄在 40 岁以上的只会一项技术的男程序员,  在辞退前后, 请打印所有员工信息, 以作验证
+		company.dismiss();
 
 	}
 
@@ -70,6 +79,78 @@ public class Company {
 			return new Employer7();
 		}
 	}
+
+	/**
+	 * 分别统计出: 会 Java, Html, MySQL 的人数
+	 */
+	public void count1() {
+		int java = 0, html = 0, mysql = 0;
+		for (Employer e : employers) {
+			if (e instanceof Java) {
+				java++;
+			}
+			if (e instanceof Html) {
+				html++;
+			}
+			if (e instanceof MySQL) {
+				mysql++;
+			}
+		}
+		System.out.printf("会Java的有%s人，会Html的有%s人，会MySQL的有%s人。\n", java, html, mysql);
+	}
+
+	/**
+	 * 分别统计出: 会一项技术, 两项技术, 三项技术的人数
+	 */
+	public void count2() {
+		int c1 = 0, c2 = 0, c3 = 0;
+		for (Employer e : employers) {
+			int count = 0;
+			if (e instanceof Java) {
+				count++;
+			}
+			if (e instanceof Html) {
+				count++;
+			}
+			if (e instanceof MySQL) {
+				count++;
+			}
+			switch (count) {
+			case 1:
+				c1++;
+				break;
+			case 2:
+				c2++;
+				break;
+			case 3:
+				c3++;
+				break;
+			}
+		}
+		System.out.printf("会一项技术的有%s人，会两项技术的有%s人，会三项技术的有%s人。\n", c1, c2, c3);
+	}
+
+	/**
+	 * 请辞退年龄在 40 岁以上的只会一项技术的男程序员,  在辞退前后, 请打印所有员工信息, 以作验证
+	 */
+	public void dismiss() {
+		for (Employer e : employers) {
+			int count = 0;
+			if (e instanceof Java) {
+				count++;
+			}
+			if (e instanceof Html) {
+				count++;
+			}
+			if (e instanceof MySQL) {
+				count++;
+			}
+			if (count == 1 && e.sex == 1) {
+				System.out.printf("辞退员工：姓名%s，性别%s，年龄%s\n", e.name, e.sex, e.age);
+			}
+		}
+	}
+
 }
 
 interface Java {
@@ -85,12 +166,13 @@ interface MySQL {
  * 员工抽象类
  */
 abstract class Employer {
-	
+
 	// 姓名常量
 	static final String NAME_PREFIX = "拼命三郎石秀"; 
-	
+	static int count = 0;
+
 	Random random = new Random();
-	String name /**在此实现*/; // 名字请使用 拼命三郎石秀 + 数字编号，数量编号从 1 开始计数
+	String name = NAME_PREFIX + ++count; // 名字请使用 拼命三郎石秀 + 数字编号，数量编号从 1 开始计数
 	int age = random.nextInt(31) + 20; // 随机产生20 ~ 50 岁 的员工年龄
 	int sex = random.nextInt(2); // 随机生成性别 0女性, 1男性
 }
