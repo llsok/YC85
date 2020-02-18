@@ -134,7 +134,8 @@ public class Company {
 	 * 请辞退年龄在 40 岁以上的只会一项技术的男程序员,  在辞退前后, 请打印所有员工信息, 以作验证
 	 */
 	public void dismiss() {
-		for (Employer e : employers) {
+		for (int i = 0; i < employers.length; i++) {
+			Employer e = employers[i];
 			int count = 0;
 			if (e instanceof Java) {
 				count++;
@@ -146,6 +147,8 @@ public class Company {
 				count++;
 			}
 			if (count == 1 && e.sex == 1) {
+				// 辞退就是将数组的元素设置为空 null
+				employers[i] = null;
 				System.out.printf("辞退员工：姓名%s，性别%s，年龄%s\n", e.name, e.sex, e.age);
 			}
 		}
