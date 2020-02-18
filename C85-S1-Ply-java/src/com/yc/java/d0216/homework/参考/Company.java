@@ -48,6 +48,7 @@ public class Company {
 	 */
 	public Company(String name, int number) {
 		this.name = name;
+		//使用传入的员工数量，创建员工数组
 		employers = new Employer[number];
 		for (int i = 0; i < number; i++) {
 			// 网上随机招聘员工
@@ -84,8 +85,11 @@ public class Company {
 	 * 分别统计出: 会 Java, Html, MySQL 的人数
 	 */
 	public void count1() {
+		// 定义三个计数器
 		int java = 0, html = 0, mysql = 0;
+		// 增强for 循环
 		for (Employer e : employers) {
+			// 接口可以当成抽象类来使用
 			if (e instanceof Java) {
 				java++;
 			}
@@ -103,8 +107,11 @@ public class Company {
 	 * 分别统计出: 会一项技术, 两项技术, 三项技术的人数
 	 */
 	public void count2() {
+		// 定义三个计数器
 		int c1 = 0, c2 = 0, c3 = 0;
+		// 增强for 循环
 		for (Employer e : employers) {
+			// 定义单个员工会的技术的数量的计数器
 			int count = 0;
 			if (e instanceof Java) {
 				count++;
@@ -146,7 +153,8 @@ public class Company {
 			if (e instanceof MySQL) {
 				count++;
 			}
-			if (count == 1 && e.sex == 1) {
+			// 年龄在 40 岁以上的只会一项技术的男程序员
+			if (e.age > 40 && count == 1 && e.sex == 1) {
 				// 辞退就是将数组的元素设置为空 null
 				employers[i] = null;
 				System.out.printf("辞退员工：姓名%s，性别%s，年龄%s\n", e.name, e.sex, e.age);
@@ -172,6 +180,7 @@ abstract class Employer {
 
 	// 姓名常量
 	static final String NAME_PREFIX = "拼命三郎石秀"; 
+	// 姓名编号计数器
 	static int count = 0;
 
 	Random random = new Random();
