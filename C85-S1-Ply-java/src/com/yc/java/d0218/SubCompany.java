@@ -57,6 +57,8 @@ public class SubCompany extends Company { // 按下 ctrl + 鼠标点击 类名 =
 	 * 	 加薪的公共方法
 	 * @param money   加薪的数额
 	 * @param checker 用于判断哪些员工可以被加薪
+	 * 	接口也可以父类指向子类对象===》引用转型
+	 * 	定义方法时，把父类类型作为参数类型；调用方法时，把父类或子类的对象作为参 数传入方法
 	 */
 	public void addSalary(int money, Checker checker) {
 		for (Employer e : employers) {
@@ -77,6 +79,11 @@ public class SubCompany extends Company { // 按下 ctrl + 鼠标点击 类名 =
 		return e.sex == 1;
 	}
 
+	/**
+	 * 	
+		运行时，根据实际创建的对象类型动态决定使用哪个方法
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SubCompany sc = new SubCompany("百度", 100);
 		System.out.println("===============查询所有员工==================");
