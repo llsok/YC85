@@ -16,6 +16,8 @@ public class Container {
 
 	private double min;
 	private double max;
+	private Object minObject;
+	private Object maxObject;
 	
 	public void addObject(Object obj) {
 		// 请将对象存放到 对象数组中
@@ -47,6 +49,8 @@ public class Container {
 		// 重置最大值和最小值
 		min = -1;
 		max = -1;
+		minObject = null; // 设置最小对象的控制
+		maxObject = null; // 设置最大对象的控制
 		// 增强for循环
 		for (Object obj : objects) {
 			// 如果被测试对象为空，则测试结束
@@ -56,9 +60,11 @@ public class Container {
 			double value = measurer.measure(obj);
 			if (min == -1 || min > value) {
 				min = value;
+				minObject = obj;
 			}
 			if (max == -1 || max < value) {
 				max = value;
+				maxObject = obj;
 			}
 		}
 	}
@@ -69,6 +75,14 @@ public class Container {
 
 	public double getMin() {
 		return min;
+	}
+
+	public Object getMinObject() {
+		return minObject;
+	}
+
+	public Object getMaxObject() {
+		return maxObject;
 	}
 
 }

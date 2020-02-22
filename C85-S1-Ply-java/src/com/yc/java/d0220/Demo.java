@@ -44,8 +44,13 @@ public class Demo {
 		
 		double max = container.getMax();
 		double min = container.getMin();
-		System.out.println("最高的身高是：" + max);
-		System.out.println("最矮的身高是：" + min);
+		Object obj = container.getMaxObject();
+		
+		Person person = (Person) obj;	// 类型转换（必须有默契）
+		System.out.println("最高的身高是：" + person.getName() + "， 身高：" + max);
+		obj = container.getMinObject();
+		person = (Person) obj;	// 类型转换（必须有默契）
+		System.out.println("最矮的身高是：" + person.getName() + "， 身高：" + min);
 		
 		
 		// 目的：如果要测体重、BMI
@@ -54,8 +59,13 @@ public class Demo {
 		container.measure();
 		max = container.getMax();
 		min = container.getMin();
-		System.out.println("最胖的BMI是：" + max);
-		System.out.println("最瘦的BMI是：" + min);
+		
+		obj = container.getMaxObject();
+		person = (Person) obj;	// 类型转换（必须有默契）
+		System.out.println("最胖的BMI是：" + person.getName() + "， BMI：" + max);
+		obj = container.getMinObject();
+		person = (Person) obj;	// 类型转换（必须有默契）
+		System.out.println("最瘦的BMI是：" + person.getName() + "， BMI：" + max);
 		
 	}
 	

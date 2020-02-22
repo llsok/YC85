@@ -10,6 +10,10 @@ public class Person {
 
 	private double weight;
 	
+	private double income;//收入
+	private double expenses;//支出
+	private double foodexpenses;
+	
 	public Person(String name, double height, double weight) {
 		this.name = name;
 		this.height = height;
@@ -47,6 +51,30 @@ public class Person {
 
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+
+	public double getIncome() {
+		return income;
+	}
+
+	public void setIncome(double income) {
+		this.income = income;
+	}
+
+	public double getExpenses() {
+		return expenses;
+	}
+
+	public void setExpenses(double expenses) {
+		this.expenses = expenses;
+	}
+
+	public double getFoodexpenses() {
+		return foodexpenses;
+	}
+
+	public void setFoodexpenses(double foodexpenses) {
+		this.foodexpenses = foodexpenses;
 	}
 
 
