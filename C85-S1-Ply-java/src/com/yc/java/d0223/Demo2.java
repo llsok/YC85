@@ -32,13 +32,13 @@ public class Demo2 {
 				int value = number / a[index];
 				System.out.println("结果值是：" + value);
 				/**
-				 * 请实现当用户输入 -1 时 退出循环
+				 * 请实现当用户输入 -1 时 退出循环            按下 ctrl + 鼠标点击   ==》 Java 的类
 				 */
+			} catch (ArithmeticException e) {
+				System.out.println("数学计算错误：" + e.getMessage());
 			} catch (ArrayIndexOutOfBoundsException e) {
 				// 捕获了异常，代码将会执行到这里
 				System.out.println("数组索引错误：" + e.getMessage());
-			} catch (ArithmeticException e) {
-				System.out.println("数学计算错误：" + e.getMessage());
 			} finally {
 				System.out.println("本次循环结束");
 			}
