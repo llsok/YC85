@@ -114,6 +114,27 @@ public class SubCompany extends Company { // 按下 ctrl + 鼠标点击 类名 =
 	}
 	
 	/**
+	 *  判断男员工 + 只会一项技能
+	 */
+	static class ManChecker1 implements Checker {
+		public boolean condition(Employer e) {
+			// 判断技能数量
+			int count = 0;
+			if (e instanceof Java) {
+				count++;
+			}
+			if (e instanceof Html) {
+				count++;
+			}
+			if (e instanceof MySQL) {
+				count++;
+			}
+			// 判断男员工 + 只会一项技能
+			return e.sex == 1 && count == 1;
+		}
+	}
+	
+	/**
 	 * 给只会一门技术的男员工 减薪 200
 	 */
 

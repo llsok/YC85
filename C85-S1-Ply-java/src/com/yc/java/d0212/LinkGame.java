@@ -185,24 +185,24 @@ public class LinkGame {
 			return check(x1, y1, x2, y2);
 		}
 		// 判断两个点与其中一个拐点（必须是0）是否同时连通
-		if(board[x1][y2] == 0) {
+		if(board[y2][x1] == 0) {
 			// 临时将拐点的值设置为当前的图形值
-			board[x1][y2] = board[x1][y1];
+			board[y2][x1] = board[y1][x1];
 			boolean b1 = check(x1, y1, x1, y2);
 			boolean b2 = check(x2, y2, x1, y2);
-			board[x1][y2] = 0;
+			board[y2][x1] = 0;
 			if( b1 && b2) {
 				return true;
 			}
 		}
 		
 		// 判断两个点与另一个拐点（必须是0）是否同时连通
-		if(board[x2][y1] == 0) {
+		if(board[y1][x2] == 0) {
 			// 临时将拐点的值设置为当前的图形值
-			board[x2][y1] = board[x1][y1];
+			board[y1][x2] = board[y1][x1];
 			boolean b1 = check(x1, y1, x2, y1);
 			boolean b2 = check(x2, y2, x2, y1);
-			board[x2][y1] = 0;
+			board[y1][x2] = 0;
 			if( b1 && b2) {
 				return true;
 			}
