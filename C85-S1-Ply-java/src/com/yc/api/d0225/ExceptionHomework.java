@@ -5,7 +5,7 @@ package com.yc.api.d0225;
  * 1、请按照方法上面的注释要求完成下面类中的方法代码，包括方法体和声明抛出异常
  * 2、编写 main 方法测试所有方法是否正确
  */
-public class ExceptionHomeword {
+public class ExceptionHomework {
 	
 	/**
 	 * 返回2个数字中的最大值，如果出现2个数字大小一样，
