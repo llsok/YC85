@@ -28,6 +28,7 @@ public class ExerciseString2 {
 	 */
 	public String getISP(String phoneNumber) {
 		String[] p1 = {"133","153","180","181","189","173","177"};
+		Arrays.sort(p1);
 		
 		String prefix = phoneNumber.substring(0,3);
 		System.out.println(prefix);
