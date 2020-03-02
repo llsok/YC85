@@ -1,5 +1,7 @@
 package com.yc.api.d0225;
 
+import java.util.Arrays;
+
 /**
  * 课后作业：
  * 1、请按照方法上面的注释要求完成下面类中的方法代码，包括方法体和声明抛出异常
@@ -17,15 +19,13 @@ public class ExceptionHomework {
 		}
 
 		try {
-			System.out.println("最大值是: " + 
-					eh.max(new int[] { 4, 63, 25, 63, 31, 12, 54 }));
+			System.out.println("最大值是: " + eh.max(new int[] { 4, 63, 25, 63, 31, 12, 54 }));
 		} catch (MaxException e1) {
 			e1.printStackTrace();
 		}
 
 		try {
-			System.out.println("最大值是: " + 
-					eh.max(new char[] { 'z', 'A', '你', '你', '1', '%', ' ' }));
+			System.out.println("最大值是: " + eh.max(new char[] { 'z', 'A', '你', '你', '1', '%', ' ' }));
 		} catch (MaxException e1) {
 			e1.printStackTrace();
 		}
@@ -37,8 +37,7 @@ public class ExceptionHomework {
 		}
 
 		try {
-			System.out.println("奇数个数有: " + 
-					eh.countOdd(new int[] { 432, 12, 4, 34, 124, 112 }));
+			System.out.println("奇数个数有: " + eh.countOdd(new int[] { 432, 12, 4, 34, 124, 112 }));
 		} catch (OddException e) {
 			e.printStackTrace();
 		}
@@ -52,6 +51,7 @@ public class ExceptionHomework {
 	 * @throws MaxException 
 	 */
 	public int max(int a, int b) throws MaxException {
+		System.out.println(a + "," + b);
 		if (a == b) {
 			throw new MaxException("数值大小一致：" + a);
 		} else {
@@ -67,6 +67,8 @@ public class ExceptionHomework {
 	 * @throws MaxException 
 	 */
 	public int max(int[] numbers) throws MaxException {
+		// 打印数组
+		System.out.println(Arrays.toString(numbers));
 		// 第一次for循环找出最大值
 		int max = Integer.MIN_VALUE;
 		for (int n : numbers) {
@@ -93,6 +95,8 @@ public class ExceptionHomework {
 	 * @throws MaxException 
 	 */
 	public char max(char[] chars) throws MaxException {
+		// 打印数组
+		System.out.println(Arrays.toString(chars));
 		char max = Character.MIN_VALUE;
 		for (char n : chars) {
 			if (n > max)
@@ -145,6 +149,8 @@ public class ExceptionHomework {
 	 * @throws OddException 
 	 */
 	public int countOdd(int[] numbers) throws OddException {
+		// 打印数组
+		System.out.println(Arrays.toString(numbers));
 		int count = 0;
 		for (int n : numbers) {
 			// 余数是1就是奇数, 直接 加到 count 中, 节省一行代码, 哈哈
