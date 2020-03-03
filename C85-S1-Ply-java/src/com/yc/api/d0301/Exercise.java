@@ -7,12 +7,25 @@ import com.yc.api.d0229.NameHelper;
 
 /**
 作业：
-	随机生成1000个数字(0~100)， 存入ArrayList集合中， 统计出现次数最多的数字
-	随机生成1000个姓名， 存入TreeSet集合中， 统计出现次数最多的姓氏
-	随机生成1000个日期(1900~现在)， 存入LinkedList集合中， 统计出现次数最多的年份
+	1, 随机生成1000个数字(0~100)， 存入ArrayList集合中， 统计出现次数最多的数字
+	
+	2, 随机生成1000个姓名， 存入TreeSet集合中， 统计出现次数最多的姓氏
+		注意: 
+			1, 该例要用到随机取名的类, 请童邪们先完成随机取名的作业
+			2, 从第二个案例开始, 程序流程与第一个基本一致, 只有几个细节不一样, 大部分代码可以复用, 不需要重写
+			
+	3, 随机生成1000个日期(1900~现在)， 存入LinkedList集合中， 统计出现次数最多的年份
+
 提示：使用   Map 集合进行统计
 	被统计的值作为键，数量作为值。循环集合中的每个值，添加到 Map 集合中，第二次遍历到的值，
 	取出 Map 中数量并且+1，再存回 Map 中，完成统计。
+
+扩展作业:
+	1,任意给出一遍文章, 请统计出现最多的字
+		例如这段文字: 在java的面向对象的特性里，父类的引用可以指向子类的实例对象。但是，如果一个引用b（b本身指向了一个对象）想赋值给引用a，b不是a的类型且不是a的子类类型，那么就需要强制转换，并有失败的可能性，这个时候就需要instanceof关键字来判断。instanceof关键字的用途就是，判断引用b指向的对象，是不是a类型的或a的子类类型。 
+		
+	2, 参考身份证编码规则, 随机生成 1000 个身份证号码, 统计出几月份出生的人数最多
+
  */
 public class Exercise {
 
@@ -114,10 +127,13 @@ public class Exercise {
 		System.out.printf("出现次数最多的是: %s, 共出现了 %s 次\n", countName, maxCount);
 	}
 	
+	/**
+	 * 	随机生成1000个日期(1900~现在)， 存入LinkedList集合中， 统计出现次数最多的年份
+	 */
 	public void countDate() {
-		Set<Date> set = new TreeSet<>();
+		List<Date> list = new LinkedList<>();
 		// 随机生成1000个姓名， 存入TreeSet集合中
-		while (set.size() < 1000) {
+		while (list.size() < 1000) {
 			// 生成随机浮点数, 注意: 该随机值是 0~1 之间的小数
 			double d = random.nextDouble();
 			// 创建当前时间对象
@@ -129,7 +145,7 @@ public class Exercise {
 			// 重新设置时间戳
 			date.setTime(time);
 			// 添加时间对象
-			set.add(date);
+			list.add(date);
 		}
 		
 		// 注意: 要统计的是年份, 所以 Map 中的键应该保存年份的数值, 而不是整个 Date 对象
@@ -138,7 +154,7 @@ public class Exercise {
 		// 定义日历对象, 用于获取时间 date 对象中的年份
 		Calendar cal = Calendar.getInstance();
 		
-		for (Date date : set) {
+		for (Date date : list) {
 			// 给日历对象 cal 重新设置日期值
 			cal.setTime(date);
 			// 获取日期中的年份
@@ -169,7 +185,7 @@ public class Exercise {
 		}
 		// 输出结果
 		System.out.println("\r\n================一道华丽的分割线=================");
-		System.out.println("共随机生成 " + set.size() + " 个日期");
+		System.out.println("共随机生成 " + list.size() + " 个日期");
 		System.out.printf("出现次数最多的是: %s 年, 共出现了 %s 次\n", countYear, maxCount);
 	}
 }
