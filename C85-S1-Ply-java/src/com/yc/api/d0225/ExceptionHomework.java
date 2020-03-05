@@ -159,6 +159,6 @@ public class ExceptionHomework {
 		if (count == 0) {
 			throw new OddException("数组中不包含奇数");
 		}
-		return -1;
+		return count;
 	}
 }
