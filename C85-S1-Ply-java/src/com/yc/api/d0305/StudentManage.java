@@ -14,12 +14,12 @@ public class StudentManage {
 		
 		StudentManage sm = new StudentManage();
 		
-		//sm.createStudent();
-		
-		//sm.save();
-		
 		sm.load();
+
+		sm.createStudent();
 		
+		sm.save();
+
 		sm.showStudents();
 		
 	}
@@ -94,20 +94,23 @@ public class StudentManage {
 		
 		try {
 			fis = new FileInputStream("d:/student.dat");
-			ois = new ObjectInputStream(fis);
+			// ois = new ObjectInputStream(fis);
 			/**
 			 * Unhandled exception type ClassNotFoundException
 			 *  Class Not Found 类型没有找到
 			 */
 			ArrayList<Student> stuList = null;
-			
-			do {
-				stuList = (ArrayList<Student>) ois.readObject();
-				if(stuList != null) {
-					this.stuList.addAll(stuList);
-				}
-			} while( stuList != null);
-			
+			try {
+				do {
+					ois = new ObjectInputStream(fis);
+					stuList = (ArrayList<Student>) ois.readObject();
+					if(stuList != null) {
+						this.stuList.addAll(stuList);
+					}
+				} while( stuList != null);
+			} catch (EOFException e) {
+				System.out.println(e);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
