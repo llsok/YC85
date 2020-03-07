@@ -21,6 +21,16 @@ public class Student implements Serializable{
 	private int math;
 	private int physics;
 	
+	private Parent parent;
+	
+	public Parent getParent() {
+		return parent;
+	}
+
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
+
 	/**
 	 * 	构造方法创建学生, 自动生成
 	 */
@@ -63,11 +73,13 @@ public class Student implements Serializable{
 	public void setPhysics(int physics) {
 		this.physics = physics;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Student [name=" + name + ", sn=" + sn + ", chinese=" + chinese + ", math=" + math + ", physics="
-				+ physics + "]";
+				+ physics + ", parent=" + parent + "]";
 	}
+	
+	
 
 }

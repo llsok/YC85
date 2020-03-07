@@ -34,11 +34,13 @@ public class StudentManage {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Random random = new Random();
 
+		int count = stuList.size();
+		
 		for (int i = 0; i < 100; i++) {
 			// 生成姓名
 			String name = NameHelper.createName();
 			// 生成编号
-			String istr = "" + (i + 1); // 转字符串
+			String istr = "" + (count + i + 1); // 转字符串
 			istr = "00" + istr;
 			istr = istr.substring( istr.length() - 3 , istr.length());  // 截取倒数第三位 到 最后 的字符串
 			String sn = sdf.format(date) + istr; // 20200303    001 0011 00456
@@ -47,6 +49,10 @@ public class StudentManage {
 			int math = random.nextInt(71) + 30;
 			int physics = random.nextInt(71) + 30;
 			Student s = new Student(name, sn, chinese, math, physics);
+			
+			Parent p = new Parent(NameHelper.createName(),"13800001111",40);
+			s.setParent(p);
+			
 			stuList.add(s);
 		}
 	}
@@ -60,14 +66,15 @@ public class StudentManage {
 		ObjectOutputStream oos = null;
 		try {
 			// 创建文件输出字节流
-			fos = new FileOutputStream("d:/student.dat");
+			boolean append = true;  // append 追加
+			fos = new FileOutputStream("d:/student.dat",append);
 			oos = new ObjectOutputStream(fos);// oos 是处理流
 			// 使用对象流进行输出 ==> ObjectOutputStream?
 			/**
 			 * 	java.io.NotSerializableException: com.yc.api.d0305.Student
 			 * 	Student 未实现 序列化 接口,   出现该异常 说明 有一个未被序列化的 对象 被流输入或输出
 			 */
-			oos.writeObject(stuList);
+			oos.writeObject(stuList.clone());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -92,7 +99,15 @@ public class StudentManage {
 			 * Unhandled exception type ClassNotFoundException
 			 *  Class Not Found 类型没有找到
 			 */
-			stuList = (ArrayList<Student>) ois.readObject();
+			ArrayList<Student> stuList = null;
+			
+			do {
+				stuList = (ArrayList<Student>) ois.readObject();
+				if(stuList != null) {
+					this.stuList.addAll(stuList);
+				}
+			} while( stuList != null);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
