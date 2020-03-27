@@ -2,6 +2,7 @@ package com.yc.jdbc.d0325;
 
 import java.sql.*;
 import java.util.*;
+import java.util.Map.Entry;
 
 import com.yc.api.d0305.IOHelper;
 
@@ -161,8 +162,7 @@ public class DBHelper {
 	 * @param params		可变参数数组: 只能放在最后一个参数位置
 	 * @return
 	 */
-	public List<Map<String, Object>> queryPage(String sql, 
-			int pageNumber, int pageSize, Object... params) {
+	public List<Map<String, Object>> queryPage(String sql, int pageNumber, int pageSize, Object... params) {
 		// 参数顺序: 原参数数组 , 截止行数, 开始行数
 
 		// number = 1, size = 5; => begin = 1, end =5
@@ -173,40 +173,52 @@ public class DBHelper {
 		int end = pageNumber * pageSize;
 		// 创建新参数数组
 		Object[] newParams = new Object[params.length + 2];
-		
-		// 数组的复制: 1,引用复制,  2克隆复制  ,  3 system.arraycopy
-		System.arraycopy(params, 0, newParams, 0, params.length);
-		
-		// 给新的参数数组最后2个元素赋值
-		newParams[newParams.length-2] = end;
-		newParams[newParams.length-1] = begin;
 
-		sql = "select *\n" 
-			+ "  from (select a.*, rownum rn\n" 
-			+ "          from (" + sql + ") a\n"
-			+ "         where rownum <= ?)\n"
-			+ " where rn >= ? ";
-		
+		// 数组的复制: 1,引用复制, 2克隆复制 , 3 system.arraycopy
+		System.arraycopy(params, 0, newParams, 0, params.length);
+
+		// 给新的参数数组最后2个元素赋值
+		newParams[newParams.length - 2] = end;
+		newParams[newParams.length - 1] = begin;
+
+		sql = "select *\n" + "  from (select a.*, rownum rn\n" + "          from (" + sql + ") a\n"
+				+ "         where rownum <= ?)\n" + " where rn >= ? ";
+
 		// 调用 query 查询方法
 		return query(sql, newParams);
 	}
-	
+
 	/**
 	 * 	作业: 请返回该语句结果集的行数
 	 * @param sql
 	 * @param params
 	 * @return
 	 */
-	public int count(String sql,Object... params) {
-		return 0;
+	public int count(String sql, Object... params) {
+		// select * from emp where ename like '%A%'
+		// return query(sql, params).size();
+		// 子查询 => select count(*) cnt from (select * from emp where ename like
+		// '%A%') ;
+		sql = "select count(*) from (" + sql + ")";
+		Object cnt = query(sql, params).get(0).get("CNT");
+		// Object ==> int   强制类型转换 ==> 类型匹配    String =>  int
+		// int ret = (int) cnt; // 注定失败 cnt 类型是未知 ??   Integer Long BigDecimal 大实数
+		int ret = Integer.valueOf("" + cnt);
+		
+		return ret;
 	}
-	
+
 	/**
 	 * 	作业: 返回结果集中, 第一行,第一列的值
 	 * 	例如: select count(*) from emp;
 	 * @return
 	 */
-	public Object getValue() {
+	public Object getValue(String sql, Object...params) {
+		List<Map<String,Object>> list = query(sql,params);
+		Map<String,Object> row = list.get(0);
+		for( Entry<String,Object> entry : row.entrySet() ) {
+			return entry.getValue();
+		}
 		return null;
 	}
 
@@ -239,25 +251,25 @@ public class DBHelper {
 		for (Map<String, Object> map : list) {
 			System.out.println(map);
 		}
-		
+
 		System.out.println("==========1====5===========");
 		list = dbhelper.queryPage("select * from emp", 1, 5);
 		for (Map<String, Object> map : list) {
 			System.out.println(map);
 		}
-		
+
 		System.out.println("==========2====5===========");
 		list = dbhelper.queryPage("select * from emp", 2, 5);
 		for (Map<String, Object> map : list) {
 			System.out.println(map);
 		}
-		
+
 		System.out.println("==========3====5===========");
 		list = dbhelper.queryPage("select * from emp", 3, 5);
 		for (Map<String, Object> map : list) {
 			System.out.println(map);
 		}
-		
+
 		System.out.println("==========1====5====7521=======");
 		list = dbhelper.queryPage("select * from emp where empno > ? ", 1, 5, 7521);
 		for (Map<String, Object> map : list) {
