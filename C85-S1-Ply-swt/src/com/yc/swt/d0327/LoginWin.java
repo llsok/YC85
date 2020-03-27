@@ -64,14 +64,14 @@ public class LoginWin {
 		// 设置文本
 		label.setText("用户名:");
 		
-		textName = new Text(shell, SWT.BORDER);
+		textName = new Text(shell, SWT.BORDER | SWT.CENTER);
 		textName.setBounds(103, 44, 190, 23);
 		
 		label_1 = new Label(shell, SWT.NONE);
 		label_1.setBounds(36, 87, 61, 17);
 		label_1.setText("密码:");
 		
-		textPwd = new Text(shell, SWT.BORDER);
+		textPwd = new Text(shell, SWT.BORDER | SWT.PASSWORD | SWT.RIGHT);
 		textPwd.setBounds(103, 84, 190, 23);
 		
 		Button button = new Button(shell, SWT.NONE);
