@@ -6,6 +6,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class LoginWin {
 	// 窗口对象
@@ -75,7 +77,20 @@ public class LoginWin {
 		button.setBounds(103, 136, 80, 27);
 		button.setText("登录");
 		
+		// 按钮控件
 		Button btnNewButton = new Button(shell, SWT.NONE);
+		/**
+		 * 	 添加一个响应事件的监听器( SelectionAdapter )
+		 * 	widgetSelected 是监听器方法, 当鼠标点击时会执行的方法 
+		 */
+		// 匿名内部类的写法, 接口和抽象类可以在匿名内部类中 直接创建
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// 关闭窗口
+				shell.dispose();
+			}
+		});
 		btnNewButton.setBounds(189, 136, 80, 27);
 		btnNewButton.setText("放弃");
 
