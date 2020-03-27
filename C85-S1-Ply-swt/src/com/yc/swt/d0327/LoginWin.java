@@ -3,6 +3,7 @@ package com.yc.swt.d0327;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
@@ -12,9 +13,9 @@ import org.eclipse.swt.events.SelectionEvent;
 public class LoginWin {
 	// 窗口对象
 	protected Shell shell;
-	private Text text;
+	private Text textName;
 	private Label label_1;
-	private Text text_1;
+	private Text textPwd;
 
 	/**
 	 * Launch the application.
@@ -63,17 +64,35 @@ public class LoginWin {
 		// 设置文本
 		label.setText("用户名:");
 		
-		text = new Text(shell, SWT.BORDER);
-		text.setBounds(103, 44, 190, 23);
+		textName = new Text(shell, SWT.BORDER);
+		textName.setBounds(103, 44, 190, 23);
 		
 		label_1 = new Label(shell, SWT.NONE);
 		label_1.setBounds(36, 87, 61, 17);
 		label_1.setText("密码:");
 		
-		text_1 = new Text(shell, SWT.BORDER);
-		text_1.setBounds(103, 84, 190, 23);
+		textPwd = new Text(shell, SWT.BORDER);
+		textPwd.setBounds(103, 84, 190, 23);
 		
 		Button button = new Button(shell, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// 创建消息提示框
+				MessageBox mb = new MessageBox(shell);
+				mb.setText("系统提示");
+				// 用户 yc 密码 123
+				if("yc".equals(textName.getText()) &&
+						"123".equals(textPwd.getText())) {
+					// 登录成功
+					mb.setMessage("登录成功!");
+				} else {
+					// 登录失败
+					mb.setMessage("登录失败!");
+				}
+				mb.open();
+			}
+		});
 		button.setBounds(103, 136, 80, 27);
 		button.setText("登录");
 		
