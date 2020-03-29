@@ -19,14 +19,21 @@ public class EmpCmp extends Composite {
 	 */
 	public EmpCmp(Composite parent, int style) {
 		super(parent, style);
+		// 设置边界布局
 		setLayout(new BorderLayout(0, 0));
 		
+		// 添加表格
 		table = new Table(this, SWT.BORDER | SWT.FULL_SELECTION);
+		// 设置表格控件位于 面板的 中间
 		table.setLayoutData(BorderLayout.CENTER);
+		// 设置表格头可见
 		table.setHeaderVisible(true);
+		// 设置表格线可见
 		table.setLinesVisible(true);
 		
+		// 自定义容器组件, 用于放置查询条件和按钮
 		Composite composite = new Composite(this, SWT.NONE);
+		// 设置容器控件位于 面板的 上方( 也就是边界布局的 北部 )
 		composite.setLayoutData(BorderLayout.NORTH);
 		
 		Label lblNewLabel = new Label(composite, SWT.NONE);
