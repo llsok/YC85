@@ -7,10 +7,15 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 
 public class EmpCmp extends Composite {
 	private Table table;
 	private Text text;
+	private Text text_1;
 
 	/**
 	 * Create the composite.
@@ -31,21 +36,59 @@ public class EmpCmp extends Composite {
 		// 设置表格线可见
 		table.setLinesVisible(true);
 		
+		TableColumn tableColumn = new TableColumn(table, SWT.CENTER);
+		tableColumn.setWidth(73);
+		tableColumn.setText("员工编号");
+		
+		TableColumn tableColumn_1 = new TableColumn(table, SWT.CENTER);
+		tableColumn_1.setWidth(100);
+		tableColumn_1.setText("员工姓名");
+		
+		TableColumn tableColumn_2 = new TableColumn(table, SWT.CENTER);
+		tableColumn_2.setWidth(100);
+		tableColumn_2.setText("职位");
+		
+		TableItem tableItem = new TableItem(table, SWT.NONE);
+		tableItem.setText(new String[] {"02", "武松", "打手"});
+		
 		// 自定义容器组件, 用于放置查询条件和按钮
 		Composite composite = new Composite(this, SWT.NONE);
 		// 设置容器控件位于 面板的 上方( 也就是边界布局的 北部 )
 		composite.setLayoutData(BorderLayout.NORTH);
+		// 设置网格布局
+		GridLayout gl_composite = new GridLayout(6, false);
+		gl_composite.marginWidth = 10;
+		gl_composite.marginHeight = 10;
+		composite.setLayout(gl_composite);
+		new Label(composite, SWT.NONE);
 		
-		Label lblNewLabel = new Label(composite, SWT.NONE);
-		lblNewLabel.setBounds(21, 10, 61, 17);
-		lblNewLabel.setText("New Label");
+		Label lblNewLabel = new Label(composite, SWT.RIGHT);
+		GridData gd_lblNewLabel = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
+		gd_lblNewLabel.widthHint = 27;
+		lblNewLabel.setLayoutData(gd_lblNewLabel);
+		lblNewLabel.setText("姓名:");
 		
 		text = new Text(composite, SWT.BORDER);
-		text.setBounds(111, 0, 73, 23);
+		GridData gd_text = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
+		gd_text.widthHint = 102;
+		text.setLayoutData(gd_text);
+		
+		Label lblNewLabel_1 = new Label(composite, SWT.RIGHT);
+		GridData gd_lblNewLabel_1 = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
+		gd_lblNewLabel_1.widthHint = 41;
+		lblNewLabel_1.setLayoutData(gd_lblNewLabel_1);
+		lblNewLabel_1.setText("领导:");
+		
+		text_1 = new Text(composite, SWT.BORDER);
+		GridData gd_text_1 = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
+		gd_text_1.widthHint = 94;
+		text_1.setLayoutData(gd_text_1);
 		
 		Button btnNewButton = new Button(composite, SWT.NONE);
-		btnNewButton.setBounds(318, 0, 80, 27);
-		btnNewButton.setText("New Button");
+		GridData gd_btnNewButton = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+		gd_btnNewButton.widthHint = 81;
+		btnNewButton.setLayoutData(gd_btnNewButton);
+		btnNewButton.setText("查询");
 
 	}
 
