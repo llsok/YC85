@@ -3,6 +3,9 @@ package com.yc.swt.scott;
 import org.eclipse.swt.widgets.Composite;
 import swing2swt.layout.BorderLayout;
 import org.eclipse.swt.widgets.Table;
+
+import java.util.*;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -35,8 +38,9 @@ public class EmpCmp extends Composite {
 		table.setHeaderVisible(true);
 		// 设置表格线可见
 		table.setLinesVisible(true);
-		
+		// 创建表列( 表头 )
 		TableColumn tableColumn = new TableColumn(table, SWT.CENTER);
+		// 设置宽度
 		tableColumn.setWidth(73);
 		tableColumn.setText("员工编号");
 		
@@ -47,9 +51,6 @@ public class EmpCmp extends Composite {
 		TableColumn tableColumn_2 = new TableColumn(table, SWT.CENTER);
 		tableColumn_2.setWidth(100);
 		tableColumn_2.setText("职位");
-		
-		TableItem tableItem = new TableItem(table, SWT.NONE);
-		tableItem.setText(new String[] {"02", "武松", "打手"});
 		
 		// 自定义容器组件, 用于放置查询条件和按钮
 		Composite composite = new Composite(this, SWT.NONE);
@@ -90,10 +91,31 @@ public class EmpCmp extends Composite {
 		btnNewButton.setLayoutData(gd_btnNewButton);
 		btnNewButton.setText("查询");
 
+		// 执行查询
+		query();
+		
 	}
 
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
 	}
+	
+	/**
+	 * 	查询emp 表, 将结果渲染到表格中
+	 */
+	public void query() {
+		// 添加一行表数据
+		EmpDao ed = new EmpDao();
+		List<Map<String,Object>> list = ed.selectAll();
+		for(Map<String,Object> row : list) {
+			TableItem tableItem = new TableItem(table, SWT.NONE);
+			tableItem.setText(new String[] {
+					"" + row.get("EMPNO"),
+					"" + row.get("ENAME"),
+					"" + row.get("JOB")
+			});
+		}
+	}
+	
 }
