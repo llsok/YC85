@@ -14,6 +14,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class EmpCmp extends Composite {
 	private Table table;
@@ -78,7 +80,7 @@ public class EmpCmp extends Composite {
 		GridData gd_lblNewLabel_1 = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
 		gd_lblNewLabel_1.widthHint = 41;
 		lblNewLabel_1.setLayoutData(gd_lblNewLabel_1);
-		lblNewLabel_1.setText("领导:");
+		lblNewLabel_1.setText("岗位:");
 		
 		text_1 = new Text(composite, SWT.BORDER);
 		GridData gd_text_1 = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
@@ -86,6 +88,29 @@ public class EmpCmp extends Composite {
 		text_1.setLayoutData(gd_text_1);
 		
 		Button btnNewButton = new Button(composite, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// 封装对象
+				Emp emp = new Emp();
+				emp.setEname(text.getText());
+				emp.setJob(text_1.getText());
+				// 调用dao方法
+				EmpDao eDao = new EmpDao();
+				List<Map<String,Object>> list = eDao.selectByObject(emp);
+				// 删除之前的表格数据
+				table.removeAll();
+				// 刷新表格
+				for(Map<String,Object> row : list) {
+					TableItem tableItem = new TableItem(table, SWT.NONE);
+					tableItem.setText(new String[] {
+							"" + row.get("EMPNO"),
+							"" + row.get("ENAME"),
+							"" + row.get("JOB")
+					});
+				}
+			}
+		});
 		GridData gd_btnNewButton = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_btnNewButton.widthHint = 81;
 		btnNewButton.setLayoutData(gd_btnNewButton);
