@@ -8,6 +8,7 @@ import java.util.*;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.layout.GridLayout;
@@ -94,7 +95,7 @@ public class EmpCmp extends Composite {
 		rl_composite_1.marginHeight = 5;
 		composite_1.setLayout(rl_composite_1);
 		GridData gd_composite_1 = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
-		gd_composite_1.widthHint = 117;
+		gd_composite_1.widthHint = 164;
 		composite_1.setLayoutData(gd_composite_1);
 		
 		Button btnNewButton = new Button(composite_1, SWT.NONE);
@@ -116,6 +117,16 @@ public class EmpCmp extends Composite {
 		});
 		btnNewButton_1.setLayoutData(new RowData(76, SWT.DEFAULT));
 		btnNewButton_1.setText("新增");
+		
+		Button button = new Button(composite_1, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				modEmp();
+			}
+		});
+		button.setLayoutData(new RowData(76, SWT.DEFAULT));
+		button.setText("修改");
 
 		// 执行查询
 		query();
@@ -172,6 +183,28 @@ public class EmpCmp extends Composite {
 		eed.open();
 		// 刷新表格数据
 		query1();
+	}
+
+	/**
+	 * 	修改员工信息
+	 */
+	private void modEmp() {
+		// 获取当前选择的表格中的行
+		TableItem[] items = table.getSelection();
+		if(items == null || items.length==0) {
+			// 创建消息框
+			MessageBox mb = new MessageBox(getShell());
+			mb.setMessage("请选择要修改的记录!");
+			mb.setText("系统提示");
+			mb.open();
+			return;
+		}
+		// 将 item 传入  EmpEidtDialog
+		TableItem item = items[0];
+		EmpEditDialog eed = new EmpEditDialog(getShell(), SWT.NONE);
+		eed.setItem(item);
+		eed.open();
+		
 	}
 	
 }

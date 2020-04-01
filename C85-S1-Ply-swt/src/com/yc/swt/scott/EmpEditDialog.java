@@ -3,6 +3,7 @@ package com.yc.swt.scott;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormLayout;
@@ -125,6 +126,11 @@ public class EmpEditDialog extends Dialog {
 		fd_textJob.top = new FormAttachment(textEname, 13);
 		fd_textJob.left = new FormAttachment(label_2, 45);
 		textJob.setLayoutData(fd_textJob);
+		
+		if(item!=null) {
+			// 设置要编辑的用户信息
+			setEmp();
+		}
 
 	}
 	
@@ -145,5 +151,19 @@ public class EmpEditDialog extends Dialog {
 		// 刷新表格( 父窗口 )
 		
 	}
+	
+	/**
+	 * 	设置用户信息
+	 */
+	private void setEmp() {
+		textEmpno.setText(item.getText(0));
+		textEname.setText(item.getText(1));
+		textJob.setText(item.getText(2));
+	}
+
+	// 要修改的记录
+	protected TableItem item;
+	public TableItem getItem() { return item; }
+	public void setItem(TableItem item) { this.item = item; }
 
 }
