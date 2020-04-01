@@ -54,4 +54,19 @@ public class EmpDao {
 				emp.getDeptno());
 	}
 	
+	/**
+	 * 	修改员工
+	 * @param emp
+	 */
+	public void update(Emp emp) {
+		/**
+		 * 	我只修改了 2 个字段, 其他字段请补上
+		 */
+		String sql = "update emp set ename=?,job=? where empno=?";
+		new DBHelper().update(sql, 
+				emp.getEname(),
+				emp.getJob(),
+				emp.getEmpno());
+	}
+	
 }

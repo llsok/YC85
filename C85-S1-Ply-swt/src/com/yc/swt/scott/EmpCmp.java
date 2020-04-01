@@ -180,9 +180,11 @@ public class EmpCmp extends Composite {
 		// 创建员工信息编辑窗口
 		// 模态 ==> 对话框
 		EmpEditDialog eed = new EmpEditDialog(getShell(), SWT.NONE);
-		eed.open();
-		// 刷新表格数据
-		query1();
+		if((int)eed.open()==1) {
+			// 刷新表格数据
+			query1();
+		}
+	
 	}
 
 	/**
@@ -203,8 +205,20 @@ public class EmpCmp extends Composite {
 		TableItem item = items[0];
 		EmpEditDialog eed = new EmpEditDialog(getShell(), SWT.NONE);
 		eed.setItem(item);
-		eed.open();
+		if((int)eed.open()==1){
+			query1();
+		}
 		
 	}
+	
+	/**
+	 * 	增  删   改查
+	 * 	作业:  请完成删除操作
+	 * 	1. 删除不需要打开窗口编辑信息
+	 * 	2.删除需要用户的确认
+	 * 		MessageBox mb = new MessageBox(shell, SWT....)
+	 * 		int result = mb.open();
+	 * 	3.删除的代码直接写在  Eepomp.java 中
+	 */
 	
 }

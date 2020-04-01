@@ -16,8 +16,8 @@ import org.eclipse.swt.events.SelectionEvent;
 
 public class EmpEditDialog extends Dialog {
 
-	// 结果对象
-	protected Object result;
+	// 结果对象     放弃关闭返回数字 0
+	protected Object result = 0;
 	
 	protected Shell shell;
 	private Text textEmpno;
@@ -78,6 +78,12 @@ public class EmpEditDialog extends Dialog {
 		button.setText("保存");
 		
 		Button button_1 = new Button(shell, SWT.NONE);
+		button_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				shell.close();
+			}
+		});
 		button_1.setText("放弃");
 		FormData fd_button_1 = new FormData();
 		fd_button_1.left = new FormAttachment(button, 19);
@@ -144,7 +150,14 @@ public class EmpEditDialog extends Dialog {
 		emp.setEname(textEname.getText());
 		emp.setJob(textJob.getText());
 		// 调用 dao 方法
-		new EmpDao().insert(emp);
+		if(item == null) {
+			new EmpDao().insert(emp);
+		} else {
+			new EmpDao().update(emp);
+		}
+		// 保存关闭返回数字 1
+		result = 1;
+		
 		// 关闭窗口
 		shell.close();
 		
