@@ -170,6 +170,8 @@ public class EmpCmp extends Composite {
 		// 模态 ==> 对话框
 		EmpEditDialog eed = new EmpEditDialog(getShell(), SWT.NONE);
 		eed.open();
+		// 刷新表格数据
+		query1();
 	}
 	
 }

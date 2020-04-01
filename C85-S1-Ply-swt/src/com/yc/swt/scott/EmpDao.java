@@ -36,4 +36,22 @@ public class EmpDao {
 		return new DBHelper().query(sql, params.toArray());
 		
 	}
+	
+	/**
+	 * 	新增员工
+	 * @param emp
+	 */
+	public void insert(Emp emp) {
+		String sql = "insert into emp values(?,?,?,?,?,?,?,?,null,null)";
+		new DBHelper().update(sql, 
+				emp.getEmpno(),
+				emp.getEname(),
+				emp.getJob(),
+				emp.getMgr(),
+				emp.getHiredate(),
+				emp.getSal(),
+				emp.getComm(),
+				emp.getDeptno());
+	}
+	
 }
