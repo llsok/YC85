@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.layout.RowData;
 
 public class EmpCmp extends Composite {
 	private Table table;
@@ -87,34 +89,33 @@ public class EmpCmp extends Composite {
 		gd_text_1.widthHint = 94;
 		text_1.setLayoutData(gd_text_1);
 		
-		Button btnNewButton = new Button(composite, SWT.NONE);
+		Composite composite_1 = new Composite(composite, SWT.NONE);
+		RowLayout rl_composite_1 = new RowLayout(SWT.HORIZONTAL);
+		rl_composite_1.marginHeight = 5;
+		composite_1.setLayout(rl_composite_1);
+		GridData gd_composite_1 = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
+		gd_composite_1.widthHint = 117;
+		composite_1.setLayoutData(gd_composite_1);
+		
+		Button btnNewButton = new Button(composite_1, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// 封装对象
-				Emp emp = new Emp();
-				emp.setEname(text.getText());
-				emp.setJob(text_1.getText());
-				// 调用dao方法
-				EmpDao eDao = new EmpDao();
-				List<Map<String,Object>> list = eDao.selectByObject(emp);
-				// 删除之前的表格数据
-				table.removeAll();
-				// 刷新表格
-				for(Map<String,Object> row : list) {
-					TableItem tableItem = new TableItem(table, SWT.NONE);
-					tableItem.setText(new String[] {
-							"" + row.get("EMPNO"),
-							"" + row.get("ENAME"),
-							"" + row.get("JOB")
-					});
-				}
+				query1();
 			}
 		});
-		GridData gd_btnNewButton = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
-		gd_btnNewButton.widthHint = 81;
-		btnNewButton.setLayoutData(gd_btnNewButton);
+		btnNewButton.setLayoutData(new RowData(76, SWT.DEFAULT));
 		btnNewButton.setText("查询");
+		
+		Button btnNewButton_1 = new Button(composite_1, SWT.NONE);
+		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				addEmp();
+			}
+		});
+		btnNewButton_1.setLayoutData(new RowData(76, SWT.DEFAULT));
+		btnNewButton_1.setText("新增");
 
 		// 执行查询
 		query();
@@ -141,6 +142,34 @@ public class EmpCmp extends Composite {
 					"" + row.get("JOB")
 			});
 		}
+	}
+	
+	public void query1() {
+		// 封装对象
+		Emp emp = new Emp();
+		emp.setEname(text.getText());
+		emp.setJob(text_1.getText());
+		// 调用dao方法
+		EmpDao eDao = new EmpDao();
+		List<Map<String,Object>> list = eDao.selectByObject(emp);
+		// 删除之前的表格数据
+		table.removeAll();
+		// 刷新表格
+		for(Map<String,Object> row : list) {
+			TableItem tableItem = new TableItem(table, SWT.NONE);
+			tableItem.setText(new String[] {
+					"" + row.get("EMPNO"),
+					"" + row.get("ENAME"),
+					"" + row.get("JOB")
+			});
+		}
+	}
+	
+	public void addEmp() {
+		// 创建员工信息编辑窗口
+		// 模态 ==> 对话框
+		EmpEditDialog eed = new EmpEditDialog(getShell(), SWT.NONE);
+		eed.open();
 	}
 	
 }
