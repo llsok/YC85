@@ -1,5 +1,7 @@
 package com.yc.library.dao;
 
+import java.util.*;
+
 import com.yc.library.bean.Book;
 import com.yc.library.util.DBHelper;
 
@@ -19,6 +21,16 @@ public class BookDao {
 				book.getPress(),
 				book.getPressdate(),
 				book.getStatus());
+	}
+	
+	public List<Map<String,Object>> selectAll() {
+		String sql = "select * from book";
+		return new DBHelper().query(sql);
+	}
+	
+	public List<Book> selectAll1() {
+		String sql = "select * from book";
+		return new DBHelper().query(sql, Book.class);
 	}
 
 }

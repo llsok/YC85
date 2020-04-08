@@ -1,5 +1,6 @@
 package com.yc.library.util;
 
+import java.lang.reflect.*;
 import java.sql.*;
 import java.util.*;
 import java.util.Map.Entry;
@@ -143,6 +144,91 @@ public class DBHelper {
 				}
 				// 将 map 添加到 ret 中
 				ret.add(row);
+			}
+			return ret;
+		} catch (SQLException e) {
+			throw new RuntimeException("执行SQL语句失败!", e);
+		} finally {
+			IOHelper.close(conn);
+		}
+	}
+	
+	/**
+	 * 	返回值的类型是可变的类型, 所有的集合==> 泛型类
+	 * 	query 方法改造成 泛型方法	: 语法的定义: 在方法前用 <E>
+	 * 
+	 * @param sql
+	 * @param cls		类对象, 表示 E 类的类对象, Java 反射技术
+	 * @param params
+	 * @return
+	 */
+	public <E> List<E> query(String sql, Class<E> cls, Object... params) {
+		Connection conn = openConnection();
+		try {
+			System.out.println("SQL: " + sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			// alrt + /
+			System.out.println("参数: " + Arrays.toString(params));
+			for (int i = 0; i < params.length; i++) {
+				ps.setObject(i + 1, params[i]);
+			}
+			ResultSet rs = ps.executeQuery();
+
+			// 获取结果集元数据对象, 元(Meta)数据(data): 描述数据的数据
+			ResultSetMetaData rsmd = rs.getMetaData();
+			// 创建返回结果对象
+			List<E> ret = new ArrayList<>();
+			while (rs.next()) {
+				// 创建 实体对象集合( 通过反射机制创建实体对象  == new 实体类()   )
+				E e;
+				try {
+					e = cls.newInstance();
+				} catch (Exception e2) {
+					// 异常转型
+					throw new RuntimeException(e2);
+				}
+				
+				// 通过反射进行属性值的设置
+				for (int i = 0; i < rsmd.getColumnCount(); i++) {
+					try {
+						// 根据当前的列名找对应的属性
+						String columnName = rsmd.getColumnName(i+1); // ID, NAME, AUTHER ...
+						columnName = columnName.toLowerCase(); // 转小写
+						// 获取该类定义的属性(包括私有)
+						Field field = cls.getDeclaredField(columnName);
+						// 获取当前列的值
+						/**
+						 *  ID ==> JDBC 数据类型 : BigDecimal 大实数 表示任意大小的数字
+						 *  	  	    实体类类型: Long
+						 *  .getType 获取属性的类型  ==> LONG  String  Integer
+						 */
+						// 从结果取出的数值
+						Object value = rs.getObject(i+1);  
+						// 要转换的数值
+						Object destValue = null;
+						if(field.getType().equals(Long.class)) {
+							destValue = Long.valueOf(value + "");
+						} else if(field.getType().equals(Integer.class)) {
+							destValue = Integer.valueOf(value + "");
+						} else if(field.getType().equals(Double.class)) {
+							destValue = Double.valueOf(value + "");
+						} else if(field.getType().equals(Boolean.class)) {
+							destValue = Boolean.valueOf(value + "");
+
+						// 其他数据类型请自行添加
+						} else {
+							destValue = value;
+						}
+						// 设置强制访问私有属性
+						field.setAccessible(true);
+						// 将值设置到该属性中
+						field.set(e, destValue);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				// 将 map 添加到 ret 中
+				ret.add(e);
 			}
 			return ret;
 		} catch (SQLException e) {
