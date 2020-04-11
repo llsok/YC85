@@ -43,6 +43,9 @@ import java.util.Map.Entry;
  * 
  */
 public class DBHelper {
+	
+	// 定义共用的连接对象
+	private Connection conn;
 
 	/**
 	 * 	类的代码块:
@@ -64,6 +67,24 @@ public class DBHelper {
 			throw re;
 		}
 	}
+	
+	public DBHelper() {
+		/**
+		 * JDBC 连接默认是自动提交, 也就是每次执行完增删改都会自动提交
+		 */
+		// 在构造方法中创建连接
+		conn = openConnection();
+	}
+	
+	// 关闭连接
+	public void closeConnection() {
+		IOHelper.close(conn);
+	}
+	
+	// 返回连接对象
+	public Connection getConn() {
+		return conn;
+	}
 
 	/**
 	 * 	获取连接
@@ -74,7 +95,10 @@ public class DBHelper {
 		String user = "library"; // 数据的用户
 		String password = "a";
 		try {
-			return DriverManager.getConnection(url, user, password);
+			Connection conn = DriverManager.getConnection(url, user, password);
+			// 禁止自动提交
+			conn.setAutoCommit(false);
+			return conn;
 		} catch (SQLException e) {
 			throw new RuntimeException("获取数据库连接失败!", e);
 		}
@@ -89,7 +113,6 @@ public class DBHelper {
 	 * @return
 	 */
 	public int update(String sql, Object... params) {
-		Connection conn = openConnection();
 		try {
 			System.out.println("SQL: " + sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -101,8 +124,6 @@ public class DBHelper {
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("执行SQL语句失败!", e);
-		} finally {
-			IOHelper.close(conn);
 		}
 	}
 
@@ -113,7 +134,6 @@ public class DBHelper {
 	 * @return
 	 */
 	public List<Map<String, Object>> query(String sql, Object... params) {
-		Connection conn = openConnection();
 		try {
 			System.out.println("SQL: " + sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -148,8 +168,6 @@ public class DBHelper {
 			return ret;
 		} catch (SQLException e) {
 			throw new RuntimeException("执行SQL语句失败!", e);
-		} finally {
-			IOHelper.close(conn);
 		}
 	}
 	
@@ -163,7 +181,6 @@ public class DBHelper {
 	 * @return
 	 */
 	public <E> List<E> query(String sql, Class<E> cls, Object... params) {
-		Connection conn = openConnection();
 		try {
 			System.out.println("SQL: " + sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -233,8 +250,6 @@ public class DBHelper {
 			return ret;
 		} catch (SQLException e) {
 			throw new RuntimeException("执行SQL语句失败!", e);
-		} finally {
-			IOHelper.close(conn);
 		}
 	}
 
@@ -283,7 +298,7 @@ public class DBHelper {
 		// return query(sql, params).size();
 		// 子查询 => select count(*) cnt from (select * from emp where ename like
 		// '%A%') ;
-		sql = "select count(*) from (" + sql + ")";
+		sql = "select count(*) cnt from (" + sql + ")";
 		Object cnt = query(sql, params).get(0).get("CNT");
 		// Object ==> int   强制类型转换 ==> 类型匹配    String =>  int
 		// int ret = (int) cnt; // 注定失败 cnt 类型是未知 ??   Integer Long BigDecimal 大实数
