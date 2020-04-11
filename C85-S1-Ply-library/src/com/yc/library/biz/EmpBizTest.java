@@ -3,6 +3,18 @@ package com.yc.library.biz;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * 	insertBook 主键冲突  主键生成机制
+ * 
+ * 	图书借阅的业务逻辑: JDBC事务管理
+ * 		业务逻辑比较复杂, 涉及2个表的操作
+ * 		1. lend ==> 记录借阅信息, 借阅人, 借阅时间, 图书id ...
+ * 		2. book ==> 借阅状态由 0 变 1;
+ * 		
+ * 
+ * 	借阅管理的界面
+ *
+ */
 public class EmpBizTest {
 	
 	@Test

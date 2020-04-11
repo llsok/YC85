@@ -12,9 +12,8 @@ public class BookDao {
 	 * @param book
 	 */
 	public int insert(Book book) {
-		String sql = "insert into book values(?,?,?,?,?,?,?)";
+		String sql = "insert into book values(seq_book_id.nextval,?,?,?,?,?,?)";
 		return new DBHelper().update(sql, 
-				book.getId(),
 				book.getName(),
 				book.getAuthor(),
 				book.getIsbn(),

@@ -29,8 +29,13 @@ public class BookDaoTest {
 		/**
 		 * 	方法一: 每次测试时,删除该(  id = 1 )记录
 		 * 	方法二: 生成不同的id值
+		 * 		1.  使用时间戳    System.currentTimeMillis()  long  单线程不重复
+		 * 			问题, 值太大
+		 * 		2.	使用 oracle 数据库   序列   可以在多线程状态运行时不重复,  必须改sql
+		 * 		3.  使用 UUID 类生成  java 随机生成不重复序列的类,  生成的是 String, 
+		 * 				理论上来说几千年才会重复一次
 		 */
-		book.setId(1L);
+		// book.setId(System.currentTimeMillis());
 		book.setName("Java编程思想");
 		int cnt = bDao.insert(book);
 		// 断言类

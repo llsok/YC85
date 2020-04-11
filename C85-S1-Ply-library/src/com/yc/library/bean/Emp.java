@@ -15,7 +15,7 @@ public class Emp implements java.io.Serializable {
 	private String pwd;
 	private String phone;
 	private String email;
-	private Timestamp rettime;
+	private Timestamp regtime;
 	
 	public Long getId() {
 		return id;
@@ -53,11 +53,12 @@ public class Emp implements java.io.Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Timestamp getRettime() {
-		return rettime;
+
+	public Timestamp getRegtime() {
+		return regtime;
 	}
-	public void setRettime(Timestamp rettime) {
-		this.rettime = rettime;
+	public void setRegtime(Timestamp regtime) {
+		this.regtime = regtime;
 	}
 	@Override
 	public int hashCode() {
@@ -86,7 +87,7 @@ public class Emp implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Emp [id=" + id + ", account=" + account + ", name=" + name + ", pwd=" + pwd + ", phone=" + phone
-				+ ", email=" + email + ", rettime=" + rettime + "]";
+				+ ", email=" + email + ", rettime=" + regtime + "]";
 	}
 	
 }
