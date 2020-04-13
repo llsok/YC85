@@ -36,7 +36,7 @@ public class BookDaoTest {
 		 * 				理论上来说几千年才会重复一次
 		 */
 		// book.setId(System.currentTimeMillis());
-		book.setName("Java编程思想");
+		book.setName("C++编程思想");
 		int cnt = bDao.insert(book);
 		// 断言类
 		Assert.assertEquals(1, cnt);

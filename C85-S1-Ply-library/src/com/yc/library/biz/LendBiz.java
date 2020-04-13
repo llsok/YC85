@@ -42,7 +42,7 @@ public class LendBiz {
 		if (person.trim().length() < 2) {
 			throw new BizException("请输入完整的借阅人姓名!");
 		}
-		DBHelper dbh = new DBHelper();
+		DBHelper dbh = new DBHelper(false);
 		/**
 		 * 判断该图书是否已经被借阅出去了
 		 * nvl( 值, 默认值 ) 判断值是否为空, 如果为null 返回 后面的默认值, 不为空则返回原值
@@ -66,6 +66,7 @@ public class LendBiz {
 			// 提交
 			dbh.getConn().commit();
 		} catch (Exception e) {
+			e.printStackTrace();
 			// 回滚
 			try {
 				dbh.getConn().rollback();

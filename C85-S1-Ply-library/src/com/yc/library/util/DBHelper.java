@@ -46,6 +46,8 @@ public class DBHelper {
 	
 	// 定义共用的连接对象
 	private Connection conn;
+	
+	private boolean isAutoCommit = true;
 
 	/**
 	 * 	类的代码块:
@@ -65,6 +67,20 @@ public class DBHelper {
 			// 未捕获的运行期异常将导致程序的终止
 			RuntimeException re = new RuntimeException("数据库驱动加载失败!", e);
 			throw re;
+		}
+	}
+	
+	/**
+	 * 使用 isAutoCommit 决定是否自动提交
+	 * 
+	 * 如果是自动提交, 则意味着每次执行 update 方法都要获取新的连接, 在执行之后关闭连接
+	 * 否则, 不关闭连接
+	 * @param isAutoCommit  自动提交  true
+	 */
+	public DBHelper(boolean isAutoCommit) {
+		this.isAutoCommit = isAutoCommit;
+		if(isAutoCommit == false) {
+			conn = openConnection();
 		}
 	}
 	
@@ -95,10 +111,16 @@ public class DBHelper {
 		String user = "library"; // 数据的用户
 		String password = "a";
 		try {
-			Connection conn = DriverManager.getConnection(url, user, password);
-			// 禁止自动提交
-			conn.setAutoCommit(false);
-			return conn;
+			if(isAutoCommit) {
+				return DriverManager.getConnection(url, user, password);
+			} else {
+				if(conn == null) {
+					// 禁止自动提交
+					conn = DriverManager.getConnection(url, user, password);
+					conn.setAutoCommit(isAutoCommit);
+				}
+				return conn;
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException("获取数据库连接失败!", e);
 		}
@@ -114,6 +136,8 @@ public class DBHelper {
 	 */
 	public int update(String sql, Object... params) {
 		try {
+			// 每次都会通过open方法获取连接
+			conn = openConnection();
 			System.out.println("SQL: " + sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			// alrt + /
@@ -124,6 +148,10 @@ public class DBHelper {
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("执行SQL语句失败!", e);
+		} finally {
+			if(isAutoCommit == true) {
+				IOHelper.close(conn);
+			}
 		}
 	}
 
@@ -135,6 +163,7 @@ public class DBHelper {
 	 */
 	public List<Map<String, Object>> query(String sql, Object... params) {
 		try {
+			conn = openConnection();
 			System.out.println("SQL: " + sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			// alrt + /
@@ -168,6 +197,10 @@ public class DBHelper {
 			return ret;
 		} catch (SQLException e) {
 			throw new RuntimeException("执行SQL语句失败!", e);
+		} finally {
+			if(isAutoCommit == true) {
+				IOHelper.close(conn);
+			}
 		}
 	}
 	
@@ -182,6 +215,7 @@ public class DBHelper {
 	 */
 	public <E> List<E> query(String sql, Class<E> cls, Object... params) {
 		try {
+			conn = openConnection();
 			System.out.println("SQL: " + sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			// alrt + /
@@ -250,6 +284,10 @@ public class DBHelper {
 			return ret;
 		} catch (SQLException e) {
 			throw new RuntimeException("执行SQL语句失败!", e);
+		} finally {
+			if(isAutoCommit == true) {
+				IOHelper.close(conn);
+			}
 		}
 	}
 
