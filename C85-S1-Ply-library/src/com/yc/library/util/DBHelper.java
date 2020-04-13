@@ -84,13 +84,14 @@ public class DBHelper {
 		}
 	}
 	
-	public DBHelper() {
-		/**
-		 * JDBC 连接默认是自动提交, 也就是每次执行完增删改都会自动提交
-		 */
+	/**
+	 * JDBC 连接默认是自动提交, 也就是每次执行完增删改都会自动提交
+	 * 无参的构造方法, 可以注释掉了
+	 */
+	//public DBHelper() {
 		// 在构造方法中创建连接
-		conn = openConnection();
-	}
+		//conn = openConnection();
+	//}
 	
 	// 关闭连接
 	public void closeConnection() {
