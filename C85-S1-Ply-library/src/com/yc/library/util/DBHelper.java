@@ -88,10 +88,10 @@ public class DBHelper {
 	 * JDBC 连接默认是自动提交, 也就是每次执行完增删改都会自动提交
 	 * 无参的构造方法, 可以注释掉了
 	 */
-	//public DBHelper() {
+	public DBHelper() {
 		// 在构造方法中创建连接
 		//conn = openConnection();
-	//}
+	}
 	
 	// 关闭连接
 	public void closeConnection() {
@@ -258,15 +258,19 @@ public class DBHelper {
 						Object value = rs.getObject(i+1);  
 						// 要转换的数值
 						Object destValue = null;
+						if(value==null) {
+							continue;
+						}
 						if(field.getType().equals(Long.class)) {
 							destValue = Long.valueOf(value + "");
 						} else if(field.getType().equals(Integer.class)) {
 							destValue = Integer.valueOf(value + "");
 						} else if(field.getType().equals(Double.class)) {
 							destValue = Double.valueOf(value + "");
+						} else if(field.getType().equals(Byte.class)) {
+							destValue = Byte.valueOf(value + "");
 						} else if(field.getType().equals(Boolean.class)) {
 							destValue = Boolean.valueOf(value + "");
-
 						// 其他数据类型请自行添加
 						} else {
 							destValue = value;

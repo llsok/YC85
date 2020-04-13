@@ -1,6 +1,6 @@
 package com.yc.library.bean;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 	图书实体类,  实体类必须实现序列化接口, 应为实体类有可能被流输入输出
@@ -17,7 +17,7 @@ public class Book implements java.io.Serializable{
 	private String author;
 	private String isbn;
 	private String press;
-	private Date pressdate;
+	private Timestamp pressdate;
 	private Byte status;
 	public Long getId() {
 		return id;
@@ -49,10 +49,10 @@ public class Book implements java.io.Serializable{
 	public void setPress(String press) {
 		this.press = press;
 	}
-	public Date getPressdate() {
+	public Timestamp getPressdate() {
 		return pressdate;
 	}
-	public void setPressdate(Date pressdate) {
+	public void setPressdate(Timestamp pressdate) {
 		this.pressdate = pressdate;
 	}
 	public Byte getStatus() {

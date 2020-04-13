@@ -3,6 +3,9 @@ package com.yc.library.biz;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.yc.library.bean.Book;
+import com.yc.library.util.DBHelper;
+
 /**
  * 	insertBook 主键冲突  主键生成机制
  * 
@@ -16,6 +19,11 @@ import org.junit.Test;
  *
  */
 public class EmpBizTest {
+	
+	@Test
+	public void test() {
+		System.out.println(new DBHelper().query("select * from book", Book.class));
+	}
 	
 	@Test
 	public void testLogin() {
