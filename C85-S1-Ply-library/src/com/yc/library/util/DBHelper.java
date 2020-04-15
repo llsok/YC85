@@ -258,6 +258,7 @@ public class DBHelper {
 						Object value = rs.getObject(i+1);  
 						// 要转换的数值
 						Object destValue = null;
+						// 一定要判断非空, 否则会导致类型转换错误
 						if(value==null) {
 							continue;
 						}
