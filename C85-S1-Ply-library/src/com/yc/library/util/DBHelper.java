@@ -5,6 +5,8 @@ import java.sql.*;
 import java.util.*;
 import java.util.Map.Entry;
 
+import oracle.sql.TIMESTAMP;
+
 /**
  * 	结果集封装
  * 		实体类 	==> 	表
@@ -254,27 +256,28 @@ public class DBHelper {
 						 *  	  	    实体类类型: Long
 						 *  .getType 获取属性的类型  ==> LONG  String  Integer
 						 */
-						// 从结果取出的数值
-						Object value = rs.getObject(i+1);  
 						// 要转换的数值
 						Object destValue = null;
-						// 一定要判断非空, 否则会导致类型转换错误
-						if(value==null) {
-							continue;
-						}
 						if(field.getType().equals(Long.class)) {
-							destValue = Long.valueOf(value + "");
+							destValue = rs.getLong(i+1);
 						} else if(field.getType().equals(Integer.class)) {
-							destValue = Integer.valueOf(value + "");
+							destValue = rs.getInt(i+1);
 						} else if(field.getType().equals(Double.class)) {
-							destValue = Double.valueOf(value + "");
+							destValue = rs.getDouble(i+1);
 						} else if(field.getType().equals(Byte.class)) {
-							destValue = Byte.valueOf(value + "");
+							destValue = rs.getByte(i+1);
 						} else if(field.getType().equals(Boolean.class)) {
-							destValue = Boolean.valueOf(value + "");
+							destValue = rs.getBoolean(i+1);
 						// 其他数据类型请自行添加
+						} else if(field.getType().equals(Timestamp.class)) {
+							// 返回timestamp字段值的方法
+							destValue = rs.getTimestamp(i+1);
+							/**
+							 * 	其他未判断的类型,请自行添加
+							 */
 						} else {
-							destValue = value;
+							// 使用默认的类型
+							destValue = rs.getObject(i+1);
 						}
 						// 设置强制访问私有属性
 						field.setAccessible(true);
