@@ -192,6 +192,13 @@ public class DBHelper {
 				for (int i = 0; i < rsmd.getColumnCount(); i++) {
 					String columnName = rsmd.getColumnName(i + 1);
 					Object columnValue = rs.getObject(columnName);
+					/**
+					 * 判断当前的列值的类型, 如果是 oracle 的TIMESTAMP, 那么就是使用
+					 * rs.getTimestamp 重新取值
+					 */
+					if(columnValue!= null && columnValue instanceof TIMESTAMP) {
+						columnValue = rs.getTimestamp(columnName);
+					}
 					row.put(columnName, columnValue);
 				}
 				// 将 map 添加到 ret 中
