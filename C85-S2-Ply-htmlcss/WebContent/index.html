@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>这是标题</title>
+	</head>
+	
+	<body>
+		<!-- 
+			块级标签:  每个标签占据一整行
+			1. hX 标题标签 X 表示数字 1~6  ==> h1 h2 h3
+			2. hr 水平线
+			3. p  段落标签
+			4. ul + li 不带序号列表
+			5. ol + li 带序号列表
+			6. dl + dt + dd
+			7. table tr th td(rowspan 合并行  colspan合并列) 表格
+			8. div
+			
+			行级标签:  每个标签占据一行中一小段区域
+			1. 	img 图片
+			2.	a 	超链接
+			3.	form + input,select.... 表单
+			
+		 -->
+		 <h1>标题1</h1>    <h2>标题2</h2>
+		 <hr>
+		 <h3>标题3</h3>
+		 <hr>
+		 <p>下面示例创建一个属性节点，名称为 align，值为 center，然后为标签设置属性 align，最后分别使用 3 种方法读取属性 align 的值。</p>
+		 <hr>
+		 <ul>
+		 	<li>电影</li><li>电视</li><li>小品</li>
+		 </ul>
+		 <hr>
+		 <ol type="i"> <!-- alt + / 代码提示 -->
+		 	<li>电影</li><li>电视</li><li>小品</li>
+		 </ol>
+		 <hr>
+		 <dl>
+		 	<dt>洋娃娃</dt>
+		 	<dd>描述: 很好看</dd>
+		 	<dd>价格: $100</dd>
+		 </dl>
+		 
+		 <table border='1' cellSpacing="0">
+		 	<tr>
+		 		<th>编号</th>
+		 		<th>书名</th>
+		 		<th colspan="2">作者</th>
+		 		<th>出版社</th>
+		 	</tr>
+		 	<tr>
+		 		<td>1</td>
+		 		<td>水浒传</td>
+		 		<td colspan="2">施耐庵</td>
+		 		<td rowspan="2">人民出版社</td>
+		 	</tr>
+		 	<tr>
+		 		<td>2</td>
+		 		<td>西游记</td>
+		 		<td colspan="2">吴承恩</td>
+		 		<!-- <td>人民出版社</td> --> <!-- ctrl + shift + / -->
+		 	</tr>
+		 	<tr>
+		 		<td>1</td>
+		 		<td>三国演义</td>
+		 		<td>施耐庵</td>
+		 		<td>罗贯中</td>
+		 		<td>北京出版社</td>
+		 	</tr>
+		 </table>
+		 
+		 
+		 
+		 
+		 
+	</body>
+	
+</html>

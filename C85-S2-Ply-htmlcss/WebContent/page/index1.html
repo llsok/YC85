@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+行级标签:  每个标签占据一行中一小段区域
+	1. 	img 图片    上级目录: ../ 表示上级目录
+	2.	a 	超链接
+		1. 页面跳转
+			1. 不以 http 开头的, 站内跳转
+			2. 以 http 开头的跳转到外部网站
+		2.页内导航( 锚点操作)
+			#锚点名 , 如果 # 后不带锚点, 表示页面滚动到页面顶部
+	3.	form + input,select.... 表单
+		form 表单 action 跳转的页面地址
+		文本框
+		单选框
+		多选框
+		按钮
+		...
+		下拉框
+		多行文本框
+	
+	4. 	行级元素中的空格:  N个空格(含回车换行符), 都会缩减成一个空格
+		如果要使用多个空格, 必须用转义符, 空格是 &nbsp;
+ -->
+源辰公司的&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+logo<img id="img1" alt="" src="../logo.png">很帅气
+<hr>
+这是我网上下的图片<img alt="没有该图片" src="../images/下载.jpg" width="200">
+<hr>
+<a href="../index.html">跳转到根目录下的 index.html</a>
+<a href="http://www.taobao.com">跳转到淘宝</a>
+<a href="#">跳转到 img1</a>
+
+<hr>
+
+<form action="order.html">
+ 文本框: <input value="单行文本框的内容写在 value 中"> <br><!-- br 换行标签 -->
+ 文本框: <input type="text"> <br>
+ 文本框: <input type="乱七八糟的写"> <br>
+ 密码框: <input type="password"> <br>
+ 单选框: <input type="radio" name="type">电影
+ 	<input type="radio" name="type">电视
+ 	<input type="radio" name="type">小品<br>
+  多选框: <input type="checkbox">电影
+  	<input type="checkbox">电视
+  	<input type="checkbox">小品 <br>
+ 文件框:  <input type="file"> <br>
+ 下拉框:<select>
+ 		<option>电影</option>
+ 		<option>电视</option>
+ 		<option>小品</option>
+ 	</select><br>
+多行文本:<textarea rows="10" cols="20">
+		多行文本框的内容多行文本框的内容多行文本框的内容多行文本框的内容多行文本框的内容多行文本框的内容多行文本框的内容
+	</textarea> 	<br>
+<input type="button" value="普通按钮">
+<input type="reset" value="重置按钮"><!-- 用于还原用户的输入 -->
+<input type="submit" value="提交按钮"><!-- 点击该按钮,将会跳转到  form 的 action 中的页面 -->
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
