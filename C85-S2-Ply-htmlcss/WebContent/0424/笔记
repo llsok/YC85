@@ -1,0 +1,46 @@
+HTML : 超文本标记语言
+
+<html>
+<head>
+	页面属性配置
+</head>
+<body>
+	网页展示的内容: 各种标签 + 文字信息 + 转义字符 + 注释
+	块级标签 ( 放置其他标签==> 容器标签 ):
+		每个元素占据一行
+		p, hX, ul, ol, dl, div, table(tr td th)
+	行级标签:
+		img (src) : 目录/图片  , ../ 父目录
+		a 超链接 ( href ):
+			1. http 开头 ==> 外部网站页面
+			2. 不以http 开头==>内部网站页面
+			3. 锚点  #id
+		表单标签( 用户交互的控件 )
+			input type="radio" value="" ==> 文本框, 单选框, 多选框, 按钮...
+			select  option 下拉框
+			textarea 文本域 多行文本框
+			<textarea> 内容 </textarea>
+</body>
+</html>
+
+
+
+
+CSS: 层叠样式表
+
+
+
+<p style=" 样式名:样式值  ; 样式名2:样式值2   ">
+<b><font color size >文字<font><b>
+</p>
+
+
+
+
+
+
+
+
+
+
+
