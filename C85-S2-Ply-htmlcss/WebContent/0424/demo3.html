@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>内部样式</title>
+
+<!-- 引入外部样式文件 -->
+<link href="index.css" rel="stylesheet">
+
+<style type="text/css">
+/*
+	层叠: 样式会以最近的设置为标准
+	1. 浏览器默认设置
+	2.用户的样式设置( 主题  )
+	3.外部样式 ( 样式文件)
+	4. 内部样式 <style>
+	5.行内样式, 内联样式
+	
+	
+	样式选择器
+	1. 标签选择器
+	2. 类选择器  格式  点号开头+ 类型   .fz .like
+	3.id选择 , id 建议全局(文件内)唯一    格式  #+id
+	4. 或选择器,  逗号  选择器1 , 选择器2 
+	5, 子选择器:   格式  父元素  >   子元素
+	6,后代选择器 格式 父元素  ( 空格 )   子元素
+	6,兄弟选择器 格式 前一个元素  +   后一个元素
+
+*/
+li {
+	border: #00f 2px solid;
+	background-color: #0ff
+}
+.fz {
+	border: #00f 2px solid;
+	background-color: #0ff
+}
+
+.like {
+	border: #00f 2px dotted;
+	background-color: #ff0
+}
+</style>
+
+</head>
+<body>
+
+	<ul>
+		<li class="fz">衣服</li>
+		<li class="fz">袜子</li>
+		<li class="fz">帽子</li>
+		<li class="fz">裤子</li>
+		<li class="fz">衬衣</li>
+	</ul>
+	
+	<ol>
+		<li class="like" style="background-color: #666">
+			<a href="#">读书</a>
+		</li>
+		<li class="like">电影</li>
+		<li id="l1" class="like">唱歌</li>
+		<li id="l2" class="like">跳舞</li>
+		<li class="like">滑板</li>
+	</ol>
+	
+	<div>
+	测试
+	</div>
+	<hr>
+	
+	<ul id="edu">
+		<li><a href="#">初中</a></li>
+		<li><a>高中</a></li>
+		<li id="dz">大专</li>
+		<li>本科</li>
+		
+	</ul>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+div{
+	width: 100px;
+	height: 100px;
+	background: #090
+}
+
+#l1,#l2 {
+	color: #f00
+}
+
+/*子选择器*/
+#edu>li{
+	background: #0f0;
+	color: #fff
+}
+
+/*后代选择器*/
+#edu a{
+	color: #000
+}
+
+/*兄弟*/
+#dz+li{
+	color: #666
+}
+
+/*属性*/
+#edu a[href=#123]{
+	font-size: 1.5em
+}
+
+
+
+
+
+
+
