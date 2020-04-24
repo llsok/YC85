@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>元素定位</title>
+<style type="text/css">
+#d1{
+	width: 100px;
+	height: 100px;
+	background: red;
+	/* float:left */	/*浮动靠左*/
+}
+#d2{
+	width: 150px;
+	height: 120px;
+	background: green;
+	/* float: right */ /*浮动靠右*/
+	position: fixed;
+	left: 10px;
+	top : 10px
+}
+#d3{
+	width: 200px;
+	height: 180px;
+	background: blue;
+	/* clear: both */ /*清除浮动*/
+}
+#outter{
+	margin: 100px auto;
+	width: 500px;
+	height: 500px;
+	background: #eee;
+	position: absolute;
+}
+</style>
+</head>
+<!-- 
+1. 正常文档流:  
+	1.行级元素在一行里面从左到右紧密排列, 当到达容器边际是,自动换行
+	2.块级元素从上往下紧密排列
+2. 相关属性:
+	float 浮动   => 块级元素
+		浮动的元素会脱离文档流, 下面的块级元素会顶替他原来的位置
+	position 定位
+		设置元素的位置
+		static 静态, 默认
+		relative 相对定位   相对于原有位置的定位,  不脱离文档流
+		absolute 绝对定位  脱离文档流, 位置基于父容器( 父容器也必须使用position)
+		fixed 固定定位    脱离文档流, 位置基于浏览器窗口
+	display 显示
+ -->
+<body>
+<div id="outter">
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<div id="d3"></div>
+</div>
+</body>
+</html>

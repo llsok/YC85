@@ -28,11 +28,60 @@ HTML : 超文本标记语言
 
 CSS: 层叠样式表
 
-
-
 <p style=" 样式名:样式值  ; 样式名2:样式值2   ">
 <b><font color size >文字<font><b>
 </p>
+
+
+颜色值:
+1. 颜色单词
+2. #ff00ff  ==> #f0f
+3. rgb(r,g,b 0~255) + rgba(r,g,b, 透明度 0~1)
+
+长度单位:
+1.px 像素
+2.em 相对大小
+3.百分数 
+4. cm, mm, 英寸
+
+border 边框 
+background 背景
+	简写模式
+
+background-image	背景图
+background-position   x y	图片偏移值  left top center
+
+
+样式位置:
+1. 行内样式  标签 style 属性中
+2. 内部样式  style 标签中
+	选择器:
+		id 选择器  #id
+		标签选择器   标签名
+		类选择器	.类名( class 名)
+		子选择器      >
+		后代选择器  空格
+		兄弟选择器  +
+		属性选择器
+		伪类选择器:   hover 悬停
+		...
+	
+	
+盒子模型
+
+元素定位
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
 
 
 
