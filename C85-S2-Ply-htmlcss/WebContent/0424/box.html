@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>盒子模型</title>
+<style type="text/css">
+#outter {
+	width: 500px;
+	height: 500px;
+	background: #aaa;
+	padding: 100px
+}
+
+#inner1 {
+	width: 200px;
+	height: 200px;
+	background: green;
+	/*内边距*/
+	padding: 10px;
+	border: 5px #000 solid;
+	margin: 50px
+}
+
+#inner2 {
+	width: 100px;
+	height: 100px;
+	background: red;
+	/*边距的简化设置      上  右 下 左  */
+	margin: 10px 20px 30px 40px;
+	/* 上  右左 下 */ 
+	margin : 10px 20px 30px;
+	/* 上下  右左  */
+	margin: 10px 20px;
+	
+	/*内边距(padding)简化设置参考外边简化设置*/
+	
+	/*外边距有个设置值  auto 自动( 只能用在水平方向)  , 内边距没有该值*/
+	
+	margin: 30px auto;
+}
+</style>
+</head>
+<body>
+	<div id="outter">
+		<div id="inner1">
+			<div id="inner2"></div>
+		</div>
+	</div>
+</body>
+</html>
