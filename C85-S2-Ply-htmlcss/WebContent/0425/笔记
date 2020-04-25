@@ -1,0 +1,10 @@
+<header> 	页头区域
+<menu>		菜单
+<article>	文章主题(主板块)
+<footer> 	页脚
+<nav>		导航
+<side>		侧边栏
+
+Html5: 语义标签
+
+等同于<div>

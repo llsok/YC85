@@ -1,0 +1,449 @@
+@charset "utf-8";
+/* 设置 body 
+	背景色为#E2E2E2 
+	内边距为0px 
+	上下外边距为0px 左右外边距为自动,   
+	宽度为1000px 
+*/
+body{
+	background: #E2E2E2;
+	padding: 0px;
+	margin: 0px auto;
+	width: 1000px;
+}
+
+/* 设置 页面内全部元素的 
+	内边距为0px 
+	上下外边距为0px 左右外边距为自动   
+	字体大小12像素, 
+	字体为:微软雅黑 
+*/
+* {
+	padding: 0px;
+	margin: 0px auto;
+	font: 12px 微软雅黑
+}
+
+/* 取消 li 元素的默认样式 */
+li {
+	list-style-type: none;
+}
+
+/* 取消超链接的下划线 */
+a {
+	text-decoration: none;
+}
+
+/*===========================================*/
+/* 设置 header 
+	标签的背景色为 #06C0FE, 背景图为logo.png, 不平铺, 水平偏移20px, 垂直居中
+	宽度 100%  
+	高度 120px  
+	下边框样式为: 颜色#0393CF 宽度1px 实线
+	使用相对定位 
+*/
+header{
+	background: #06C0FE url(images/logo.png) no-repeat 20px center;
+	width:100%;
+	height:120px;
+	border-bottom: #0393CF 1px solid;
+	position: relative;
+}
+
+/* header的子元素p: 
+	字体  :   颜色: 白色, 大小:30px, 加粗
+	使用绝对定位
+	文字间距: 0.5
+	左边距离父容器: 300px
+	上边距离父容器: 25 px
+*/
+header>p {
+	font-size:30px ;
+	font-weight:bold;
+	color: #fff;
+	position:absolute;
+	/* letter-spacing: 0.5; */
+	left: 300px;
+	top: 25px;
+}
+
+/* header的子元素ul: 
+	使用绝对定位
+	右边边距离父容器: 16px
+	下边距离父容器: 16px
+*/
+header>ul{
+	position:absolute;
+	right: 16px;
+	bottom: 16px;
+}
+
+/* header的子元素ul的子元素li: 	
+	浮动靠左, 
+	上下内边距为0px, 左右内边距为10px 
+*/
+header>ul>li{
+	float: left;
+	padding: 0px 10px;
+}
+
+/* header的子元素ul的子元素li的子元素a:
+	字体颜色 : 白色 
+*/
+header>ul>li>a{
+	color:rgb(255,255,255)
+}
+
+/*===========================menu===========================*/
+
+/* menu 元素
+	宽度 100%, 
+	高度 40px, 
+	背景图: menu_bg.png, 水平重复 
+*/
+menu{
+	width:100%;
+	height: 40px;
+	background: url(images/menu_bg.png) repeat-x;
+}
+
+/* menu 元素的子元素li   
+	浮动靠左, 
+	宽度 100px, 
+	高度100%, 
+	行高40px, 
+	文字居中
+	背景图: menu.jpg 不重复,  靠右, 垂直居中 
+*/
+menu>li{
+	float: left;
+	width: 100px;
+	height: 100%;
+	line-height: 40px;
+	text-align: center;
+	background: url(images/menu.jpg) no-repeat right center
+}
+
+/* menu 元素的子元素li的子元素a
+	字体: 白色  14px
+	显示: 行内块级元素
+	宽度和高度都是 100%
+*/
+menu>li>a{
+	color: #fff;
+	font-size: 14px;
+	display: inline-block;
+	width: 100%;
+	height:100%;
+}
+
+/* menu 元素的子元素li的最后一个元素:
+	取消背景设置
+*/
+menu>li:last-child{
+	background: none;
+}
+
+/* menu中的a元素   和  header 中的a元素 ,  在鼠标悬停时
+	字体: #DD7B41,    添加下划线
+*/
+menu a:hover , header a:hover{
+	color: #DD7B41;
+	text-decoration: underline;
+}
+
+/*========================================================*/
+
+/* article 标签    宽度 100%,   白色背景*/
+article{
+	width:100%;
+	background: #fff;
+}
+
+/* article_top 类元素    高度260px  宽度100%*/
+.article_top{
+	width:100%;
+	height: 260px
+}
+
+/* top_left 类元素 
+	高度220px  
+	宽度30%   
+	背景色 #40A4F2   
+	浮动靠左,   
+	外上边距 10px
+*/
+.top_left{
+	height:220px;  
+	width:30%;   
+	background: #40A4F2;
+	float:left;   
+	margin-top:10px
+}
+
+/* top_left类元素内部的p元素
+	字体 白色 14px
+	上下左右的内边距分别 是  5px   5px   14px   0px
+*/
+.top_left p{
+	color: #fff;
+	font-size: 14px;
+	padding: 5px 0px 5px 14px
+}
+
+/* top_left类元素内部的form元素  背景色  白色    宽度 92%   高度 180px*/
+.top_left form{
+	background: #fff;
+	width: 92%;
+	height: 180px
+}
+
+/* top_left类元素内部的form元素内部的ul元素   宽度 100%   内部文字居中*/
+.top_left form ul{
+	width:100%;
+	text-align: center
+}
+
+/* top_left类元素内部的form元素内部的ul元素内部的li元素   宽度 80%   上内边距 18px  字体颜色 #3F9CF3*/
+.top_left form ul li{
+	width:80%;
+	padding-top: 18px;
+	color: #3F9CF3;
+}
+
+/* ipt类元素    宽度160px  高度20px   边框宽度1像素 实线    颜色#3F9CF3  */
+.ipt{
+	width:160px;
+	height:20px;
+	border: 1px solid #3F9CF3
+}
+
+/* btn类元素     上下内边距 2px   左右内边距 10px   文间距   1em*/
+.btn{
+	padding: 2px 10px;
+	letter-spacing: 1em;
+}
+
+/* endbtn类元素   左边外边距 20px */
+.endbtn{
+	margin-left: 20px
+}
+
+/*top_left类里面的元素form里面元素ul里面的最后一个li元素
+	外边距为 0px  文字靠左
+*/
+.top_left form ul li:last-child{
+	margin: 0px;
+	text-align: left
+}
+
+/*top_left类里面的元素form里面元素ul里面的最后一个li元素 里面的 第一个a元素
+	左外边距为 56px
+*/
+.top_left form ul li:last-child a:first-child{
+	margin-left: 56px
+}
+
+/*top_left类里面的元素form里面元素ul里面的最后一个li元素 里面的 最后一个a元素
+	左外边距为 46px
+*/
+.top_left form ul li:last-child a:last-child{
+	margin-left: 46px
+}
+/*============================================================*/
+
+/* top_right类元素
+	宽度 68%  高度 220px  背景色#06C5FE   浮动靠右    上外边距 10px
+*/
+.top_right {
+	width:68%;
+	height:220px;
+	background: #06C5FE;
+	float: right;
+	margin-top: 10px
+}
+
+/* right_pic 类元素
+	宽度 65%   高度 194px   浮动靠左    外边距 12px    边框: 1像素  实线  白色
+*/
+.right_pic{
+	width: 65%;
+	height: 194px;
+	float: left;
+	margin: 12px;
+	border: 1px solid #fff
+}
+
+/* right_pic 类元素里面的 img 
+	宽度:100%,   高度:100%
+*/
+.right_pic img{
+	width:100%;
+	height:100%
+}
+
+/* right_image 类元素
+	宽度:31%    高度 194px   浮动靠右    上下外边距:12px 左右外边距: 0px
+*/
+.right_image{
+	width: 31%;
+	height: 194px;
+	float: right;
+	margin: 12px 0px
+}
+
+/* right_image 类元素内部的元素span
+	字体: 14px, 白色    左外边距: 8px 
+*/
+.right_image span {
+	font-size: 14px;
+	color: #fff;
+	margin-left: 8px;
+}
+
+/* right_image 类元素 里面的元素ul 里面的元素li
+	浮动靠左,  外边距是: 上:10px  下:0px   左 8px   右 0px   
+*/
+.right_image ul li {
+	float: left;
+	margin: 10px 0px 0px 8px
+}
+
+/* right_image 类元素内部的 img
+	宽度90px  高度 70px    边框:1像素宽  实线   边框颜色: #048BEF
+*/
+.right_image img{
+	width:90px;
+	height:70px;
+	border: 1px solid #048BEF
+}
+/*=============================================================*/
+
+/* article_bottom 类元素
+	高度 380px   宽度 100%
+*/
+.article_bottom {
+	height: 380px;
+	width: 100%;
+}
+
+/* article_bottom 类元素内部的 hr
+	边框: 1像素  实线 #0488EF
+*/
+.article_bottom hr{
+	border: 1px solid #0488EF
+}
+
+/* bottom_left 类元素
+	宽度 30%    高度 100%     浮动靠左
+*/
+.bottom_left{
+	width: 30%;
+	height: 100%;
+	float:left;
+}
+
+/* bottom_left 类元素 内部的ul
+	高度和宽度都是 90%
+*/
+.bottom_left ul{
+	width:90%;
+	height:90%;
+}
+
+/* bottom_left 类元素 内部的ul 内部的li
+	上下内边距:10px   左右内边距:36px   浮动:靠左   外边距:10px  背景色: #05BEFE
+*/
+.bottom_left ul li{
+	padding: 10px 36px;
+	float: left;
+	margin: 10px;
+	background: #05BEFE
+}
+
+/* bottom_left 类元素 内部的ul 内部的li 内部的a
+	字体:白色  14px  加粗
+*/
+.bottom_left ul li a{
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+}
+/* bottom_title 类元素
+	字体: #188EF2 14px  加粗
+	内边距: 上0px   下4px   左10px   右0px
+	显示为: 行内块级元素
+*/
+.bottom_title {
+	font-size: 14px;
+	font-weight: bold;
+	color: #188EF2;
+	padding: 0px  0px  4px  10px;
+	display: inline-block;
+}
+
+/*====================== 请同学们课后完成下面的CSS设置 ==========================*/
+
+/* bottom_right 类元素
+	宽度:68%   高度:100%   浮动:靠右
+*/
+
+/* bottom_title 类元素
+	字体: #188EF2 14px  加粗
+	内边距: 上0px   下4px   左10px   右0px
+	显示为: 行内块级元素
+*/
+
+
+/* bottom_right 类元素里面的ul
+	宽度和高度都是 100%
+*/
+
+/* bottom_right 类元素里面的ul 里面的li 里面的a
+	字体: #3496F2
+	背景图: file.png  不重复   靠左  上下居中
+	左内边距:  20px
+*/
+
+/* article_bottom 类元素里面的 a 在鼠标悬停时
+	字体: #F93
+*/
+
+/* bottom_right 类元素里面的ul 里面的li
+	浮动: 靠左
+	下边框: 1px 虚线 #8DC4F8
+	宽度: 47%
+	行高: 2.8em
+	上下外边框:0px   左右外边框:10px
+*/
+
+/* bottom_right 类元素里面的ul 里面的li 里面的a 里面的span
+	左外边框:10px
+	浮动:靠右
+	显示:行内块级元素
+	字体颜色: #919191
+*/
+
+/* more_class 类元素
+	字体: #188EF2  14px  加粗
+	浮动: 靠右
+	右外边距: 20px
+*/
+
+/* footer 元素
+	宽度: 100%
+	高度: 60px
+	背景色: #BAEEFE
+*/
+
+/* footer 的子元素p
+	文字居中
+	字体: #1A95F1
+	上内边距: 8px
+*/
+
+/* footer 的子元素p 的子元素a
+	字体:#1A95F1;
+	背景: 图片yclogo.png 不重复 水平居左 上下居中;
+	左内边距:22px;
+*/
