@@ -21,7 +21,8 @@ body{
 * {
 	padding: 0px;
 	margin: 0px auto;
-	font: 12px 微软雅黑
+	font-size: 12px;
+	font-family: 微软雅黑;
 }
 
 /* 取消 li 元素的默认样式 */
@@ -383,31 +384,40 @@ article{
 }
 
 /*====================== 请同学们课后完成下面的CSS设置 ==========================*/
-
 /* bottom_right 类元素
 	宽度:68%   高度:100%   浮动:靠右
 */
-
-/* bottom_title 类元素
-	字体: #188EF2 14px  加粗
-	内边距: 上0px   下4px   左10px   右0px
-	显示为: 行内块级元素
-*/
-
+.bottom_right{
+	width:68%;
+	height:100%;
+	float:right;
+}
 
 /* bottom_right 类元素里面的ul
 	宽度和高度都是 100%
 */
+.bottom_right ul{
+	width:100%;
+	height:100%;
+}
 
 /* bottom_right 类元素里面的ul 里面的li 里面的a
 	字体: #3496F2
 	背景图: file.png  不重复   靠左  上下居中
 	左内边距:  20px
 */
+.bottom_right ul li a{
+	color:#3496F2;
+	background:url(images/file.png) no-repeat left center;
+	padding-left:20px;
+}
 
 /* article_bottom 类元素里面的 a 在鼠标悬停时
 	字体: #F93
 */
+.article_bottom a:hover{
+	color:#F93;
+}
 
 /* bottom_right 类元素里面的ul 里面的li
 	浮动: 靠左
@@ -416,6 +426,13 @@ article{
 	行高: 2.8em
 	上下外边距:0px   左右外边距:10px
 */
+.bottom_right ul li{
+	float:left;
+	border-bottom:1px dashed #8DC4F8;
+	width:47%;
+	line-height:2.8em;
+	margin:0px 10px;	
+}
 
 /* bottom_right 类元素里面的ul 里面的li 里面的a 里面的span
 	左外边框:10px
@@ -423,27 +440,56 @@ article{
 	显示:行内块级元素
 	字体颜色: #919191
 */
+.bottom_right ul li a span{
+	margin-right:10px;
+	float:right;
+	display:inline-block;
+	color:#919191 !important;
+}
 
 /* more_class 类元素
 	字体: #188EF2  14px  加粗
 	浮动: 靠右
 	右外边距: 20px
 */
+.more_class{
+	font-size:14px;
+	color:#188EF2;
+	font-weight:bold;
+	float:right;
+	margin-right:20px;
+}
 
+/*==============footer=================*/
 /* footer 元素
 	宽度: 100%
 	高度: 60px
 	背景色: #BAEEFE
 */
+footer{
+	width:100%;
+	height:60px;
+	background:#BAEEFE;
+}
 
 /* footer 的子元素p
 	文字居中
 	字体: #1A95F1
 	上内边距: 8px
 */
+footer>p{
+	text-align:center;
+	color:#1A95F1;
+	padding-top:8px;
+}
 
 /* footer 的子元素p 的子元素a
 	字体:#1A95F1;
 	背景: 图片yclogo.png 不重复 水平居左 上下居中;
 	左内边距:22px;
 */
+footer>p>a{
+	color:#1A95F1;
+	background:url(images/yclogo.png) no-repeat left center;
+	padding-left:22px;
+}
