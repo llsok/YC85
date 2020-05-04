@@ -34,7 +34,7 @@ select{
 			s.appendChild(option);
 		}
 		
-		var sh = document.getElementById("shi");
+		/* var sh = document.getElementById("shi");
 		for(var i=0 ; i<  citys[0].length ; i++){
 			// 创建 option 元素对象   <option>beijing</option>
 			var option = document.createElement("option");
@@ -44,15 +44,68 @@ select{
 		}
 		
 		// 县 要循环的数组是  ==> countys[0][0]
+		var x = document.getElementById("xian");
+		for(var i=0 ; i<  countys[0][0].length ; i++){
+			// 创建 option 元素对象   <option>beijing</option>
+			var option = document.createElement("option");
+			option.innerText = countys[0][0][i];
+			// appendChild 追加  一个子元素
+			x.appendChild(option);
+		} */
+		
+		changeSheng();
 		
 	}
+	
+	function changeSheng(){
+		// 获取到选中的省的选项的 索引(下标)
+		var s = document.getElementById("sheng");
+		var index = s.selectedIndex;
+		// 更新城市选项
+		var sh = document.getElementById("shi");
+		// 清空原有的选项
+		sh.innerHTML = "";
+		// 重新添加新的选项
+		for(var i=0 ; i<  citys[index].length ; i++){
+			// 创建 option 元素对象   <option>beijing</option>
+			var option = document.createElement("option");
+			option.innerText = citys[index][i];
+			// appendChild 追加  一个子元素
+			sh.appendChild(option);
+		}
+		// 当市的下拉列表选项更新之后,  县也要同时更新
+		changeShi();
+	}
+	
+	function changeShi(){
+		// 获取到选中的省的选项的 索引(下标)
+		var s = document.getElementById("sheng");
+		var index1 = s.selectedIndex;
+		var sh = document.getElementById("shi");
+		var index2 = sh.selectedIndex;
+		// 更新县选项
+		var x = document.getElementById("xian");
+		// 清空原有的选项
+		x.innerHTML = "";
+		// 重新添加新的选项
+		for(var i=0 ; i<  countys[index1][index2].length ; i++){
+			// 创建 option 元素对象   <option>beijing</option>
+			var option = document.createElement("option");
+			option.innerText = countys[index1][index2][i];
+			// appendChild 追加  一个子元素
+			x.appendChild(option);
+		}
+	}
+	
+	
 
 </script>
 </head>
 <body onload="init()">
 <div id="main">
-	省:<select id="sheng"></select>
-	市:<select id="shi"></select>
+	<!-- onchange 是选项或内容 -->
+	省:<select id="sheng" onchange="changeSheng()"></select>
+	市:<select id="shi" onchange="changeShi()"></select>
 	县:<select id="xian"></select>
 </div>
 </body>
