@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>计算器</title>
+<script type="text/javascript">
+	var num1 = null;
+	var num2 = null;
+	var oper = null; // 运算符
+
+	// 按下数字键
+	function downNum(){
+		// event 事件对象
+		// srcElement 表示的是当前鼠标点击的控件(元素 or 标签)
+		var btn = event.srcElement;
+		// 获取显示标签  td
+		var res = document.getElementById("res");
+		// 将当前按钮上的数字, 追加到显示屏
+		res.innerText += btn.innerText;
+		// 转成数字
+		var num = parseInt(res.innerText);
+		// 替换原有的文字
+		res.innerText = num;
+	}
+	
+	// 按下运算符键 (+ - */)
+	function downOper(){
+		var res = document.getElementById("res");
+		// 将显示屏上的数字保存到 num1 中
+		num1 = res.innerText;
+		// 获取运算符按钮
+		var btn = event.srcElement;
+		// 保存运算符
+		oper = btn.innerText;
+		// 清空显示屏
+		res.innerText = "";
+	}
+	
+	// 按下运算符键 (=)
+	function downReturn(){
+		var res = document.getElementById("res");
+		num2 = res.innerText;
+		var expr = num1 + oper + num2;
+		// 送 eval 计算  expr 的值
+		var ret = eval( expr );
+		// 将计算结果写入显示屏
+		res.innerText = ret;
+		// 将结果赋值给 num1, 以便下次继续计算
+		num1 = ret;
+		// 清空输入值
+		num2 = null;
+		oper = null;
+	}
+	
+	// body 在加载完成之后执行的函数
+	function init(){
+		// 通过样式选择器获取元素数组
+		var btns = document.querySelectorAll("button"); // 样式选择器
+		// js 增强 for 循环 index 是下标  
+		for ( var i in btns ){
+			// 获取内部文字
+			var text = btns[i].innerText;
+			// 转换成功整数
+			var numb = parseInt(text);
+			if( ! isNaN(numb)){// NaN 不是一个数字的 常量值,  必须使用  isNaN 函数进行判断
+				// 动态的给按钮添加事件 down
+				btns[i].onclick = downNum;
+			} else if ( text == '+' || text == '-' || text == '*' || text == '/'){
+				btns[i].onclick = downOper;
+			} else if ( text == '=') {
+				btns[i].onclick = downReturn;
+			}
+		}
+	}
+
+
+</script>
+
+</head>
+<body onload="init()">
+	<table style="border: 1px solid #000;">
+		<tr>
+			<td colspan="4" id="res">0</td>
+		</tr>
+		<tr>
+			<td><button>C</button></td>
+			<td><button>+/-</button></td>
+			<td><button>&lt;-</button></td>
+			<td><button>/</button></td>
+		</tr>
+		<tr>
+			<td><button>7</button></td>
+			<td><button>8</button></td>
+			<td><button>9</button></td>
+			<td><button>*</button></td>
+		</tr>
+		<tr>
+			<td><button>4</button></td>
+			<td><button>5</button></td>
+			<td><button>6</button></td>
+			<td><button>-</button></td>
+		</tr>
+		<tr>
+			<td><button>1</button></td>
+			<td><button>2</button></td>
+			<td><button>3</button></td>
+			<td><button>+</button></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button>0</button></td>
+			<td><button>.</button></td>
+			<td><button>=</button></td>
+		</tr>
+	</table>
+</body>
+<style type="text/css">
+td {
+	width: 50px;
+	height: 40px;
+	text-align: center;
+}
+
+#res {
+	border: 1px solid #aaa;
+	text-align: right;
+	font-size: 1.5em;
+	padding: 0px 5px
+}
+
+button {
+	width: 100%;
+	height: 100%;
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #444
+}
+
+table {
+	margin: 50px auto
+}
+</style>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// a具有全局作用域
+	var a = 100;
+	
+	function test(){
+		// b 是局部变量
+		var b = "abc";
+		
+		if( 1 == 2 ){
+			//  c 在 if 内创建, 如果是java 语言, 那么c 不应该在 if 外被访问
+			// 在js 中 该 c 还是局部变量
+			var c = "xyz";
+		}
+		
+		alert(c);
+		
+	}
+	
+	//test();
+	
+	var a = 200;
+	var b = '200';
+	
+	alert (a == b);		// ==> true   仅比内容
+	alert (a === b);  	// ==> false  比较内容+类型
+	
+	alert (typeof(a));
+	alert (typeof(b));
+	
+</script>
+</head>
+<body>
+	<script type="text/javascript">
+		/* alert(a + "    " + b); */
+	</script>
+</body>
+</html>
