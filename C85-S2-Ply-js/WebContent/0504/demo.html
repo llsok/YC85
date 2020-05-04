@@ -5,6 +5,42 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script type="text/javascript">
+	
+	function add( a , b  ) {
+		// alert 函数 : 用于显示对话框信息
+		alert (a + b);
+	}
+	
+	function add( a , b , c) {
+		// alert 函数 : 用于显示对话框信息
+		alert (a - b - c);
+	}
+	
+	// add(100, 200)  ==> NaN
+	// 100 - 200 - c=>undefined (未定义) ==>  NaN : Not A Number
+	
+	function add () {
+		// 将传入的参数进行相加, 不管多少个
+		var sum = 0; // 计数器
+		for ( var i = 0 ; i < arguments.length ; i ++ ){
+			// arguments 隐藏的方法参数数组
+			sum += arguments[i];
+		}
+
+		// 函数的内部定义的函数, 叫内部函数
+		function show(num){
+			console.log(num);
+		}
+		
+		show(sum);
+		
+	}
+	
+	
+	
+</script>
+
 
 </body>
 </html>
