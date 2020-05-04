@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>省市县联动</title>
+<style type="text/css">
+select{
+	width:100px
+}
+</style>
+<!-- 
+	var arr = new Array(10);// 使用数组对象名创建数组
+	arr.length ==> 返回数组元素个数
+	
+	int arr = {1,2,3};
+	var arr = [1,2,3];
+ -->
+<!-- 引入外部的 js 文件 -->
+<script type="text/javascript" src="js/省市.js"></script>
+
+<script type="text/javascript">
+	// onload 是元素加载事件
+	function init(){
+		// 添加省的选项
+		// document ==> DOM 模型 ==> doument object model 文档对象模型, 用于操作 html 元素
+		// 获取省的下拉框
+		var s = document.getElementById("sheng");
+		// 循环 省的数组
+		for(var i=0 ; i<provinces.length ; i++){
+			// 创建 option 元素对象   <option>beijing</option>
+			var option = document.createElement("option");
+			option.innerText = provinces[i];
+			// appendChild 追加  一个子元素
+			s.appendChild(option);
+		}
+		
+		var sh = document.getElementById("shi");
+		for(var i=0 ; i<  citys[0].length ; i++){
+			// 创建 option 元素对象   <option>beijing</option>
+			var option = document.createElement("option");
+			option.innerText = citys[0][i];
+			// appendChild 追加  一个子元素
+			sh.appendChild(option);
+		}
+		
+		// 县 要循环的数组是  ==> countys[0][0]
+		
+	}
+
+</script>
+</head>
+<body onload="init()">
+<div id="main">
+	省:<select id="sheng"></select>
+	市:<select id="shi"></select>
+	县:<select id="xian"></select>
+</div>
+</body>
+</html>
