@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>案例01</title>
+<style type="text/css">
+body {
+	text-align: center;
+	margin: 50px auto
+}
+
+fieldset {
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+	display: inline-block;
+	padding: 10px
+}
+
+legend {
+	text-align: left;
+	font-size: 1em;
+	font-weight: bold;
+}
+</style>
+<!-- 
+页面嵌入 js 代码的方式:
+
+1.html元素内部
+2.内部  <script>
+3.外部
+
+class  A  {
+	private String a;   全局
+	public void test (){
+		// 局部
+		String a;
+		for (int i=0 ...) {
+			i  块级作用域
+		}
+	}
+}
+ -->
+<script type="text/javascript">
+	function onoff(){
+		// this != img
+		// DOM 模型  Element 元素
+		var i = document.getElementById ("img");
+		// console 是控制台对象,  info 正常运行信息
+		console.info(i.src);
+		// file:///E:/dev/github-306529917/YC85/C85-S2-Ply-js/WebContent/0504/01-%E5%BC%80%E5%85%B3%E7%81%AF/images/pic_bulboff.gif
+		if( i.src.indexOf("images/pic_bulboff.gif") > -1 ) {
+			i.src = "images/pic_bulbon.gif";
+		} else {
+			i.src = "images/pic_bulboff.gif";
+		}
+	}
+</script>
+</head>
+<body>
+	<fieldset>
+		<legend>请点击灯泡</legend>
+		<img id="img" src="images/pic_bulboff.gif" onclick='onoff()'><br>
+	</fieldset>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
