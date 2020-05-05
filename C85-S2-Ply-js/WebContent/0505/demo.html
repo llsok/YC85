@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	// 定义类
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	var p1 = new Person("武松",35);
+	p1.sex = '男';
+	
+	var p2 = new Object();
+	p2.name = '宋江';
+	p2.age = 40;
+	p2.sex = "男";
+	
+	// 重点 JSON
+	// {}=> new Object()  java的{}表示数组
+	var p3 = {
+		name : '宋江',
+		age : 40,
+		sex : '男'
+	};
+	
+	//alert(p1);
+	console.info(p1);
+	console.info(p2);
+	console.info(p3);
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

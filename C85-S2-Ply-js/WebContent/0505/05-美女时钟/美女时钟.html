@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>美女时钟</title>
+<script type="text/javascript">
+// 当前的时钟对象的下标值
+var timerIndex = 0;
+
+// 时钟类
+function Timer(image){
+	this.image = image;
+	this.x = null;
+	this.y = null;
+	this.r = null;		// 旋转角度
+	this.size = null;
+	this.color = null;
+	this.bg = null;
+}
+
+// 使用json格式定义数组
+var timers = [
+	new Timer('images/girltime.jpg'),
+	new Timer('images/girltime.png'),
+	new Timer('images/girltime1.jpg'),
+];
+
+function changeImage(index){
+	var img = document.getElementById("img");
+	// 获取指定的 时钟, 设置对应的图片
+	img.src = timers[index].image;
+	// 设置当前时钟对象的下标值
+	timerIndex = index;
+}
+
+// 修改指定样式的属性值
+function changeStyle(name){
+	var timer = timers[timerIndex];  // 获取当前时钟对象
+	// js 获取和设置属性的方式, 1. 使用 .号运算符   例如:  a.name, b.age, 2. 使用[], a["name"] ==> a.name
+	var value = event.srcElement.value;
+	timer[name] = value;
+	refresh();
+}
+
+// 刷新时钟和图片
+function refresh(){
+	var timer = timers[timerIndex];
+	var ulTime = document.getElementById("ulTime");
+	var img = document.getElementById("img");
+	img.src = timer.image;
+	ulTime.style.backgroundColor = timer.bg;
+	ulTime.style.left = timer.x + "px";
+	ulTime.style.top = timer.y + "px";
+	// 设置不同浏览器的旋转样式
+	ulTime.style["-webkit-transform"] = 'rotate('+timer.r+'deg)';
+	ulTime.style["-moz-transform"] = 'rotate('+timer.r+'deg)';
+	ulTime.style["-o-transform"] = 'rotate('+timer.r+'deg)';
+	ulTime.style.color = timer.color;
+	ulTime.style.fontSize = timer.size;
+}
+
+</script>
+</head>
+<body>
+	<div id="main">
+		<div id="imgdiv" style="r">
+			<img id="img" src="images/girltime.jpg" width="630px">
+			<ul id="ulTime">
+				<li id="liWeek">星期一</li>
+				<li id="liTime">21:23:02</li>
+			</ul>
+		</div>
+		<div>
+			<span>
+				<label for="i0">图片1</label>
+				<input type="radio" name="i" value="0" id="i0" checked="checked"
+				 onclick="changeImage(this.value)">
+			</span>
+			<span>
+				<label for="i1">图片2</label>
+				<input type="radio" name="i" value="1" id="i1"
+				 onclick="changeImage(this.value)">
+			</span>
+			<span>
+				<label for="i2">图片3</label>
+				<input type="radio" name="i" value="2" id="i2"
+				 onclick="changeImage(this.value)">
+			</span>
+		</div>
+		<div id="sytleattr">
+			<label>图片:</label><input style="width:480px" onchange="changeStyle('image')">
+			<label>X坐标:</label><input type="number" onchange="changeStyle('x')">
+			<label>Y坐标: </label><input type="number" onchange="changeStyle('y')">
+			<label>旋转: </label><input type="number" onchange="changeStyle('r')">
+			<label>字体大小: </label><input type="number" onchange="changeStyle('size')">
+			<label>字体颜色: </label><input onchange="changeStyle('color')">
+			<label>背景颜色: </label><input onchange="changeStyle('bg')">
+		</div>
+	</div>
+</body>
+<style type="text/css">
+*{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	font-size: 18px;
+}
+body{
+	background: #eee;
+	text-align: center;
+}
+div{
+	margin: 10px;
+}
+#imgdiv {
+	display:inline-block;
+	position: relative;
+}
+ul{
+	position: absolute;
+	font-weight: bold;
+	color: #fff;
+	left: 0px;
+	top: 0px;
+}
+#sytleattr {
+	display:inline-block;
+	width:630px;
+	text-align: left;
+	line-height: 30px
+}
+#sytleattr>input {
+	width:80px;
+	text-align: center;
+}
+label{
+	display:inline-block;
+	width:100px;
+	text-align: right;
+	padding: 0px 5px
+}
+ul>li{
+	font-size: inherit;
+	color:inherit; 
+}
+</style>
+</html>
