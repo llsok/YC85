@@ -18,7 +18,7 @@
 		// 将当前按钮上的数字, 追加到显示屏
 		res.innerText += btn.innerText;
 		// 转成数字
-		var num = parseInt(res.innerText);
+		var num = parseFloat(res.innerText);
 		// 替换原有的文字
 		res.innerText = num;
 	}
@@ -28,6 +28,10 @@
 		var res = document.getElementById("res");
 		// 将显示屏上的数字保存到 num1 中
 		num1 = res.innerText;
+		// 如果num1中都没有值则退出
+		if( ! num1){
+			return;
+		}
 		// 获取运算符按钮
 		var btn = event.srcElement;
 		// 保存运算符
@@ -40,16 +44,45 @@
 	function downReturn(){
 		var res = document.getElementById("res");
 		num2 = res.innerText;
+		// 如果num1,num2,oper中都没有值则退出
+		if( ! num1 || !num2 || !oper){
+			return;
+		}
 		var expr = num1 + oper + num2;
 		// 送 eval 计算  expr 的值
 		var ret = eval( expr );
 		// 将计算结果写入显示屏
 		res.innerText = ret;
 		// 将结果赋值给 num1, 以便下次继续计算
-		num1 = ret;
+		num1 = null;
 		// 清空输入值
 		num2 = null;
 		oper = null;
+	}
+	
+	function downClear(){
+		var res = document.getElementById("res");
+		res.innerText = "";
+	}
+	
+	function downBack(){
+		var res = document.getElementById("res");
+		res.innerText = res.innerText.substr(0,res.innerText.length-1);
+	}
+
+	function downPlusOrMinus(){
+		var res = document.getElementById("res");
+		var numb = parseInt(res.innerText);
+		res.innerText = -numb;
+	}
+	
+	function downDot(){
+		var res = document.getElementById("res");
+		if(res.innerText.indexOf(".")>-1){
+			return;
+		} else {
+			res.innerText += ".";
+		}
 	}
 	
 	// body 在加载完成之后执行的函数
@@ -69,6 +102,14 @@
 				btns[i].onclick = downOper;
 			} else if ( text == '=') {
 				btns[i].onclick = downReturn;
+			} else if ( text == 'C') {
+				btns[i].onclick = downClear;
+			} else if ( text == '+/-') {
+				btns[i].onclick = downPlusOrMinus;
+			} else if ( text == '<-') {
+				btns[i].onclick = downBack;
+			} else if ( text == '.') {
+				btns[i].onclick = downDot;
 			}
 		}
 	}
