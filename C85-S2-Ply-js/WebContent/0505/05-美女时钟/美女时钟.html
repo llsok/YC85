@@ -10,12 +10,12 @@ var timerIndex = 0;
 // 时钟类
 function Timer(image){
 	this.image = image;
-	this.x = null;
-	this.y = null;
-	this.r = null;		// 旋转角度
-	this.size = null;
-	this.color = null;
-	this.bg = null;
+	this.x = 0;
+	this.y = 0;
+	this.r = 0;		// 旋转角度
+	this.size = 14;
+	this.color = '#fff';
+	this.bg = 'transparent'; 
 }
 
 // 使用json格式定义数组
@@ -31,6 +31,17 @@ function changeImage(index){
 	img.src = timers[index].image;
 	// 设置当前时钟对象的下标值
 	timerIndex = index;
+	
+	// 将 timer 属性值设置到 input 中
+	for( var name in timers[index]){
+		// name 就是对象的属性名
+		var input = document.getElementById(name);
+		input.value = timers[index][name];
+	}
+	
+	// 将 timer 属性设置到 ul 的样式中
+	refresh();
+	
 }
 
 // 修改指定样式的属性值
@@ -88,13 +99,13 @@ function refresh(){
 			</span>
 		</div>
 		<div id="sytleattr">
-			<label>图片:</label><input style="width:480px" onchange="changeStyle('image')">
-			<label>X坐标:</label><input type="number" onchange="changeStyle('x')">
-			<label>Y坐标: </label><input type="number" onchange="changeStyle('y')">
-			<label>旋转: </label><input type="number" onchange="changeStyle('r')">
-			<label>字体大小: </label><input type="number" onchange="changeStyle('size')">
-			<label>字体颜色: </label><input onchange="changeStyle('color')">
-			<label>背景颜色: </label><input onchange="changeStyle('bg')">
+			<label>图片:</label><input id="image" style="width:480px" onchange="changeStyle('image')">
+			<label>X坐标:</label><input id="x" type="number" onchange="changeStyle('x')">
+			<label>Y坐标: </label><input id="y" type="number" onchange="changeStyle('y')">
+			<label>旋转: </label><input id="r" type="number" onchange="changeStyle('r')">
+			<label>字体大小: </label><input id="size" type="number" onchange="changeStyle('size')">
+			<label>字体颜色: </label><input id="color" onchange="changeStyle('color')">
+			<label>背景颜色: </label><input id="bg" onchange="changeStyle('bg')">
 		</div>
 	</div>
 </body>
