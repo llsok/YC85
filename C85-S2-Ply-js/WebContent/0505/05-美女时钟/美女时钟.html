@@ -8,11 +8,11 @@
 var timerIndex = 0;
 
 // 时钟类
-function Timer(image){
+function Timer(image,x,y,r){
 	this.image = image;
-	this.x = 0;
-	this.y = 0;
-	this.r = 0;		// 旋转角度
+	this.x = x;
+	this.y = y;
+	this.r = r;		// 旋转角度
 	this.size = 14;
 	this.color = '#fff';
 	this.bg = 'transparent'; 
@@ -20,8 +20,8 @@ function Timer(image){
 
 // 使用json格式定义数组
 var timers = [
-	new Timer('images/girltime.jpg'),
-	new Timer('images/girltime.png'),
+	new Timer('images/girltime.jpg',329,76,37),
+	new Timer('images/girltime.png',246,179,20),
 	new Timer('images/girltime1.jpg'),
 ];
 
@@ -67,12 +67,32 @@ function refresh(){
 	ulTime.style["-moz-transform"] = 'rotate('+timer.r+'deg)';
 	ulTime.style["-o-transform"] = 'rotate('+timer.r+'deg)';
 	ulTime.style.color = timer.color;
-	ulTime.style.fontSize = timer.size;
+	ulTime.style.fontSize = timer.size + "px";
+}
+
+var weekNames = ["天","一","二","三","四","五","六"];
+
+function begin(){
+	// 初始化第一个时钟的位置
+	changeImage(0);
+	// 匿名函数
+	setInterval( function(){
+		var now = new Date();
+		// 获取星期数 0周日, 6 周六
+		var day = now.getDay();
+		var week = weekNames[day];
+		document.getElementById("liWeek").innerText = "星期" + week;
+		var hours = now.getHours();
+		var minutes = now.getMinutes();
+		var seconds = now.getSeconds();
+		document.getElementById("liTime").innerText = hours + ":" + minutes + ":" + seconds;
+	}, 1000);
+	
 }
 
 </script>
 </head>
-<body>
+<body onload="begin()">
 	<div id="main">
 		<div id="imgdiv" style="r">
 			<img id="img" src="images/girltime.jpg" width="630px">
