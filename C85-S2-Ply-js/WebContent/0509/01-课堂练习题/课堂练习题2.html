@@ -22,12 +22,14 @@ textarea{
 	<fieldset id="E01">
 		<legend>练习题1: 事件</legend>
 		<dl>
-			<dt>鼠标点击次数:
+			<dt>鼠标点击次数:{{ count1 }}
 			<dd>
-				<button>点击</button>
+				<!-- v-on 添加事件   v-bind ==> : -->
+				<button v-on:click="count1++">点击</button>
 			<dt>鼠标点双击次数:
 			<dd>
-				<button>点击</button>
+				<!-- v-on ==> @ -->
+				<button @dblclick="countDbl()">点击</button>
 		</dl>
 	</fieldset>
 	<script type="text/javascript">
@@ -35,13 +37,27 @@ textarea{
 	1. 记录点击次数, 事件代码写在标签中
 	2. 记录双击次数, 使用语法糖定义事件, 事件代码写在 methods 中
 	*/
+	var vue1 = new Vue({
+		el : "#E01",
+		data : {
+			count1 : 0,
+		},
+		// method : 方法 函数
+		methods : {
+			countDbl(){
+				// 请参考单击事件实现
+			}
+		}
+	});
+	
+	
 	</script>
 
 	<fieldset id="E02">
 		<legend>练习题2: 事件修饰符(冒泡)</legend>
-		<div id="div1" style="width: 200px; height: 200px; background: red">
-			<div id="div2" style="width: 150px; height: 150px; background: green">
-				<div id="div3" style="width: 100px; height: 100px; background: blue"></div>
+		<div id="div1" @click="show1()" style="width: 200px; height: 200px; background: red">
+			<div id="div2" @click.stop="show2()" style="width: 150px; height: 150px; background: green">
+				<div id="div3" @click="show3()" style="width: 100px; height: 100px; background: blue"></div>
 			</div>
 		</div>
 
@@ -51,18 +67,28 @@ textarea{
 	1. 给3个div 分别添加点击事件, 打开提示框显示自己的id, 点击div3, 查看消息框
 	2. 分别给3个div的点击事件添加stop修饰符,再点击测试 
 	*/
+	var vue2 = new Vue({
+		el : "#E02",
+		// method : 方法 函数
+		methods : {
+			show1(){ alert("div1")},
+			show2(){ alert("div2")},
+			show3(){ alert("div3")},
+		}
+	});
 	</script>
 
 	<fieldset id="E03">
 		<legend>练习题3: if</legend>
 		<dl>
 			<dt>
-				成绩:
-				<input type="number" min="0" max="100">
-			<dd >优秀</dd>
-			<dd >良好</dd>
-			<dd >及格</dd>
-			<dd >不及格</dd>
+				成绩:  <!-- vue 对 原生 event 对象进行封装,  名字是 $event -->
+				<input :value="score" @change="score = $event.srcElement.value"
+					 type="number" min="0" max="100">
+			<dd v-if="score >= 90">优秀</dd>
+			<dd v-else-if="score >= 80">良好</dd>
+			<dd v-else-if="score >= 60">及格</dd>
+			<dd v-else>不及格</dd>
 		</dl>
 	</fieldset>
 	<script type="text/javascript">
@@ -70,18 +96,31 @@ textarea{
 	1. 判断 input 输入的分数, 显示 优秀(>90)  良好(>80)  及格(>60) 不及格
 	2. 给 input 添加change事件, 修改 score 值
 	*/
+	var vue3 = new Vue({
+		el : "#E03",
+		data : {
+			score : 100,
+		}
+	})
 	</script>
 
 
 	<fieldset id="E04">
 		<legend>练习题4: show</legend>
-		<span>用户账号:<input placeholder="用户账号"></span> <span>邮箱地址:<input placeholder="邮箱地址"></span>
-		<button>切换类型</button>
+		<span v-show="type==1">用户账号:<input placeholder="用户账号"></span>
+		<span v-show="type==0">邮箱地址:<input placeholder="邮箱地址"></span>
+		<button @click="type = type == 1 ? 0 : 1">切换类型</button>
 	</fieldset>
 	<script type="text/javascript">
 	/**
 	1. 实现点击切换按钮, 显示不同的span
 	*/
+	var vue4 = new Vue({
+		el : "#E04",
+		data : {
+			type : 1,
+		}
+	})
 	</script>
 
 	<fieldset id="E05">
