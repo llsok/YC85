@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>正则表达式</title>
+<script type="text/javascript">
+/**
+ * 10进制 转 16进制的方法
+ 	1. 转的变量类型必须是  number
+ 	2. number 的 toString()  查 API 可以完成进制转换
+ */
+ 
+ var str = "cat dog Cat Dog";
+ 
+ // 判断 str 是否包含 dog
+
+ var regex = new RegExp( "dog", "");
+ 
+ console.info( regex.test(str));
+ console.info( regex.exec(str));
+ 
+ var regex1 = /dog/;
+ 
+ console.info( regex1.test(str));
+ console.info( regex1.exec(str));
+
+ var str = "a Bat cat,fAt baT  faT";
+  var  reg = /[^a-c]at/gi;
+  
+  //alert(str.match(reg));       //output  ” Bat,cat,fAt,baT,faT”  
+  
+  /* while((a=reg.exec(str))!=null){
+      alert(a);
+  } */
+  
+  var data = "num1,num2,num3,num4,numa5,num6,nums";
+  var reg = /num[1-4s]/gi;  // 组合类
+  //alert(data.match(reg)); //output “num1,num2,num3,num4,nums”
+  
+  
+  
+  str = "aaa aaaaa aaaaa aa a ";
+  
+  var regex = /a{3}/;
+  console.info(regex.exec(str));
+  
+</script>
+</head>
+<body>
+
+</body>
+</html>

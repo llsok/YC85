@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = " dogdog, catcat, dogdogdog";
+
+		var regex = /(dog|cat){2}/g;
+
+		console.info(str.match(regex));
+
+		var sToMatch = "#123456789";
+		var reg = /#(\d+)/;
+		reg.test(sToMatch);
+		alert(RegExp.$1); //输出 "123456789"   $1反向引用
+
+		var sToChange = "1234 5678";
+		var reMatch = /(\d{4}) (\d{4})/;
+		var sNew = sToChange.replace(reMatch, "$2  $1");
+		alert(sNew); //输出 "5678  1234"
+
+		var sToChange = "1234 5678";
+		var reMatch = /(\d{4}) (?:\d{4})/; // ?: 非捕获组
+		var sNew = sToChange.replace(reMatch, "$2  $1");
+		alert(sNew); //输出 "5678  1234"
+
+		// 前瞻
+		var sToMatch1 = "bedroom";
+		var sToMatch2 = "bedding";
+		var reBed = /(bed(?=room))/;
+		alert(reBed.test(sToMatch1)); //true
+		alert(RegExp.$1); //bed 注：不是输出bedroom
+		alert(reBed.test(sToMatch2)); //false 
+
+		// 边界符示例:
+		var sToMatch = "Important word is the last one.";
+		var reLastWord = /(\w+)\.$/;
+		reLastWord.test(sToMatch);
+		alert(RegExp.$1); //one
+		//---------------------------------
+		var data = " First second thind fourth fifth sixth ";
+		var reCat = /\b(\S+)\b/g;
+		var arrdata = data.match(reCat);
+		for (var i = 0; i < arrdata.length; i++) {
+			alert(arrdata[i]); // First      second    third   fourth   fifth    sixth
+		}
+	</script>
+</body>
+</html>

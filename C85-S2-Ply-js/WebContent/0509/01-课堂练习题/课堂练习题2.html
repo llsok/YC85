@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>课堂练习题</title>
+<style type="text/css">
+td, th {
+	padding: 3px 5px
+}
+select{
+	width :173px;
+	height: 20px
+}
+textarea{
+	width :373px;
+	height: 60px
+}
+</style>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+	<fieldset id="E01">
+		<legend>练习题1: 事件</legend>
+		<dl>
+			<dt>鼠标点击次数:
+			<dd>
+				<button>点击</button>
+			<dt>鼠标点双击次数:
+			<dd>
+				<button>点击</button>
+		</dl>
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1. 记录点击次数, 事件代码写在标签中
+	2. 记录双击次数, 使用语法糖定义事件, 事件代码写在 methods 中
+	*/
+	</script>
+
+	<fieldset id="E02">
+		<legend>练习题2: 事件修饰符(冒泡)</legend>
+		<div id="div1" style="width: 200px; height: 200px; background: red">
+			<div id="div2" style="width: 150px; height: 150px; background: green">
+				<div id="div3" style="width: 100px; height: 100px; background: blue"></div>
+			</div>
+		</div>
+
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1. 给3个div 分别添加点击事件, 打开提示框显示自己的id, 点击div3, 查看消息框
+	2. 分别给3个div的点击事件添加stop修饰符,再点击测试 
+	*/
+	</script>
+
+	<fieldset id="E03">
+		<legend>练习题3: if</legend>
+		<dl>
+			<dt>
+				成绩:
+				<input type="number" min="0" max="100">
+			<dd >优秀</dd>
+			<dd >良好</dd>
+			<dd >及格</dd>
+			<dd >不及格</dd>
+		</dl>
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1. 判断 input 输入的分数, 显示 优秀(>90)  良好(>80)  及格(>60) 不及格
+	2. 给 input 添加change事件, 修改 score 值
+	*/
+	</script>
+
+
+	<fieldset id="E04">
+		<legend>练习题4: show</legend>
+		<span>用户账号:<input placeholder="用户账号"></span> <span>邮箱地址:<input placeholder="邮箱地址"></span>
+		<button>切换类型</button>
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1. 实现点击切换按钮, 显示不同的span
+	*/
+	</script>
+
+	<fieldset id="E05">
+		<legend>练习题5: for</legend>
+		<table border="1">
+			<tr>
+				<th>序号</th>
+				<th>姓名</th>
+				<th>绰号</th>
+				<th>力量</th>
+				<th>智力</th>
+				<th>敏捷</th>
+				<th>综合战斗力</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>
+					<button>-</button>
+					100
+					<button>+</button>
+				</td>
+				<td>
+					<button>-</button>
+					100
+					<button>+</button>
+				</td>
+				<td>
+					<button>-</button>
+					100
+					<button>+</button>
+				</td>
+				<td>300</td>
+			</tr>
+		</table>
+	</fieldset>
+	<script type="text/javascript">
+	var Hero = function(name,alias,p,i,a){
+		this.name = name;
+		this.alias = alias;
+		this.p = p;
+		this.i = i;
+		this.a = a;
+	}
+	var heroes = [
+		new Hero("林冲","豹子头",99,85,90),
+		new Hero("武松","行者",98,80,88),
+		new Hero("秦明","霹雳火",95,82,85),
+		new Hero("白胜","白日鼠",75,80,85),
+		new Hero("石秀","拼命三郎",97,82,83),
+	];
+	/**
+	1. 将水浒英雄显示到表格中
+	2. 实现属性值的加减
+	3. 统计出每个影响的综合战斗力: 力量+智力+敏捷
+	*/
+	</script>
+
+	<fieldset id="E06">
+		<legend>练习题6: 表单元素绑定</legend>
+		<form action="">
+			姓名:<input  name="name"><br>
+			绰号:<input  name="alias"><br>
+			学历:<select  name="edu"><option ></select><br>
+			职位:<span >
+					<input  name="job" type="radio">
+				</span><br>
+			爱好:<span >
+					<input  name="like" type="checkbox">
+				</span><br>
+			介绍:<textarea  name="desc"></textarea><br>
+		</form>
+	</fieldset>
+	<script type="text/javascript">
+	var sj = {
+		name : "宋江",
+		alias : "及时雨",
+		edu : "秀才",
+		job : "老大",
+		like : ["读书","下棋","喝酒"],
+		desc : "宋江（1073年—1124年），字公明，绰号呼保义、及时雨、孝义黑三郎，施耐庵所作古典名著《水浒传》中的主人公。原为山东省郓城县押司，身材矮小，面目黝黑，为梁山起义军领袖"
+	};
+	var eduItems = ["进士","贡士","举人","秀才"];
+	var jobItems = ["老大","军师","武将","工匠"];
+	var likeItems = ["使枪","弄棒","喝酒","绣花","读书","蹴鞠","书法","绘画","下棋"];
+	
+	/**
+	1. 学历, 职位, 爱好的选项添加到对应的控件中
+	2. 将宋江的个人信息绑定到表单的对应元素中
+	*/
+	
+	</script>
+</body>
+</html>

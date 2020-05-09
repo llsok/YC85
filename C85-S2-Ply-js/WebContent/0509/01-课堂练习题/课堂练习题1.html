@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>课堂练习题</title>
+<!-- 引入 cdn vue.js  -->
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+</head>
+<body>
+	<fieldset id="E01">
+		<legend >{{title}}</legend>
+		<ul>
+			<li>{{h1}}</li>
+			<li>{{h2}}</li>
+			<li>{{h3}}</li>
+		</ul>
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1.在legend中写入 "水泊梁山", 并且让其内容不可改变
+	2.在三个 li 中 写入三个水浒英雄的名字
+	*/
+	var vue1 = new Vue({
+		el : "#E01",
+		data : {
+			title : "水泊梁山",
+			h1 : "宋江",
+			h2 : "卢俊义",
+			h3 : "公孙胜",
+		}
+	});
+	
+	</script>
+
+	<fieldset id="E02">
+		<legend ></legend>
+		<ul>
+			<li ></li>
+			<li ></li>
+			<li ></li>
+		</ul>
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1.在legend中写入 "水泊梁山" 并加上"斗篷"
+	2.给每个li中添加一个按钮, 每个按钮上显示一个水浒英雄的名字
+	*/
+	</script>
+
+
+	<fieldset id="E03">
+		<legend>练习题3: 计算属性</legend>
+		<dl>
+			<dt></dt>
+			<dd>力量:</dd>
+			<dd>智力:</dd>
+			<dd>敏捷:</dd>
+			<dd>综合战力:</dd>
+		</dl>
+	</fieldset>
+	<script type="text/javascript">
+	var heroe = {name:"花和尚鲁智深",power:98, intel:76, agile:73};
+	/**
+	1. 将 heroe 对象的值设置到 dl 中
+	3. 第 4 个 dd 使用计算属性算出其综合战力值 = 力量 + 智力 + 敏捷
+	*/
+	</script>
+
+
+	<fieldset id="E04">
+		<legend >练习题4: 样式设置</legend>
+		<div >
+			<img  ><br> <span ></span>
+		</div>
+		<div >
+			<img  ><br> <span ></span>
+		</div>
+		<div >
+			<img  ><br> <span ></span>
+		</div>
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1. img 中添加水浒英雄的图片, 并且使用属性设定高度为100px
+	2. 给 div 设置: 宽度120px + 文字居中 + 边框 + 行内块 + 内边距5px
+	3. 给 span 添加英雄名字
+	*/
+	</script>
+
+
+	<style>
+	.border {
+		border: 2px solid blue;
+	}
+	
+	.text {
+		color: red;
+		text-align: center;
+	}
+	
+	.size {
+		width: 150px;
+		height: 150px; padding : 5px;
+		display: inline-block;
+		margin: 5px;
+		padding: 5px;
+	}
+	</style>
+	<fieldset id="E05">
+		<legend>练习题5: class属性</legend>
+		<div id="div1" >
+			<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg">
+			 <br> 关注样式
+		</div>
+		<div id="div2" >
+			<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg">
+			 <br> 关注样式
+		</div>
+		<div id="div3" >
+			<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg"> 
+			<br> 关注样式
+		</div>
+	</fieldset>
+	<script type="text/javascript">
+	/**
+	1. 将 .size 样式应用到 div1 上 ( 数组方式)
+	2. 将 .border .size 样式应用到 div2 上 ( 对象方式)
+	2. 将 .border .text .size 样式应用到 div3 上 ( 计算属性方式)
+	*/
+	</script>
+
+
+</body>
+</html>
