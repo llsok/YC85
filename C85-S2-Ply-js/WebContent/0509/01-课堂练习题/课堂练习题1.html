@@ -8,7 +8,7 @@
 </head>
 <body>
 	<fieldset id="E01">
-		<legend >{{title}}</legend>
+		<legend v-once>{{title}}</legend>
 		<ul>
 			<li>{{h1}}</li>
 			<li>{{h2}}</li>
@@ -17,11 +17,12 @@
 	</fieldset>
 	<script type="text/javascript">
 	/**
-	1.在legend中写入 "水泊梁山", 并且让其内容不可改变
+	1.在legend中写入 "水泊梁山", 并且让其内容不可改变  ==> v-once
 	2.在三个 li 中 写入三个水浒英雄的名字
 	*/
 	var vue1 = new Vue({
 		el : "#E01",
+		// 外部访问 data 使用 vue1.$data.
 		data : {
 			title : "水泊梁山",
 			h1 : "宋江",
@@ -32,47 +33,84 @@
 	
 	</script>
 
+	<style>
+		/*斗篷样式*/
+		[v-cloak]{
+			visibility: hidden;  /*display:none*/
+		}
+	</style>
 	<fieldset id="E02">
-		<legend ></legend>
+		<legend v-cloak>{{title}}</legend>
 		<ul>
-			<li ></li>
-			<li ></li>
-			<li ></li>
+			<li v-html="h1"></li>
+			<li v-html="h2"></li>
+			<li v-html="h3"></li>
 		</ul>
 	</fieldset>
 	<script type="text/javascript">
 	/**
-	1.在legend中写入 "水泊梁山" 并加上"斗篷"
-	2.给每个li中添加一个按钮, 每个按钮上显示一个水浒英雄的名字
+	1.在legend中写入 "水泊梁山" 并加上"斗篷" ==> 网路速度很慢
+	2.给每个li中添加一个按钮, 每个按钮上显示一个水浒英雄的名字  ==> v-html
 	*/
+	setTimeout( function(){
+		var vue2 = new Vue({
+			el : "#E02",
+			// 外部访问 data 使用 vue1.$data.
+			data : {
+				title : "水泊梁山",
+				h1 : "<button>武松</button>",
+				h2 : "<button>林冲</button>",
+				h3 : "<button>鲁达</button>",
+			}
+		});
+	},  1000);
+	
+	
 	</script>
 
 
 	<fieldset id="E03">
 		<legend>练习题3: 计算属性</legend>
 		<dl>
-			<dt></dt>
-			<dd>力量:</dd>
-			<dd>智力:</dd>
-			<dd>敏捷:</dd>
-			<dd>综合战力:</dd>
+			<dt>{{h.name}}</dt>
+			<dd>力量:{{h.power}}</dd>
+			<dd>智力:{{h.intel}}</dd>
+			<dd>敏捷:{{h.agile}}</dd>
+			<!-- <dd>综合战力:{{h.power + h.intel + h.agile}}</dd> -->
+			<dd>综合战力:{{sum}}</dd>
 		</dl>
 	</fieldset>
 	<script type="text/javascript">
-	var heroe = {name:"花和尚鲁智深",power:98, intel:76, agile:73};
+	var hero = {name:"花和尚鲁智深",power:98, intel:76, agile:73};
 	/**
 	1. 将 heroe 对象的值设置到 dl 中
 	3. 第 4 个 dd 使用计算属性算出其综合战力值 = 力量 + 智力 + 敏捷
 	*/
+	var vue3 = new Vue({
+		el : "#E03",
+		data : {
+			h : hero
+		},
+		// 计算属性
+		computed : {
+			// 定义计算属性函数
+			sum(){
+				return this.h.power + this.h.intel + this.h.agile;
+			}
+			
+		}
+	});
 	</script>
 
 
 	<fieldset id="E04">
 		<legend >练习题4: 样式设置</legend>
-		<div >
-			<img  ><br> <span ></span>
+		<div v-bind:style=" { width:'120px' , textAlign:'center', border:'1px solid red', 
+								display:'inline-block', padding:'5px' }  ">
+			<img v-bind:src="i1"  v-bind:height="height + 'px'"><br>
+			<span v-text="h1"></span> <!-- v-text == 胡子语法  {{  }}  -->
 		</div>
-		<div >
+		<div v-bind:style="mystyle">
 			<img  ><br> <span ></span>
 		</div>
 		<div >
@@ -85,6 +123,25 @@
 	2. 给 div 设置: 宽度120px + 文字居中 + 边框 + 行内块 + 内边距5px
 	3. 给 span 添加英雄名字
 	*/
+	var vue4 = new Vue({
+		el : "#E04",
+		data : {
+			height : 100,
+			i1 : "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2019458467,2699870190&fm=11&gp=0.jpg",
+			h1 : "大刀关胜",
+			i2 : "",
+			h2 : "",
+			i3 : "",
+			h4 : "",
+			mystyle : { 
+				width:'120px' , 
+				textAlign:'center', 
+				border:'1px solid red',
+				display:'inline-block', 
+				padding:'5px' 
+			}
+		}
+	});
 	</script>
 
 
@@ -108,15 +165,15 @@
 	</style>
 	<fieldset id="E05">
 		<legend>练习题5: class属性</legend>
-		<div id="div1" >
+		<div id="div1" :class="{size:true}"> <!-- 语法糖 : 对某些语法的简写 -->
 			<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg">
 			 <br> 关注样式
 		</div>
-		<div id="div2" >
+		<div id="div2" :class="mystyle">
 			<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg">
 			 <br> 关注样式
 		</div>
-		<div id="div3" >
+		<div id="div3" :class="mystyle1">
 			<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg"> 
 			<br> 关注样式
 		</div>
@@ -127,6 +184,18 @@
 	2. 将 .border .size 样式应用到 div2 上 ( 对象方式)
 	2. 将 .border .text .size 样式应用到 div3 上 ( 计算属性方式)
 	*/
+	var vue5 = new Vue({
+		el : "#E05",
+		data : {
+			mystyle : {size : true, border: true, text: false}
+		},
+		computed : {
+			mystyle1() {
+				return {size : true, border: true, text: true}
+			}
+			
+		}
+	});
 	</script>
 
 
