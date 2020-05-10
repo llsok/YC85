@@ -196,16 +196,18 @@ textarea{
 	<fieldset id="E06">
 		<legend>练习题6: 表单元素绑定</legend>
 		<form action="">
-			姓名:<input  name="name"><br>
-			绰号:<input  name="alias"><br>
-			学历:<select  name="edu"><option ></select><br>
-			职位:<span >
-					<input  name="job" type="radio">
+			姓名:<input v-model="sj.name" name="name"><br>
+			绰号:<input v-model="sj.alias" name="alias"><br>
+			学历:<select v-model="sj.edu" name="edu">
+				<option v-for="e in eduItems">{{e}}</option>
+			</select><br>
+			职位:<span v-for="j in jobItems">
+					<input name="job" v-model="sj.job" :value="j" type="radio">{{j}}
 				</span><br>
-			爱好:<span >
-					<input  name="like" type="checkbox">
+			爱好:<span v-for="l in likeItems">
+					<input  name="like" v-model="sj.like" :value="l" type="checkbox">{{l}}
 				</span><br>
-			介绍:<textarea  name="desc"></textarea><br>
+			介绍:<textarea v-model="sj.desc" name="desc"></textarea><br>
 		</form>
 	</fieldset>
 	<script type="text/javascript">
@@ -225,7 +227,15 @@ textarea{
 	1. 学历, 职位, 爱好的选项添加到对应的控件中
 	2. 将宋江的个人信息绑定到表单的对应元素中
 	*/
-	
+	var vue6 = new Vue({
+		el : "#E06",
+		data : {
+			sj : sj,
+			eduItems : eduItems,
+			jobItems : jobItems,
+			likeItems : likeItems,
+		}
+	});
 	</script>
 </body>
 </html>

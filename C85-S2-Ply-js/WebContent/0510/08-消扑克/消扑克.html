@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>消扑克</title>
+<link href="css/matchgame.css" rel="stylesheet">
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+	<section id="game">
+		<div id="cards">
+			<div v-for="c in cards" class="card" :style="c.style"></div>
+		</div>
+	</section>
+	<script type="text/javascript">
+	// 创建扑克牌类
+	function Card(value){
+		this.value = value; // 牌值 0~51
+		this.state = 1;  // 显示状态: 0 背面, 1 正面, 消失-1
+		this.style = {}; // vue 的样式对象
+		// 刷新显示的状态
+		this.refresh = function(){
+			// 默认设置不透明
+			this.style.opacity = 1;
+			if(this.state == 1){
+				// 计算偏移值: 计算纵坐标
+				var y = parseInt(this.value / 13) * 120;
+				// 计算横坐标
+				var x = this.value % 13 * 80;
+				// 设置背景偏移值
+				this.style.backgroundPosition = "-" + x + "px -" + y + "px";
+			} else if(this.state == 0){
+				// 实现纸牌的背面
+				this.style.backgroundPosition = "0px -480px";
+			} else {
+				// 纸牌消失 ==> 透明
+				this.style.opacity = 0;
+			}
+		}
+		// 给card 设置默认的显示属性
+		this.refresh();
+	}
+	
+	var vue = new Vue({
+		el : "#game",
+		data : {
+			// 12张牌
+			cards : [ new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+				new Card(12),
+			],
+		}
+	})
+		
+	</script>
+</body>
+</html>

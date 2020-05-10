@@ -1,0 +1,38 @@
+@charset "utf-8";
+body {
+	text-align: center;
+	background-image: url("../images/bg.jpg");
+}
+
+#game {
+	width: 502px;
+	height: 462px;
+	margin: 0 auto;
+	border: 1px solid #666;
+	border-radius: 10px;
+	background-image: url("../images/table.jpg");
+	position: relative;
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+
+#cards {
+	width: 380px;
+	height: 400px;
+	position: relative;
+	margin: 30px auto;
+}
+
+.card {
+	width: 80px;
+	height: 120px;
+	display: inline-block;
+	border-radius: 10px;
+	background: #999 url("../images/deck.png") 0 -480px;
+	margin: 5px;
+}
+
+.card:hover {
+	-webkit-box-shadow: 0 0 40px #aaa;
+}
