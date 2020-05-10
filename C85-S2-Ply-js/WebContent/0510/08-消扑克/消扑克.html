@@ -42,38 +42,39 @@
 		this.refresh();
 	}
 	
-	var cards = [];
-	for( var i=0 ; i<12 ;i++){
-		// 注意, 下标值从0开始计数, 奇偶数判断正好相反
-		if(i % 2 == 0 ){
-			// 奇数牌通过随机数生成花色
-			var value = parseInt(Math.random() * 52);// Math.random() 0~1 浮点数
-		} else {
-			// 偶数牌等于奇数牌的花色
-			var value = cards[ i - 1].value;
-		}
-		// 创建扑克牌对象
-		var card = new Card(value);
-		// 添加到数组中
-		cards[i] = card;
-	}
-	// 打乱顺序  c1,c2 是js在排序时,传入的2个对象, 你要确定他们两的大小
-	cards.sort(function(c1,c2){
-		// 排序规则使用随机数, 会产生乱序效果(打乱)
-		return Math.random() > 0.5 ? 1 : -1;
-	});
-	
 	var vue = new Vue({
 		el : "#game",
 		data : {
 			// 12张牌
-			cards : cards,
+			cards : [],
 			card1 : null,
 			card2 : null,
 		},
 		// 声明周期事件   度娘 vue 生命周期
 		created : function(){
-			// 无代码
+			for( var i=0 ; i<12 ;i++){
+				// 注意, 下标值从0开始计数, 奇偶数判断正好相反
+				if(i % 2 == 0 ){
+					// 奇数牌通过随机数生成花色
+					var value = parseInt(Math.random() * 52);// Math.random() 0~1 浮点数
+				} else {
+					// 偶数牌等于奇数牌的花色
+					var value = this.cards[ i - 1].value;
+				}
+				// 创建扑克牌对象
+				var card = new Card(value);
+				/**
+				神奇!!! 使用下面这种方式添加元素, 会导致点击事件出现不刷新问题!!!, 换成 push 就OK了, 原因待查
+				*/
+				//this.cards[i] = card;
+				// 添加到数组中
+				this.cards.push(card);
+			}
+			// 打乱顺序  c1,c2 是js在排序时,传入的2个对象, 你要确定他们两的大小
+			this.cards.sort(function(c1,c2){
+				// 排序规则使用随机数, 会产生乱序效果(打乱)
+				return Math.random() > 0.5 ? 1 : -1;
+			});
 		},
 		methods : {
 			click(card){
