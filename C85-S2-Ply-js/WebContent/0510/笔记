@@ -1,0 +1,27 @@
+VUE : 基于 MVVM 模型的前端框架
+		Model 数据模型, View 视图, ViewModel 视图模型
+	将数据模型与视图的绑定( 双向绑定 )
+
+使用方式:
+	1.引入Vue.js( 下载引入, 引用 cdn, 安装)
+		<script src="...vue.js"></script>
+	2. var vue = new Vue( {  json 对象} )
+		el : "#id"  ==> 定义被绑定的html元素(根元素) 
+		data : {..} ==> 定义数据模型
+		computed :  ==> 计算属性
+		methods  :  ==> 定义函数 , 事件函数, 计算函数
+		created  :  ==> 生命周期事件函数
+		
+Vue语法:
+	1. 胡子  {{...}} 用于在标签内部输出内容 ==> innerText
+	2. v-html  ==> 元素的 innerHTML
+	3. v-text  ==> 胡子  {{...}} ==> innerText
+	4. v-bind 用于绑定标签属性  v-bind:属性 ==> 语法糖  :属性
+		:style="{ json 对象格式 }"
+		:class="{ json 对象格式    样式名 : true or false }"
+	5. v-on 绑定事件 ==> onXXX  onclick => v-on:click => @click
+		修饰符(后缀) ==> stop 后缀 点击事件中阻止冒泡
+	6. v-if 分支逻辑 ==> 动态生成元素
+		v-show ==>    动态隐藏元素或显示元素
+		
+	

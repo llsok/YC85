@@ -135,30 +135,31 @@ textarea{
 				<th>敏捷</th>
 				<th>综合战斗力</th>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+			<tr v-for="h,index in heroes">
+				<td>{{index + 1}}</td>
+				<td>{{h.name}}</td>
+				<td>{{h.alias}}</td>
 				<td>
-					<button>-</button>
-					100
-					<button>+</button>
+					<button @click="change(h,-1,'p')">-</button>
+					{{h.p}}
+					<button @click="change(h,1,'p')">+</button>
 				</td>
 				<td>
-					<button>-</button>
-					100
-					<button>+</button>
+					<button @click="change(h,-1,'i')">-</button>
+					{{h.i}}
+					<button @click="change(h,1,'i')">+</button>
 				</td>
 				<td>
-					<button>-</button>
-					100
-					<button>+</button>
+					<button @click="change(h,-1,'a')">-</button>
+					{{h.a}}
+					<button @click="change(h,1,'a')">+</button>
 				</td>
-				<td>300</td>
+				<td>{{ h.p + h.i + h.a }}</td>
 			</tr>
 		</table>
 	</fieldset>
 	<script type="text/javascript">
+	// 定义类 ==> js 类型 == 函数
 	var Hero = function(name,alias,p,i,a){
 		this.name = name;
 		this.alias = alias;
@@ -178,6 +179,18 @@ textarea{
 	2. 实现属性值的加减
 	3. 统计出每个影响的综合战斗力: 力量+智力+敏捷
 	*/
+	var vue5 = new Vue({
+		el : "#E05",
+		data : {
+			heroes : heroes
+		},
+		methods : {
+			change(hero,value,field){
+				// 修改对应的(field)属性值
+				hero[field] += value;
+			}
+		}
+	});
 	</script>
 
 	<fieldset id="E06">
