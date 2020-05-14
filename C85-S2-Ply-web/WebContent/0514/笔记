@@ -1,0 +1,89 @@
+WEB入门: Web相关知识 BS架构
+
+Servlet: 控制器
+
+AJAX 异步服务调用
+
+状态管理: Cookie, Session
+
+过滤器, 监听器
+
+easyui 前端UI框架 ==> VUE
+
+
+
+bin: 存放服务器运行命令的目录
+	startup.bat  .sh  启动命令
+	shutdown.bat  .sh  停止命令
+	
+conf:(config) 配置目录
+	server.xml 服务器配置文件
+	web.xml	   工程默认配置文件
+	context.xml 默认应用上下文配置
+	
+lib: 服务器运行依赖的jar存放目录
+
+logs: 服务器运行日志目录
+
+temp: 临时文件夹
+
+webapps: 工程发布目录
+wtpwebapps: eclipse 创建的文件夹, eclipse 的工程发布目录
+
+work: JSP 文件的编译后,存放的目录
+
+Web工程目录
+src: java文件存放目录
+WebContent: 项目根目录
+
+
+URL地址: URL统一资源定位器
+访问本地网页资源的路径
+file:///E:/dev/_teach-workspace/C85-S2-Ply-web/WebContent/0514/index.html
+通过网络访问服务器资源的路径
+http://127.0.0.1:8080/C85-S2-Ply-web/0514/index.html?参数#锚点
+
+http 网络协议   file  ftp  mail
+
+127.0.0.1  网络IP地址: 4段 0~255, IPv4 ==> IPv6
+		www.taobao.com 域名 ==> DNS 域名解析服务器 解析成 IP
+
+8080   端口  一台计算机中会有 N 个程序要与外界通讯   0 ~ 65535,  1024 以下端口是预留给系统应用端口
+		HTTP 协议默认端口  80 端口, 默认端口不需要输入
+		
+/C85-S2-Ply-web/0514/ 路径
+
+index.html 资源名
+
+URL地址参数的格式:  
+1.  单个参数:   参数名=参数值
+2.  多个参数:   参数名1=参数值1&参数名2=参数值2&参数名3=参数值3
+3.  同名参数:   参数名1=参数值1&参数名1=参数值2&参数名1=参数值3
+				出现多个参数名1的参数 ==>  后台程序会将其写入到一个数组中
+
+
+锚点  位于 URL 最后的位置
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
