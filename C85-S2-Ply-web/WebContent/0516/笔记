@@ -1,0 +1,89 @@
+Servlet: 服务器端的一段脚本程序  =>   Servlet
+		服务端的一个服务组件 ==> 组装的零件
+		
+Web服务器: Servlet容器, 
+
+定义Servlet:
+
+1. 继承 ==> HttpServlet
+2. 实现(重写) ==> doGet or doPost ....
+3. 配置 ==> web.xml  注解方式 @WebServlet
+
+
+http://127.0.0.1/C85-S2-Ply-web/hello.s 
+hello world
+
+
+Servlet 地址配置规则
+1. 地址必须以 / 开头
+	不以 / 开头会导致以下错误
+	java.lang.IllegalArgumentException: Invalid <url-pattern> [hello.s] in servlet mapping
+	/ 表示 WebContent 这一级目录, 也就网站的根目录
+	Servlet 的地址不能配置相对路径 
+	
+2. 地址必须全局唯一
+	java.lang.IllegalArgumentException: 名为 [com.yc.web.d0516.HelloServlet]和 [com.yc.web.d0516.HelloServlet2] 的servlet不能映射为一个url模式(url-pattern) [/hello.s]
+	
+	
+doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException
+			
+	req : 请求对象封装 http 请求报文的所有数据, 并提供一系列的方法获取请求的数据
+	resp : 响应对象, 封装一系列操作响应数据的方法
+	ServletException : Serlvet 特有的异常
+	
+	doXXX : 方法名必须与访问的方式匹配, 否则服务器将会返回 405 错误
+		HTTP Status 405 – 方法不允许
+		请求行中接收的方法由源服务器知道，但目标资源不支持
+		
+	doGet : 小请求, 除了 form 表单指定 post 方法发起的请求, 其他都是 get 请求
+			地址栏输入地址 + 回车
+			点击超链接
+			js => bom => location.href 定位页面地址
+			....
+	
+	doPost : 大请求   form 表单指定 post 方法发起的请求
+	
+	
+Servlet 的继承关系
+
+自定义Servlet ==> HttpServlet(抽象类) ==> GenericServlet(抽象类)  ==> Servlet(接口)I
+														==>ServletConfig(接口)
+public abstract class javax.servlet.GenericServlet 
+	implements javax.servlet.Servlet, javax.servlet.ServletConfig, java.io.Serializable
+	ServletConfig servlet 配置接口
+	GenericServlet . service() 方法
+	
+Servlet 的生命周期
+
+	服务器会使用同一个Servlet对象处理多次 servlet请求
+	servlet 对象被服务器保存在====> Servlet容器
+	
+	生命周期方法:
+	初始化:   init()     ==> 在第一个请求到达服务器时,  服务器才会创建 servlet 对象, 并且执行 init 方法,  只在生命周期中执行一次
+	处理请求: service() ==>  解析 请求中 的方法 类型,  根据 方法类型(get post delete put...)
+						然后调用 对应  doXXX 方法
+	销毁方法 destroy() ==> 会在服务器关闭时, 销毁servlet时才执行
+	
+	
+Web服务器中扮演处理动态请求的角色
+	
+	Servlet: 组件特性
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
