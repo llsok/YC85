@@ -1,0 +1,39 @@
+Servlet: Web服务器端用于响应动态请求的组件
+
+Servlet 具有生命周期
+
+初始化  	=> init()  1次 在第一次请求到达时
+响应请求	=> service() N次, :分发 ==> doXXX 方法 doGet doPost ...  405错误
+销毁		=> desdroy() 1次 在服务关闭时
+
+定义Servlet:
+1.继承  ==> HttpServlet
+2.实现  ==> doGet doPost ...
+3.配置  ==> web.xml    注解
+			1.  /开头
+			2.  地址全局唯一
+			
+			
+			
+			
+同步调用
+
+
+
+异步调用
+
+a()
+b()
+c()
+
+java 多线程调用
+
+
+
+
+
+
+
+
+
+

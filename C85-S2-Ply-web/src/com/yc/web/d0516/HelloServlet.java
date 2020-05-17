@@ -23,12 +23,29 @@ public class HelloServlet extends HttpServlet{
 	GenericServlet a;
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		/**
+		 * 设置字符集
+		 * 字符集一定要在所有 servlet 代码前先执行
+		 */
+		// 设置请求对象的字符集 ==> post
+		req.setCharacterEncoding("UTF-8");
+		// 设置响应对象的字符集 
+		resp.setCharacterEncoding("UTF-8");
+		// 设置网页的字符集
+		resp.setContentType("text/html;charset=utf-8");
 		// 获取响应对象的流对象, 用于向浏览器输出内容
 		PrintWriter out = resp.getWriter();
-		out.println("Hello world");
+		/**
+		 * 请求参数 
+		 * http://127.0.0.1/C85-S2-Ply-web/hello.s?myname=john
+		 * http://127.0.0.1/C85-S2-Ply-web/hello.s?myname=root
+		 */
+		//  获取参数值
+		String name = req.getParameter("myname");
+		out.write("Hello " + name);
+		
 	}
 
 
