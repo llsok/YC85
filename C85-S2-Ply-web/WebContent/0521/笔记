@@ -1,0 +1,37 @@
+AJAX: 异步的JS和XML
+
+异步  or 同步
+
+用途: 局部刷新, 异步验证, 页面内部与服务器交互, 弹幕
+
+var xhr
+try{
+	xhr = new XMLHttpRequest(); //对象
+} catch (e) {
+	xhr = new ActiveXObject("xxxxxx");
+}
+
+xhr.onreadystatechange = function(){
+	// 在xhr发送状态改变时, 执行的方法
+	readyState 发送状态值 0~4   4表示服务器返回了结果
+	status ==> 服务器的结果码 200 正常  404 , 405 , 500
+	
+	if(readyState==4 && status=200 ){
+		xhr.responseText  // 文本格式内容
+		xhr.responseXML  //xml格式内容
+	}
+	
+}
+
+xhr.open() // 开启连接
+xhr.send() // 发送请求
+
+
+
+
+
+
+
+
+
+

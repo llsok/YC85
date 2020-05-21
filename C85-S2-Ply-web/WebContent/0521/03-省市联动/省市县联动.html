@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>省市县联动</title>
+<style type="text/css">
+select{
+	width:100px
+}
+</style>
+
+<script type="text/javascript" src="vue.min.js"></script>
+<script>
+function test(){
+	var xhr
+	try{
+		xhr = new XMLHttpRequest(); //对象
+	} catch (e) {
+		xhr = new ActiveXObject("xxxxxx");
+	}
+	xhr.onreadystatechange = function(){
+		// 在xhr发送状态改变时, 执行的方法
+		//readyState 发送状态值 0~4   4表示服务器返回了结果
+		//status ==> 服务器的结果码 200 正常  404 , 405 , 500
+		if(xhr.readyState==4 && xhr.status==200 ){
+			//xhr.responseText  // 文本格式内容
+			//xhr.responseXML  //xml格式内容
+			// 省==> 市   市==> 县
+			// 衡阳,长沙,....
+			var arr = xhr.responseText.split(",");
+			console.info(arr);
+		}
+	}
+	xhr.open("POST","/C85-S2-Ply-web/area.do") // 开启连接   第三个参数 true异步|false同步
+	xhr.send("a=1&b=2&c=3") // 发送请求 参数 发送的请求参数
+}
+
+// js 没有重载, 后面定义的函数直接覆盖前面的函数
+function init(){
+	
+}
+
+function loadSheng(){
+	post("/C85-S2-Ply-web/area.do", "level=0", function(text){
+		var arr = text.split(",");
+		vue.$data.shengItems = arr;
+	});
+}
+
+/*
+ * 	更新市区数据, 要传1个参数
+ */
+function loadShi( shengIndex ){
+	// 未传参数 shengIndex 的值 是 undefined
+	if(shengIndex == undefined){
+		shengIndex = 0;
+	}
+	post("/C85-S2-Ply-web/area.do", "level=1&shengIndex="+ shengIndex, function(text){
+		var arr = text.split(",");
+		vue.$data.shiItems = arr;
+	});
+}
+
+/*
+ * 更新县区数据, 要传2个参数
+ */
+function loadXian(){
+	post("/C85-S2-Ply-web/area.do", "level=2", function(text){
+		var arr = text.split(",");
+		vue.$data.xianItems = arr;
+	});
+}
+
+/** 封装好的ajax方法 */
+function post(url, param, callback){
+	var xhr
+	try{
+		xhr = new XMLHttpRequest(); //对象
+	} catch (e) {
+		xhr = new ActiveXObject("xxxxxx");
+	}
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200 ){
+			callback(xhr.responseText);
+		}	
+	}
+	xhr.open("POST",url) // 开启连接   第三个参数 true异步|false同步
+	// POST提交数据的编码方式
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(param) // 发送请求 参数 发送的请求参数
+}
+
+/*
+ * 
+ 
+ */
+
+</script>
+</head>
+<body onload="init()">
+<div id="main">
+	<h3>AJAX实现省市联动</h3>
+	省:<select id="sheng" @change="changeSheng()">
+		<option v-for=" sheng in shengItems">{{sheng}}</option>
+	</select>
+	市:<select id="shi" @change="changeShi()">
+		<option v-for=" shi in shiItems">{{shi}}</option>
+	</select>
+	县:<select id="xian">
+		<option v-for=" xian in xianItems">{{xian}}</option>
+	</select>
+	<hr>
+</div>
+<script type="text/javascript">
+var vue = new Vue({
+	el : "#main",
+	data : {
+		shengItems : [],
+		shiItems : [],
+		xianItems : []
+	},
+	// 事件函数
+	created : function(){
+		loadSheng();
+		loadShi();
+		loadXian();
+	},
+	methods : {
+		changeSheng(){
+			var sheng = document.getElementById("sheng"); // == sheng
+			loadShi(sheng.selectedIndex);  // selectedIndex 获取选中的索引
+			loadXian(sheng.selectedIndex, 0);  // 未完成
+		}  ,  
+		changeShi(){
+			loadXian();  // 未完成
+		}
+	}
+});
+
+</script>
+	
+	
+	<dl>
+		<dt>要求:
+		<dd>
+			<ol>
+				<li>使用 AJAX 方式从后台获取省市县的数据, 加载到下拉列表选项中
+				<li>在选择 省 和 市 时, 发送 AJAX 请求, 获取对应的 市 和 县 的数据, 加载到对应的下拉列表选项中
+			</ol>
+	</dl>
+	<dl>
+		<dt>提示: 关于数据返回格式
+		<dd>
+			<ol>
+				<li>可以使用字符串拼接成一个字符串, 例如: "北京,天津,湖南,湖北...", 然后用JS进行字符串解析( split )
+				<li>也可以考虑使用拼接 JSON 格式 字符串, 例如: "['北京','天津','湖南','湖北'....]", 然后用 eval 函数, 或 JSON.parse函数, 将其转换成 JS数组.
+			</ol>
+	</dl>
+</body>
+</html>
