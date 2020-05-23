@@ -9,4 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+   <session-config>
+   		<!-- 服务器会话超时时间 1 分钟 -->
+        <session-timeout>1</session-timeout>
+    </session-config>
+    
 </web-app>
