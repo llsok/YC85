@@ -1,0 +1,38 @@
+访问状态管理: HTTP协议无状态
+登录行为
+状态=>数据
+
+状态管理方式:  
+浏览器端状态管理  Cookie  浏览器端保存少量数据的技术 (一个域名下 4K 50个)  name   value   max-age(秒)   path 
+服务器端状态管理  Session 在服务端保存用户数据的技术, setAttribute   getAttribute  invalidate( 销毁 失效)
+					默认的会话实现机制: Cookie, 
+					替代方案:URL重写, 隐藏域
+					
+					
+Servlet 监听器
+
+监听对象:    
+	ServletContext 应用上下文对象
+	HttpSeession  会话对象
+	HttpServletRequest 请求对象
+	
+监听事件:
+	属性变化事件: 属性值发生变化是, 触发的事件
+	生命周期事件: 对象被创建或销毁, 触发的事件
+	
+监听接口命名规则:  对象名 + 事件名( 属性: Attribute  生命 : 不加 ) + Listener
+	会话属性监听器: HttpSessionAttributeListener
+	请求生命周期监听: HttpServletRequestListener
+	
+	
+@WebListener 监听器配置注解   没有地址配置        !=  @WebSevlet
+	
+
+	
+	
+	
+	
+	
+	
+	
+	

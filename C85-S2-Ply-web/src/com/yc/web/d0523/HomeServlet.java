@@ -17,11 +17,11 @@ public class HomeServlet extends HttpServlet {
 		System.out.println("-----------"+session.getId());
 		// 获取属性值
 		String user = (String) session.getAttribute("loginedUser");
-		if(user==null) {
+		/*if(user==null) {
 			response.getWriter().append("please login!");
-		} else {
+		} else {*/
 			response.getWriter().append("loginedUser : " + user);
-		}
+		//}
 	}
 
 }
