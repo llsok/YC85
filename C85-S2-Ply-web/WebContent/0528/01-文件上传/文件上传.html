@@ -3,11 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>文件上传</title>
+<script type="text/javascript" src="../ajax.js"></script>
+<script type="text/javascript">
+	function upload2(){
+		var url = "/C85-S2-Ply-web/uploadImg.s";
+		// ajax 文件上传必须使用 FormData 对象, 用于封装 form 表单元素
+		var param = new FormData(f2);
+		post(url, param, function(text){
+			alert(text);
+			// 将服务器的绝对路径转为浏览器的绝对路径
+			head.src = "/C85-S2-Ply-web" + text;
+		});
+	}
+</script>
+
 </head>
 <body>
 <fieldset>
 <legend>王总: 程旭元你好, 帮我做一个文件上传的功能吧?</legend>
-<form>
+<form action="/C85-S2-Ply-web/upload.s" method="post"
+	enctype="multipart/form-data">
 	文件: <input type="file" name="file"><br>
 	<button>表单提交</button>
 </form>
@@ -27,17 +42,17 @@
 <legend>王总: 旭元呀, 每次上传完成, 总是跳到一个白页面显示信息, 能不能不跳转? </legend>
 <form>
 	文件: <input id="file1" type="file" name="file" multiple="multiple"><br>
-	文件: <input id="file1" type="file" name="file" multiple="multiple"><br>
-	文件: <input id="file1" type="file" name="file" multiple="multiple"><br>
+	文件: <input id="file2" type="file" name="file" multiple="multiple"><br>
+	文件: <input id="file3" type="file" name="file" multiple="multiple"><br>
 	<button type="button" onclick="upload1()">AJAX提交</button>
 </form>
 </fieldset>
 
 <fieldset>
 <legend>王总: 旭元呀, 我想让会员可以上传自己的头像, 有没有法子呀? </legend>
-<form>
+<form id="f2">
 	<img alt="上传头像" src="../../_images/头像.jpg" height="200px" id=head><br>
-	文件: <input id="file1" type="file" name="file"><br>
+	文件: <input id="file4" type="file" name="file"><br>
 	<button type="button" onclick="upload2()">上传头像</button>
 </form>
 </fieldset>
