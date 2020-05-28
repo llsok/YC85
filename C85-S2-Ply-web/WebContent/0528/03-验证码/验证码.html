@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>验证码</title>
+<script type="text/javascript" src="../ajax.js"></script>
+
+<style type="text/css">
+div {
+	text-align: center;
+}
+
+label {
+	display: inline-block;
+	width: 200px;
+	line-height: 30px;
+}
+
+label * {
+	vertical-align: middle;
+}
+
+.left {
+	text-align: left;
+}
+
+.right {
+	width: 100px;
+	text-align: right;
+}
+</style>
+</head>
+<body>
+	<fieldset id="app1">
+		<legend>图片验证码</legend>
+		案例场景:<br>
+		王总: 喂, 程旭元再慢? 你好, 我的网站这段时间经常被攻击, 如何防止机器大规模注册，机器暴力破解数据密码等危害?<br> 
+		程旭元: 喂, 王总你好, 小case! 我给做一个验证码功能就好! 另外, 王总这二期项目的尾款你看....<br>
+		王总: 喂...喂...旭元...唉...破手机又没信号了....滴 
+		<hr> 
+		<div>
+			<label class="right">用户名:</label> <label class="left"><input></label><br> 
+			<label class="right">密码:</label> <label class="left"><input></label><br> 
+			<label class="right">验证码:</label> <label class="left">
+				<input size=8> 
+				<img style="height: 25px"> 
+			</label><br>
+			<label class="right"><button>注册</button></label>
+			<label class="left"><button>验证</button></label><br> 
+		</div>
+	</fieldset>
+	<fieldset id="app2">
+		<legend>邮箱验证码</legend>
+		案例场景:<br>
+		王总: 程旭元你好, 这段时间经常有用户把密码忘了, 有没有一个安全的让用户自己密码重置的方法?<br> 
+		程旭元: 邮箱验证码 + 用户自助密码重置功能! 另外, 王总手机现在信号还好吧, 这三期项目的尾款你看....<br>
+		王总: 神马...哎呀...手机没电了...滴
+		<hr> 
+		<div>
+			<label class="right">用户名:</label> <label class="left"><input></label><br> 
+			<label class="right">新密码:</label> <label class="left"><input></label><br>
+			<label class="right">邮箱:</label> <label class="left">
+				<input placeholder="邮箱应该从数据库获取">
+			</label><br>  
+			<label class="right">验证码:</label> <label class="left">
+				<input size=6>
+				<button>发送验证码</button> 
+			</label><br>
+			<label class="right"><button>重置</button></label>
+			<label class="left"><button>验证</button></label><br> 
+		</div>
+	</fieldset>
+</body>
+</html>

@@ -1,0 +1,38 @@
+1. 应用上下文对象---Web工程中的王者
+	1.全局唯一 ==> 访问作用域广  
+		ServletContext sc = request.getServletContext();
+		servlet.getServletContext();
+		session.getServletContext();
+		...
+		JSP : 9 大内置对象: application  ==> 应用上下文对象
+		
+		作用: 作用域最大的对象, 可以保存全局性的数据
+	2. 生命周期长
+		从服务器启动开始  直到 服务器关闭
+		
+2. 监听器 :  监听服务器的事件
+	1.被监听对象: 应用上下文对象   会话    请求
+	2.监听事件: 属性变化,  生命周期     (  扩展 会话: 钝化与活化, 会话ID变化)
+	3.监听器命名规则:
+		a. 格式 对象名 + 事件 + Listener
+		b. 生命周期没有事件名
+		
+		ServletContextListener 应用上下文生命周期监听器;
+		HttpSessionAttributeListener 会话属性变化监听器
+		
+	配置: @WebListener 只要加注解  加在类名上
+	
+3. 过滤器: 
+	实现 Filter 接口
+	init
+	destroy
+	doFilter方法,对所有符合规则的请求, 进行拦截
+		三个参数: 请求,响应  过滤器链  FilterChain
+		FilterChain.doFilter 方法:  将请求转发给下一个过滤器,或是目标资源, 
+			必须在正常业务逻辑情况下确保执行
+	
+	
+		
+		
+		
+		
