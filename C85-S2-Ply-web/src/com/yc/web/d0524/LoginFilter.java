@@ -51,14 +51,14 @@ public class LoginFilter implements Filter {
 		// 设置网页的字符集
 		response.setContentType("text/html;charset=utf-8");
 		
-		HttpSession session = ((HttpServletRequest)request).getSession();
+		/*HttpSession session = ((HttpServletRequest)request).getSession();
 		// 获取属性值
 		String user = (String) session.getAttribute("loginedUser");
 		if(user==null) {
 			response.getWriter().append("please login!");
 			// 中断执行     不执行 chain.doFilter(request, response);
 			return;
-		}
+		}*/
 		// 执行过滤器链中的下一个过滤器的doFilter, 如果已经最后一个过滤器了, 
 		// 那么表示允许访问目标资源( jsp,servlet, html, js...)
 		chain.doFilter(request, response);
