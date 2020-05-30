@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- script + src 不能在内部写 js 代码-->
+<script type="text/javascript" src="../0528/ajax.js"></script>
+<script type="text/javascript" src="vue.min.js"></script>
+<script type="text/javascript">
+	function upload() {
+		var fd = new FormData(f1);
+		var url = "uploadSsq.do";
+		post(url, fd, function(text) {
+			alert(text);
+		});
+	}
+	
+	function query() {
+		var url = "querySsq.do";
+		post(url, null, function(text) {
+			// json 字符串转成 js 数组
+			// eval
+			var arr = JSON.parse(text);
+			vue.$data.list = arr;
+		});
+	}
+</script>
+
+</head>
+<body>
+	<form id="f1">
+		<input type="file" name="file">
+		<button type="button" onclick="upload()">上传</button>
+		<button type="button" onclick="query()">查询</button>
+	</form>
+	<table id="tab" border="1" width="100%">
+		<tr>
+			<td>id</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+			<td>10</td>
+			<td>11</td>
+			<td>12</td>
+			<td>13</td>
+		</tr>
+		<tr v-for="ssq in list">
+			<td>{{ssq.id}}</td>
+			<td>{{ssq.opendate}}</td>
+			<td>{{ssq.num}}</td>
+			<td>{{ssq.redone}}</td>
+			<td>{{ssq.redtwo}}</td>
+			<td>{{ssq.id}}</td>
+			<td>{{ssq.id}}</td>
+			<td>{{ssq.id}}</td>
+			<td>{{ssq.id}}</td>
+			<td>{{ssq.id}}</td>
+			<td>{{ssq.sale}}</td>
+			<td>{{ssq.id}}</td>
+			<td>{{ssq.id}}</td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		var vue = new Vue({
+			el : "#tab",
+			data : {
+				list : []
+			}
+		});
+	</script>
+
+</body>
+</html>
