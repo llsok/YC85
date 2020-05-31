@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+th{
+ background-color: #ccc;
+ height: 30px
+}
+</style>
 <!-- script + src 不能在内部写 js 代码-->
 <script type="text/javascript" src="../0528/ajax.js"></script>
 <script type="text/javascript" src="vue.min.js"></script>
@@ -35,19 +41,19 @@
 	</form>
 	<table id="tab" border="1" width="100%">
 		<tr>
-			<td>id</td>
-			<td>opendate</td>
-			<td>num</td>
-			<td>redone</td>
-			<td>redtwo</td>
-			<td>redthree</td>
-			<td>redfour</td>
-			<td>redfive</td>
-			<td>redsix</td>
-			<td>blue</td>
-			<td>sale</td>
-			<td>firstprize</td>
-			<td>secondeprize</td>
+			<th>id</th>
+			<th>opendate</th>
+			<th>num</th>
+			<th>redone</th>
+			<th>redtwo</th>
+			<th>redthree</th>
+			<th>redfour</th>
+			<th>redfive</th>
+			<th>redsix</th>
+			<th>blue</th>
+			<th>sale</th>
+			<th>firstprize</th>
+			<th>secondeprize</th>
 		</tr>
 		<tr v-for="ssq in list">
 			<td v-for="s in ssq">{{s}}</td>
