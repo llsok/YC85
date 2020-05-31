@@ -352,8 +352,10 @@ public class DBHelper {
 		// return query(sql, params).size();
 		// 子查询 => select count(*) cnt from (select * from emp where ename like
 		// '%A%') ;
-		sql = "select count(*) cnt from (" + sql + ")";
-		Object cnt = query(sql, params).get(0).get("CNT");
+		// mysql 的子查询必须加别名
+		sql = "select count(*) cnt from (" + sql + ") a";
+		// mysql 的字段名不会被转成 大写, oracle 会
+		Object cnt = query(sql, params).get(0).get("cnt");
 		// Object ==> int   强制类型转换 ==> 类型匹配    String =>  int
 		// int ret = (int) cnt; // 注定失败 cnt 类型是未知 ??   Integer Long BigDecimal 大实数
 		int ret = Integer.valueOf("" + cnt);

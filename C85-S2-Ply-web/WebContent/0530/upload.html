@@ -20,50 +20,87 @@ th{
 			alert(text);
 		});
 	}
-	
-	function query() {
-		var url = "querySsq.do";
-		post(url, null, function(text) {
-			// json 字符串转成 js 数组
-			// eval
-			var arr = JSON.parse(text);
-			vue.$data.list = arr;
-		});
-	}
 </script>
 
 </head>
 <body>
-	<form id="f1">
-		<input type="file" name="file">
-		<button type="button" onclick="upload()">上传</button>
-		<button type="button" onclick="query()">查询</button>
-	</form>
-	<table id="tab" border="1" width="100%">
-		<tr>
-			<th>id</th>
-			<th>opendate</th>
-			<th>num</th>
-			<th>redone</th>
-			<th>redtwo</th>
-			<th>redthree</th>
-			<th>redfour</th>
-			<th>redfive</th>
-			<th>redsix</th>
-			<th>blue</th>
-			<th>sale</th>
-			<th>firstprize</th>
-			<th>secondeprize</th>
-		</tr>
-		<tr v-for="ssq in list">
-			<td v-for="s in ssq">{{s}}</td>
-		</tr>
-	</table>
+	<div id="app">
+		<form id="f1">
+			<input type="file" name="file">
+			<button type="button" onclick="upload()">上传</button>
+			<button type="button" @click="query()">查询</button>
+		</form>
+		<table id="tab" border="1" width="100%">
+			<tr>
+				<th>id</th>
+				<th>opendate</th>
+				<th>num</th>
+				<th>redone</th>
+				<th>redtwo</th>
+				<th>redthree</th>
+				<th>redfour</th>
+				<th>redfive</th>
+				<th>redsix</th>
+				<th>blue</th>
+				<th>sale</th>
+				<th>firstprize</th>
+				<th>secondeprize</th>
+			</tr>
+			<tr v-for="ssq in list">
+				<td v-for="s in ssq">{{s}}</td>
+			</tr>
+		</table>
+		<button @click="query(0)">首页</button>
+		<button @click="query(-1)">上页</button>
+		<input type="number" min="1" v-bind:max="pages" v-model="page">
+		<button @click="query(1)">下页</button>
+		<button @click="query(-2)">尾页</button>
+	</div>
 	<script type="text/javascript">
 		var vue = new Vue({
-			el : "#tab",
+			el : "#app",
 			data : {
-				list : []
+				list : [],
+				page : 1,
+				pages : 999
+			},
+			methods : {
+				query(type) {
+					// type 不传值是 undefined
+					switch(type){
+					case 0:
+						this.page = 1;
+						break;
+					case -1:
+						this.page -= 1;
+						break;
+					case 1:
+						this.page += 1;
+						break;
+					case -2:
+						this.page = this.pages;
+						break;
+					}
+					
+					if(this.page <=0){
+						this.page = 1;
+					}
+					
+					var url = "querySsq.do";
+					post(url, "page="+this.page, function(text) {
+						// json 字符串转成 js 数组
+						// eval
+						// java 的 map 会被 gson 转成  js 的对象
+						// json对象  { pages:128, list:[{...},{...},{...}...]}
+						var data = JSON.parse(text);
+						vue.$data.list = data.list;
+						vue.$data.pages = data.pages;
+					});
+				}
+			},
+			// 事件钩子 ==> servlet 监听器  生命周期监听
+			created : function() {
+				this.query(0);
 			}
 		});
 	</script>

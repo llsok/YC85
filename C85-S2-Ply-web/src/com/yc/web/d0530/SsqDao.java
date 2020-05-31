@@ -53,9 +53,30 @@ public class SsqDao {
 		return new DBHelper().query("select * from lottery");
 	}
 	
+	/**
+	 * 分页查询
+	 * @param page  页号
+	 * @param size	每页行数
+	 * @return
+	 * limit 第几行, 查几条记录
+	 */
+	public List<Map<String,Object>> queryPage(int page, int size){
+		int begin = (page - 1) * size;
+		return new DBHelper().query("select * from lottery limit ?, ?", begin, size);
+	}
+	
+	/**
+	 * 统计总页数
+	 * @return
+	 */
+	public int countPages(int size) {
+		return new DBHelper().count("select * from lottery") / size;
+	}
+	
 	public static void main(String[] args) throws IOException {
 		String filename = "E:/双色球.txt";
 		new SsqDao().insert(filename);
 	}
+
 
 }
