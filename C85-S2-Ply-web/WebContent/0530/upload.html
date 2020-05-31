@@ -52,7 +52,8 @@ th{
 		</table>
 		<button @click="query(0)">首页</button>
 		<button @click="query(-1)">上页</button>
-		<input type="number" min="1" v-bind:max="pages" v-model="page">
+		<input type="number" min="1" v-bind:max="pages" v-model="page"
+			 @change="query"> <!-- 实现修改页数触发查询操作 -->
 		<button @click="query(1)">下页</button>
 		<button @click="query(-2)">尾页</button>
 	</div>
@@ -61,7 +62,9 @@ th{
 			el : "#app",
 			data : {
 				list : [],
+				// 当前页数
 				page : 1,
+				// 总页数
 				pages : 999
 			},
 			methods : {
@@ -84,6 +87,8 @@ th{
 					
 					if(this.page <=0){
 						this.page = 1;
+					} else if (this.page > this.pages){
+						this.page = this.pages;
 					}
 					
 					var url = "querySsq.do";
@@ -99,6 +104,7 @@ th{
 				}
 			},
 			// 事件钩子 ==> servlet 监听器  生命周期监听
+			// 在 vue 被创建之后执行一次查询
 			created : function() {
 				this.query(0);
 			}
