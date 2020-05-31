@@ -36,33 +36,21 @@
 	<table id="tab" border="1" width="100%">
 		<tr>
 			<td>id</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			<td>5</td>
-			<td>6</td>
-			<td>7</td>
-			<td>8</td>
-			<td>9</td>
-			<td>10</td>
-			<td>11</td>
-			<td>12</td>
-			<td>13</td>
+			<td>opendate</td>
+			<td>num</td>
+			<td>redone</td>
+			<td>redtwo</td>
+			<td>redthree</td>
+			<td>redfour</td>
+			<td>redfive</td>
+			<td>redsix</td>
+			<td>blue</td>
+			<td>sale</td>
+			<td>firstprize</td>
+			<td>secondeprize</td>
 		</tr>
 		<tr v-for="ssq in list">
-			<td>{{ssq.id}}</td>
-			<td>{{ssq.opendate}}</td>
-			<td>{{ssq.num}}</td>
-			<td>{{ssq.redone}}</td>
-			<td>{{ssq.redtwo}}</td>
-			<td>{{ssq.id}}</td>
-			<td>{{ssq.id}}</td>
-			<td>{{ssq.id}}</td>
-			<td>{{ssq.id}}</td>
-			<td>{{ssq.id}}</td>
-			<td>{{ssq.sale}}</td>
-			<td>{{ssq.id}}</td>
-			<td>{{ssq.id}}</td>
+			<td v-for="s in ssq">{{s}}</td>
 		</tr>
 	</table>
 	<script type="text/javascript">
