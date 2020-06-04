@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>图书管理</title>
+<script type="text/javascript" src="../0530/vue.min.js"></script>
+<!-- 基于 promise 技术的 专门用于 ajax 调用的js-->
+<script type="text/javascript" src="axios.min.js"></script>
+<!-- QueryBookServlet, BookDao -->
+</head>
+<body>
+<div id="app">
+	书名:<input v-model="name">
+	出版社:<input v-model="press">
+	出版日期:<input v-model="date">
+	<button @click="query">查询</button>
+	<table style="width: 100%" border="1">
+		<tr>
+			<th>编号</th>
+			<th>书名</th>
+			<th>出版社</th>
+			<th>出版日期</th>
+			<th>作者</th>
+			<th>库存</th>
+			<th>图片</th>
+		</tr>
+		<tr v-for=" book in list ">
+			<td v-for=" b in book">{{b}}</td>
+		</tr>
+	</table>
+</div>
+<script type="text/javascript">
+var vue = new Vue({
+	el : "#app",
+	data : {
+		list : [],
+		name : "",
+		press : "",
+		date : "",
+	}, 
+	// 但 vue 对象创建好之后, 立即执行的代码
+	created : function() {
+		this.query();
+	},
+	methods : {
+		query(){
+			// 兰姆达表达式写法,  => 箭头函数
+			axios.get("../QueryBookServlet.do", {
+				params:{
+					name : this.name,
+					press : this.press,
+					date : this.date,
+				}
+			// function(res) {}  简写
+			}).then( (res) => {
+				this.list = res.data;
+			});
+		}
+	}
+});
+
+</script>
+
+</body>
+</html>

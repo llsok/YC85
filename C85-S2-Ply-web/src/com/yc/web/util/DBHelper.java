@@ -110,7 +110,7 @@ public class DBHelper {
 	 * @return
 	 */
 	public Connection openConnection() {
-		String url = "jdbc:mysql://127.0.0.1/C85-S2-Ply-web"; // 数据库的地址
+		String url = "jdbc:mysql://127.0.0.1/C85-S2-Ply-web?useUnicode=true&characterEncoding=UTF-8"; // 数据库的地址
 		String user = "root"; // 数据的用户
 		String password = "a";
 		try {
