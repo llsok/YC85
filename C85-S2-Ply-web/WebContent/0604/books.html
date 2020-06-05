@@ -23,9 +23,18 @@
 			<th>作者</th>
 			<th>库存</th>
 			<th>图片</th>
+			<th>操作</th>
 		</tr>
 		<tr v-for=" book in list ">
-			<td v-for=" b in book">{{b}}</td>
+			<td>{{book.id}}</td>
+			<td>{{book.bookname}}</td>
+			<td>{{book.bookpress}}</td>
+			<td>{{book.pressdate}}</td>
+			<td>{{book.bookautdor}}</td>
+			<td>{{book.bookcount}}</td>
+			<!-- ../资料/images/盗梦空间.jpg   -->
+			<td align="center"><img :src="book.bookimage" height="100px"></td>
+			<td><a :href="'modify.html#' + book.id">修改</a></td>
 		</tr>
 	</table>
 </div>
@@ -45,7 +54,9 @@ var vue = new Vue({
 	methods : {
 		query(){
 			// 兰姆达表达式写法,  => 箭头函数
-			axios.get("../QueryBookServlet.do", {
+			axios({
+				url:"../QueryBookServlet.do",
+				// 请求参数请使用  params
 				params:{
 					name : this.name,
 					press : this.press,

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>编辑图书信息</title>
+<script type="text/javascript" src="../0530/vue.min.js"></script>
+<!-- 基于 promise 技术的 专门用于 ajax 调用的js-->
+<script type="text/javascript" src="axios.min.js"></script>
+<style type="text/css">
+label{
+	display: inline-block;
+	width:200px;
+	text-align: right;
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+<label>编号</label><input v-model="book.id"><br>
+<label>书名</label><input v-model="book.bookname"><br>
+<label>出版社</label><input v-model="book.bookpress"><br>
+<label>出版日期</label><input v-model="book.pressdate"><br>
+<label>作者</label><input v-model="book.bookauthor"><br>
+<label>库存</label><input v-model="book.bookcount"><br>
+<label></label><button @click="save">保存</button>
+</div>
+<script type="text/javascript">
+var vue = new Vue({
+	el : "#app",
+	data : {
+		book : {},
+	}, 
+	// 但 vue 对象创建好之后, 立即执行的代码
+	created : function() {
+		// JS BOM 地址对象  #??
+		var id = location.hash.substring(1);
+		axios({
+			url : "../GetBookServlet.do",
+			params : {
+				id : id
+			}
+		}).then( res => {
+			//axios 方法会之中转 json 对象   JSON.parse()
+			this.book = res.data;
+		});
+		
+	},
+	methods : {
+		save(){
+			axios({
+				url : "../SaveBookServlet.do",
+				params : this.book
+			}).then( res=>{
+				alert(res.data);
+			});
+		}
+	}
+});
+
+</script>
+
+</body>
+</html>
