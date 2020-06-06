@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Calendar - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+	<script type="text/javascript" src="easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<h2>Basic Calendar</h2>
+	<p>Click to select date.</p>
+	<div style="margin:20px 0"></div>
+	<div class="easyui-calendar" style="width:250px;height:250px;"></div>
+	
+	<input id="cc" style="width:200px" />
+	
+	<input id="dd" style="width:200px" 
+		class="easyui-combobox"
+		data-options='url: "",required: true,valueField: "id",textField: "text"'
+	/>
+	
+	<script type="text/javascript">
+	$('#cc').combobox({
+		url: "", // 通过ajax 获取下拉框的选项
+		required: true,
+		valueField: 'id',
+		textField: 'text'
+	});	
+	
+	
+	
+	
+	</script>
+</body>
+</html>
