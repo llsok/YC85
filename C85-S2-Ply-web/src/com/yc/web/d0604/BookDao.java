@@ -48,5 +48,14 @@ public class BookDao {
 		new DBHelper().update(sql, name, press, Date.valueOf(date), 
 				author, count, image, id);
 	}
+	
+	/**
+	 * 查询出版社字段  去重
+	 * @return
+	 */
+	public List<Map<String, Object>> getBookpressItems() {
+		String sql = "select distinct bookpress from books";
+		return new DBHelper().query(sql);
+	}
 
 }

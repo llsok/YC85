@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @WebServlet("/QueryBookServlet.do")
 public class QueryBookServlet extends HttpServlet {
@@ -19,7 +20,8 @@ public class QueryBookServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String press = request.getParameter("press");
 		String date = request.getParameter("date");
-		Gson gson = new Gson();
+		// 自定义 gson 的日期格式
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		String json = gson.toJson(bdao.query(name, press, date));
 		response.getWriter().print(json);
 	}

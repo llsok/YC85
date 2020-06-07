@@ -67,8 +67,9 @@ input{
 </head>
 <body>
 	<div class="easyui-layout" data-options="fit:true">
-		<div data-options="region:'north'" style="height: 50px">
+		<div data-options="region:'north'" style="height: 50px;">
 				<!-- prompt="书名:"  ==  data-options="prompt:'书名:'" -->
+			<div style="height: 50px; margin: 10px">
 			<input class="easyui-textbox" label="书名:" style="width:200px" id="name">
 			<input class="easyui-textbox" label="出版社:" style="width:200px" id="press">
 			<input class="easyui-datebox" label="出版日期:" style="width:200px" id="date"
@@ -76,6 +77,7 @@ input{
 			<a id="btn" href="#" class="easyui-linkbutton"
 				data-options="iconCls:'icon-search'"
 				onclick="query()">查询</a>
+			</div>
 		</div>
 		<div data-options="region:'center',title:'查询结果', iconCls:'icon-ok'">
 			<table class="easyui-datagrid" id="dg"
@@ -117,7 +119,10 @@ input{
 	    <form id="ff">
 	    <input class="easyui-textbox" name="id" label="编号"><br>
 		<input class="easyui-textbox" name="bookname" label="书名"><br>
-		<input class="easyui-textbox" name="bookpress" label="出版社"><br>
+		<input class="easyui-combobox" name="bookpress" label="出版社"
+			url="../GetBookpressItemsServlet.do"
+			valueField="bookpress"
+			textField="bookpress"><br>
 		<input class="easyui-datebox" name="pressdate" label="出版日期" data-options="formatter:fmtDate"><br>
 		<input class="easyui-textbox" name="bookauthor" label="作者"><br>
 		<input class="easyui-textbox" name="bookcount" label="库存"><br>
