@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Promise 解决回调地狱</title>
+</head>
+<body>
+<script type="text/javascript">
+/**
+ * post 方法最后的回调函数, 由Promise添加
+ */
+function post(url, param){
+	var text = url + ":" + param;
+	var random = Math.random() * 1000;
+	
+	// 创建promise对象时, 要传入一个函数作为构造方法参数
+	// 标准写法, resolve 是异步操作成功后执行的函数, reject 否则是失败执行的函数
+	var promise = new Promise(function(resolve,reject){
+		// AJAX 异步调用
+		try {
+			setTimeout(()=>{
+				resolve(text);
+			},random);
+		} catch ( e ) {
+			reject(e);
+		}
+	});
+	// 最后返回 promise 对象
+	return promise;
+}
+
+// then 相当于 回调函数, 2个参数对应 resolve 和 reject, 允许只传一个
+// 链式调用
+post("地址1","参数1").then( text => {
+	console.info(text);
+	return post("地址2","参数2");
+}).then(text => {
+	console.info(text);
+	return post("地址3","参数3");
+}).then(text => {
+	console.info(text);
+});
+
+/**
+ * 将上面的链式调用 拆解开
+ */
+var promise1 = post("地址4","参数4");
+
+var promise2 = promise1.then( text => {
+	console.info(text);
+	// var 不存在的变量 = 1;
+	// console.info(不存在的变量); // 会导致异常
+	return post("地址5","参数5");
+}, e => {
+	// error 会输出红字
+	console.error(e);	
+});
+
+
+var promise3 = promise2.then(text => {
+	console.info(text);
+	console.info(不存在的变量); // 会导致异常
+	return post("地址6","参数6");
+	// catch 方法 类似于 then , 只不过它只能传入 reject 回调函数
+	// js 中 catch 是try 的关键字, 但不影响它作为一个函数的名称
+}).catch(e => {
+	// error 会输出红字
+	console.error(e);	
+});
+
+promise3.then(text => {
+	console.info(text);
+});
+
+/* 
+post("地址2","参数2").then( text => {
+	console.info(text);
+});
+
+post("地址3","参数3").then( text => {
+	console.info(text);
+});
+ */
+
+
+</script>
+</body>
+</html>

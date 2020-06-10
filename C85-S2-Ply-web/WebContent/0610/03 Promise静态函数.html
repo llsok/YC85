@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+/**
+ * post 方法最后的回调函数, 由Promise添加
+ */
+function post(url, param){
+	var text = url + ":" + param;
+	var random = Math.random() * 1000;
+	
+	// 创建promise对象时, 要传入一个函数作为构造方法参数
+	// 标准写法, resolve 是异步操作成功后执行的函数, reject 否则是失败执行的函数
+	var promise = new Promise(function(resolve,reject){
+		// AJAX 异步调用
+		try {
+			setTimeout(()=>{
+				resolve(text);
+			},random);
+		} catch ( e ) {
+			reject(e);
+		}
+	});
+	// 最后返回 promise 对象
+	return promise;
+}
+
+// Promise 的静态函数: all   race 比赛
+
+// all 确保 所有异步操作全部执行完成
+var promise = Promise.all( [
+	post("地址1","参数1"), 
+	post("地址2","参数2"),
+	post("地址3","参数3") ] );
+	
+
+promise.then(res=>{
+	for( var r of res){
+		console.info(r);
+	}
+});
+
+// race 将会最快执行完的结果, 其他的异步操作被废弃
+var promise = Promise.race( [
+	post("地址4","参数4"), 
+	post("地址5","参数5"),
+	post("地址6","参数6") ] );
+
+promise.then(res=>{
+	console.info(res);
+});
+
+</script>
+</body>
+</html>

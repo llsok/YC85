@@ -1,0 +1,36 @@
+前端交互技术发展(AJAX)
+
+HTML ==> JSP, ASP, PHP ==> 
+
+AJAX( XMLHttpRequest JS原生 ) ==> 
+
+JQuery( HTML元素获取, 实现动画效果, 对AJAX封装 get, post)
+
+	$.post("地址",JSON参数, 回调函数)
+	  post("地址",JSON参数, 回调函数)
+	  
+jquery 不足:
+1. 太过于重量级
+2. 回调地狱
+
+Promise(解决所有异步操作的问题)
+
+axios = AJAX + Promise
+
+
+扩展知识点:
+
+fetch是一个更加简单的数据获取方式，功能更加强大，更灵活，可以看做是xhr的升级版
+fetch是基于promise的，语法：
+		fetch(url).then();
+
+async/await是ES7引I入的新语法， 可以更加方便的进行异步操作
+async 用于 标记 异步方法
+await 用于让异步方法以同步的方式执行, await 必须写在async修饰的方法中
+
+
+
+
+
+
+

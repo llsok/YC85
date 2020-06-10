@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	function post(url, param, callback){
+		var text = url + ":" + param;
+		var random = Math.random() * 1000;
+		// AJAX 异步调用
+		setTimeout(()=>{
+			callback(text);
+		},random);
+	}
+
+	console.info("=======开始=======");
+	
+	// 要求 三个方法按顺序执行完成
+	
+	post("地址1" , "参数1" , text=>{
+		console.info(text);
+		post("地址2" , "参数2" , text=>{
+			console.info(text);
+			post("地址3" , "参数3" , text=>{
+				console.info(text);
+			});
+		});
+	});
+	
+	// 嵌套的回调方式被称为回调地狱
+	
+	console.info("=======结束=======");
+
+</script>
+</body>
+</html>
