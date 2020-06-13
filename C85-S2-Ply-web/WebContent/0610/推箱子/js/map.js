@@ -68,5 +68,21 @@ function Maps(){
 	this.next = function (){
 		return maps [ this.index ++ % maps.length ];
 	}
+	
+	this.next = async function (){
+		this.index ++;
+		// 异步调用  不等待
+		// 等待 get 方法的执行结束
+		var ret = await axios.get("GetMapServlet.do?index=" + this.index)
+			.then( function(res){
+				// 将 json 字符串转成 js 对象(  地图二维数组 )
+				//var ret = JSON.parse(res.data);
+				// axios 会自动的帮我们转换 js 对象
+				// axios 返回的数据 是 res.data
+				return res.data;
+			});
+		console.info(ret);
+		return ret;
+	}
 }
 

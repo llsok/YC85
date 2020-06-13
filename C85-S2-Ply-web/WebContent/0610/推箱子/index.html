@@ -42,16 +42,16 @@ ol,li,{
 			<h2>{{'第'+game.getIndex()+'关'}}</h2>
 			<span>{{'第'+game.stepNumber+'步'}}</span><br>
 			<br>
-			<input placeholder="尊姓大名" style="width:96px;text-align: center">
+			<input v-model="name" placeholder="尊姓大名" style="width:96px;text-align: center">
 			<br>
 			<br>
 			<button style="width: 100px">重新开始</button>
 			<br>
 			<br>
-			<button style="width: 100px">保    存</button>
+			<button @click="save" style="width: 100px">保    存</button>
 			<br>
 			<br>
-			<button style="width: 100px">加    载</button>
+			<button @click="load" style="width: 100px">加    载</button>
 		</div>
 		<div id="ctl" style="padding: 20px; float: left; text-align: center;">
 			<h2>排名</h2>
@@ -68,10 +68,66 @@ ol,li,{
 			el : "#main",
 			data : {
 				game : new Game(),// 创建游戏对象
+				name : ""
 			},
 			created : function(){
 				// 获取下一张地图
 				this.game.next();
+			}, 
+			methods : {
+				save(){
+					//  ! name  表示名字为空      空字符 ==> false值
+					if( ! this.name ){
+						alert("请求输入您的尊姓大名!");
+						return;
+					}
+					var url = "SaveServlet.do";
+					// 用于构建表单格式的数据
+					var params = new URLSearchParams();
+					params.append("name",this.name);
+					params.append("game","推箱子");
+					params.append("level",this.game.getIndex());
+					params.append("data",JSON.stringify(this.game.map));
+					axios({ 
+						url:url,
+						params
+					}).then( res => {
+						alert(res.data);
+					})
+				},
+				
+				load(){
+					//  ! name  表示名字为空      空字符 ==> false值
+					if( ! this.name ){
+						alert("请求输入您的尊姓大名!");
+						return;
+					}
+					var url = "LoadServlet.do";
+					// 用于构建表单格式的数据
+					var params = new URLSearchParams();
+					params.append("name",this.name);
+					params.append("game","推箱子");
+					axios({ 
+						url:url,
+						params
+					}).then( res => {
+						if(res.data){
+							var gameScore = res.data;
+							console.info(gameScore.data);
+							// 将data中的 json 字符串 转为 map地图
+							var map = JSON.parse(gameScore.data);
+							this.game.map = map;
+							// 作业, 请尝试更新关数(数据库中有数据) 和 步数
+							//this.game.map.index = gameScore.level;
+							//alert(gameScore.level);
+							//alert(this.game.getIndex());
+						} else {
+							// data ==> "" ==> 没有存档
+							alert("没有您的存档!");
+						}
+						
+					})
+				}
 			}
 		})
 	</script>
