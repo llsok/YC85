@@ -81,7 +81,6 @@ function Maps(){
 				// axios 返回的数据 是 res.data
 				return res.data;
 			});
-		console.info(ret);
 		return ret;
 	}
 }

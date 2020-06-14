@@ -40,12 +40,20 @@ ol,li,{
 		</div>
 		<div id="ctl" style="padding: 20px; float: left; text-align: center;">
 			<h2>{{'第'+game.getIndex()+'关'}}</h2>
-			<span>{{'第'+game.stepNumber+'步'}}</span><br>
+			<span>{{'第'+game.stepNumber+'步'}}</span>
+			<br>
+			<br>
+			<select id="level" @change="reload" 
+				style="width:100px;text-align: center;height: 25px">
+				<option v-for=" i of game.maps.index" 
+					:selected=" i == game.maps.index ">第{{i}}关</option>
+			</select>
+			<br>
 			<br>
 			<input v-model="name" placeholder="尊姓大名" style="width:96px;text-align: center">
 			<br>
 			<br>
-			<button style="width: 100px">重新开始</button>
+			<button @click="game.reset()"style="width: 100px">重新开始</button>
 			<br>
 			<br>
 			<button @click="save" style="width: 100px">保    存</button>
@@ -56,10 +64,7 @@ ol,li,{
 		<div id="ctl" style="padding: 20px; float: left; text-align: center;">
 			<h2>排名</h2>
 			<ol>
-				<li>李逵
-				<li>武松
-				<li>林冲
-				<li>宋江
+				<li v-for=" t in toplist">{{t.name}}</li>
 			</ol>
 		</div>
 	</div>
@@ -68,11 +73,39 @@ ol,li,{
 			el : "#main",
 			data : {
 				game : new Game(),// 创建游戏对象
-				name : ""
+				name : "",
+				toplist : []   //排名的数组
 			},
 			created : function(){
-				// 获取下一张地图
-				this.game.next();
+				// 获取cookie  a=100; n=abc; pushboxName=%E6%AD%A6%E6%9D%BE
+				var cookieStr = document.cookie;
+				// 使用正则表达式 获取 pushboxName 的值
+				var regex = /pushboxName=([^;]+)/;
+				var ret = regex.exec(cookieStr);
+				// js 的空数组 ==> false
+				if(ret){
+					// 字符串解码
+					this.name = decodeURI(ret[1]);
+					// 打开页面直接读取进度
+					this.load();
+				} else {
+					// 获取下一张地图
+					this.game.next();
+				}
+				/**
+					请使用axios 调用 TopServlet.do 
+					将返回结果 渲染到排名的 ol 中
+				*/
+				axios.get("TopServlet.do").then(res=>{
+					console.info(res.data);
+					// 判断是否查到排名数据
+					if(res.data){
+						// 赋值给vue的排名的数组
+						this.toplist = res.data;
+					}
+				});
+				
+				
 			}, 
 			methods : {
 				save(){
@@ -87,7 +120,9 @@ ol,li,{
 					params.append("name",this.name);
 					params.append("game","推箱子");
 					params.append("level",this.game.getIndex());
-					params.append("data",JSON.stringify(this.game.map));
+					// 直接保存 game 对象, js对象转 json 会保存所有的对象属性
+					// 但不会保存函数的内容
+					params.append("data",JSON.stringify(this.game));
 					axios({ 
 						url:url,
 						params
@@ -113,10 +148,13 @@ ol,li,{
 					}).then( res => {
 						if(res.data){
 							var gameScore = res.data;
-							console.info(gameScore.data);
-							// 将data中的 json 字符串 转为 map地图
-							var map = JSON.parse(gameScore.data);
-							this.game.map = map;
+							// 将data中的 json 字符串 转为 Game 对象
+							var dbgame = JSON.parse(gameScore.data);
+							this.game.map = dbgame.map;
+							this.game.mapOld = dbgame.mapOld;
+							this.game.isOver = dbgame.isOver;
+							this.game.stepNumber = dbgame.stepNumber;
+							this.game.maps.index = dbgame.maps.index;
 							// 作业, 请尝试更新关数(数据库中有数据) 和 步数
 							//this.game.map.index = gameScore.level;
 							//alert(gameScore.level);
@@ -124,9 +162,23 @@ ol,li,{
 						} else {
 							// data ==> "" ==> 没有存档
 							alert("没有您的存档!");
+							// 如果当前游戏还没有开始(没有地图)
+							if( ! this.game.map) {
+								// 没有存档打开下一关
+								this.game.next();
+							}
 						}
 						
 					})
+				},
+				reload(){
+					//读取当前的选择的关数
+					var selLevel = document.getElementById("level");
+					var index = selLevel.selectedIndex;// 获取选中项的索引
+					// 设置 当前关为 选中的关数的前一关
+					this.game.maps.index = index; // index 正好前一关的索引
+					// 加载下一关( 选中的关 )
+					this.game.next();
 				}
 			}
 		})
