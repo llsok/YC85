@@ -268,7 +268,7 @@
 			hotList : [],
 			newList : []
 		},
-		created : () => {
+		created : function() {
 			axios.get("http://47.106.66.89:1113/dm/product/query?isHot=1")
 				.then( (res)=>{
 					console.info(res.data.list)
