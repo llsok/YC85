@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="C85-S3-Ply-damai">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="C85-S3-Ply-damai"/>
+        <property name="java-output-path" value="/C85-S3-Ply-damai/build/classes"/>
+    </wb-module>
+</project-modules>

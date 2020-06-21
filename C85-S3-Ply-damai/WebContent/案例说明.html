@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<base target="_blank">
+<title>案例说明</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+</head>
+<body>
+	<div id="main">
+		<h3>案例说明</h3>
+		<p>
+			大麦电子商城. <a href="index(演示).html">功能演示</a>
+		</p>
+		<h3>基本功能</h3>
+		<ol>
+			<li>注册
+			<li>登录
+			<li>商品查询
+			<li>商品详情
+			<li>购物车
+			<li>订单流程
+		</ol>
+		<h3>扩展功能</h3>
+		<ol>
+			<li>个人信息维护
+			<li>地址管理
+			<li>后台数据维护(商品信息, 种类管理)
+			<li>支付宝模拟支付
+			<li>完整的订单流程(发货,收货)
+			<li>评价功能: 买家发表对购买商品的评论
+			<li>买家秀秀: 买家在评论区上传图片
+			<li>广告管理: 在网站发布广告(固定广告位, 漂浮广告), 广告按照一定规则投放和计费(定期,点击量...)
+			<li>买家投诉
+			<li>库存管理
+		</ol>
+		<h3>原型文件说明</h3>
+		<ol class="olt">
+			<li v-for="f in files"><label>
+					<a :href="f.name">{{f.name}}</a>
+				</label> <label>{{f.desc}}</label></li>
+		</ol>
+		<h3>
+			演示接口说明 ( 注意: 登录相关功能由于涉及<a href="https://www.jianshu.com/p/8fa2acd103ea">跨域</a>问题, 无法正常演示, 仅供参考 )
+		</h3>
+		<div id="api">
+			<fieldset v-for=" a in apis">
+				<legend v-html="a.name"></legend>
+				示例地址:<a :href="a.href">{{a.href}}</a><br>
+				<span v-if="a.args.length>0">参数说明:</span>
+				<ol v-if="a.args.length>0" class="olt">
+					<li v-for="arg in a.args"><label style="width: 15%" v-html="arg.ename"></label> <label style="width: 20%" v-html="arg.cname"></label> <label v-html="arg.desc"></label></li>
+				</ol>
+			</fieldset>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function Api(name, href) {
+			let baseURL = "http://47.106.66.89:1113/"
+			this.name = name;
+			this.href = baseURL + href;
+			this.args = [];
+			for (var i = 2; i < arguments.length; i++) {
+				var arr = arguments[i].split("|");
+				this.args.push({
+					ename : arr[0],
+					cname : arr[1],
+					desc : arr[2]
+				});
+			}
+		}
+		function File(name, desc) {
+			this.name = name;
+			this.desc = desc;
+		}
+		var vue = new Vue(
+				{
+					el : "#main",
+					data : {
+						apis : [
+								new Api("商品查询 ", "dm/product/query",
+										"page | 页数 | 默认为1",
+										"rows | 行数 | 默认为10",
+										"count | 返回总行数 | 默认为true",
+										"pname | 商品名称 | 不解释",
+										"pdesc | 商品描述 | 不解释",
+										"isHot | 热销商品 |  1热销",
+										"cid | 商品类别 | 关联 dm_category.id"),
+								new Api("商品查询 ", "dm/product/query",
+										"page | 页数 | 默认为1",
+										"rows | 行数 | 默认为10",
+										"count | 返回总行数 | 默认为true",
+										"cname | 商品类别名称 | 不解释",
+										"pid | 父id | 关联 本表.id"),
+								new Api("购物车查询 ", "dm/cart/query",
+										"page | 页数 | 默认为1",
+										"rows | 行数 | 默认为10",
+										"count | 返回总行数 | 默认为true",
+										"uid | 用户id | 关联 dm_user.id"),
+								new Api("订单查询 ", "dm/orders/query",
+										"page | 页数 | 默认为1",
+										"rows | 行数 | 默认为10",
+										"count | 返回总行数 | 默认为true",
+										"uid | 用户id | 关联 dm_user.id",
+										"aid | 地址id | 关联 dm_address.id",
+										"state | 状态 | 0未支付,1已支付,2已发货,3已收货,4已评价,5已退货"),
+								new Api("地址查询 ", "dm/address/query",
+										"page | 页数 | 默认为1",
+										"rows | 行数 | 默认为10",
+										"count | 返回总行数 | 默认为true",
+										"uid | 用户id | 关联 dm_user.id"),
+								new Api("商品增(add)删(del)改(mod) (POST请求)", "dm/product/add",
+										"id| 主键 | 不解释",
+										"pname | 商品名称 | 不解释",
+										"marketPrice | 市场价 | 不解释",
+										"shopPrice | 商城价 | 不解释",
+										"image | 图片 | 不解释",
+										"pdesc | 商品描述 | 不解释",
+										"isHot | 热销商品 | 1热销",
+										"cid | 商品类别 | 关联 dm_category.id"),
+								new Api("商品种类增(add)删(del)改(mod) (POST请求)", "dm/category/add",
+										"column| 表字段 | 参考SQL脚本中的字段备注"),
+								],
+						files : [ new File("cart.html", "购物车"),
+								new File("clist.html", "商品分类查询"),
+								new File("detail.html", "商品详情页面"),
+								new File("login.html", "登录页面"),
+								new File("reg.html", "注册页面"),
+								new File("olist.html", "用户订单页面"),
+								new File("pay.html", "订单支付页面"),
+								new File("msg.html", "消息提示页面(跳转方式)"),
+								new File("damai-mysql.sql", "数据库脚本"),]
+					}
+				});
+	</script>
+</body>
+<style type="text/css">
+#server-api>li {
+	margin-bottom: 20px
+}
+
+ol {
+	margin-top: 1px;
+	margin-bottom: 1px
+}
+
+.olt {
+	display: table;
+	width: 95%;
+}
+
+.olt>li {
+	display: table-row;
+}
+
+.olt>li:hover {
+	background-color: #ddd
+}
+
+.olt>li>label {
+	display: table-cell;
+}
+
+h3 {
+	margin-bottom: 5px
+}
+
+h3+*:hover {
+	background-color: #eee
+}
+
+a {
+	text-decoration: none;
+	display: inline-block;
+	padding: 0px 5px
+}
+
+a:hover {
+	background-color: #fd9
+}
+</style>
+</html>
