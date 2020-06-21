@@ -269,7 +269,7 @@
 			newList : []
 		},
 		created : function() {
-			axios.get("http://47.106.66.89:1113/dm/product/query?isHot=1")
+			axios.get("product.do?op=query")
 				.then( (res)=>{
 					console.info(res.data.list)
 					this.hotList = res.data.list;
