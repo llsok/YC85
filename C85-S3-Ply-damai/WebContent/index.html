@@ -6,6 +6,8 @@
 <link href="css/slider.css" rel="stylesheet" type="text/css"/>
 <link href="css/common.css" rel="stylesheet" type="text/css"/>
 <link href="css/index.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
 </head>
 <body>
 
@@ -124,7 +126,7 @@
 
 </div>	
 
-<div class="container index">
+<div id="indexdiv" class="container index">
 		
 
 		<div class="span24">
@@ -145,47 +147,11 @@
 							</li>
 					</ul>
 						<ul class="tabContent" style="display: block;">
-							
-									<li>
-										<a target="_blank" href="detail.html?1"><img src="products/1/cs10001.jpg" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?21"><img src="products/1/cs30001.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?35"><img src="products/1/cs40005.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?41"><img src="products/1/cs40011.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?42"><img src="products/1/cs50001.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?44"><img src="products/1/cs50003.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?47"><img src="products/1/cs50006.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?51"><img src="products/1/cs50010.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?53"><img src="products/1/cs60002.png" style="display: block;"></a>
-									</li>
-							
-									<li>
-										<a target="_blank" href="detail.html?57"><img src="products/1/cs60006.png" style="display: block;"></a>
-									</li>
-							
+							<li v-for=" h in hotList ">
+								<a target="_blank" :href="'detail.html?#' + h.id">
+									<img :src="h.image" style="display: block;">
+								</a>
+							</li>
 						</ul>
 			</div>
 		</div>
@@ -295,6 +261,22 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	var vue = new Vue({
+		el : "#indexdiv",
+		data : {
+			hotList : [],
+			newList : []
+		},
+		created : () => {
+			axios.get("http://47.106.66.89:1113/dm/product/query?isHot=1")
+				.then( (res)=>{
+					console.info(res.data.list)
+					this.hotList = res.data.list;
+				});
+		}
+	});
+	</script>
 <div class="container footer">
 	<div class="span24">
 		<div class="footerAd">
