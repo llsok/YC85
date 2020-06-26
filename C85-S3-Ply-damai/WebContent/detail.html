@@ -373,7 +373,7 @@
 							</dd>
 						</dl>
 					<div class="buy">
-							<input id="addCart" class="addCart" value="加入购物车" type="submit">
+							<input id="addCart" @click="add" class="addCart" value="加入购物车" type="button">
 					</div>
 				</form>
 				</div>
@@ -415,6 +415,13 @@
 						axios.get("product.do?op=queryById&id="+id).then(res=>{
 							this.product = res.data;
 						});
+					},
+					methods : {
+						add(){
+							axios.get("cart.do?op=add&pid="+this.product.id).then(res=>{
+								alert(res.data.msg);
+							});
+						}
 					}
 				}
 				
