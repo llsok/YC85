@@ -29,5 +29,10 @@ public class CartServlet extends BaseServlet {
 		response.getWriter().append("{\"msg\":\"购物车添加成功!\"}");
 	}
 
+	protected void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String uid = "2" ; // 用户id 从会话中获取 loginedUser.getId(),
+		List<?> list = cdao.queryByUid(uid);
+		print(response, list);
+	}
 
 }

@@ -1,5 +1,7 @@
 package com.yc.damai.dao;
 
+import java.util.List;
+
 import com.yc.damai.util.DBHelper;
 
 public class CartDao {
@@ -24,6 +26,11 @@ public class CartDao {
 	public int update(String uid, String pid) {
 		String sql = "update dm_cart set count=count + 1 where uid=? and pid=?";
 		return new DBHelper().update(sql, uid, pid);
+	}
+	
+	public List<?> queryByUid(String uid){
+		String sql = "select * from dm_cart a join dm_product b on a.pid=b.id where a.uid=?";
+		return new DBHelper().query(sql, uid); 
 	}
 	
 	

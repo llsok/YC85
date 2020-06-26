@@ -5,8 +5,8 @@
 <title>大麦商城</title>
 <link href="css/common.css" rel="stylesheet" type="text/css">
 <link href="css/cart.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
 
 </head>
 <body>
@@ -126,7 +126,7 @@
 		<div class="step step1">
 				购物车列表
 			</div>
-				<table>
+				<table id="cartList">
 					<tbody><tr>
 						<th>图片</th>
 						<th>商品</th>
@@ -136,91 +136,53 @@
 						<th>操作</th>
 					</tr>
 					
-						<tr>
+						<tr v-for="c in carts">
 							<td width="60">
-								<img src="products/1/cs10001.jpg">
+								<img :src="c.image">
 							</td>
 							<td>
-								<a target="_blank">韩版连帽加厚毛衣女外套</a>
+								<a target="_blank">{{c.pname}}</a>
 							</td>
 							<td>
-								￥228.0
+								￥{{c.shop_price}}
 							</td>
 							<td class="quantity" width="60">
-								1
+								{{c.count}}
 							</td>
 							<td width="140">
-								<span class="subtotal">￥228.0</span>
+								<span class="subtotal">￥{{c.shop_price * c.count}}</span>
 							</td>
 							<td>
-								<a href="cart.html?pid=1" class="delete">删除</a>
+								<a href="cart.html?pid=1" @click="del(c.id)" class="delete">删除</a>
 							</td>
 						</tr>
-				
-						<tr>
-							<td width="60">
-								<img src="products/1/cs60003.png">
-							</td>
-							<td>
-								<a target="_blank">商务修身羊毛呢子风衣 中长款呢大衣外套</a>
-							</td>
-							<td>
-								￥299.0
-							</td>
-							<td class="quantity" width="60">
-								1
-							</td>
-							<td width="140">
-								<span class="subtotal">￥299.0</span>
-							</td>
-							<td>
-								<a href="cart.html?pid=54" class="delete">删除</a>
-							</td>
-						</tr>
-				
-						<tr>
-							<td width="60">
-								<img src="products/1/cs10007.jpg">
-							</td>
-							<td>
-								<a target="_blank">新款优雅奢华毛领白鸭绒轻薄羽绒服</a>
-							</td>
-							<td>
-								￥590.0
-							</td>
-							<td class="quantity" width="60">
-								1
-							</td>
-							<td width="140">
-								<span class="subtotal">￥590.0</span>
-							</td>
-							<td>
-								<a href="cart.html?pid=7" class="delete">删除</a>
-							</td>
-						</tr>
-				
-						<tr>
-							<td width="60">
-								<img src="products/1/cs20004.jpg">
-							</td>
-							<td>
-								<a target="_blank">整貂皮大衣外套中长款收腰立领长袖进口真皮草裘皮</a>
-							</td>
-							<td>
-								￥9900.0
-							</td>
-							<td class="quantity" width="60">
-								1
-							</td>
-							<td width="140">
-								<span class="subtotal">￥9900.0</span>
-							</td>
-							<td>
-								<a href="cart.html?pid=14" class="delete">删除</a>
-							</td>
-						</tr>
-				
 				</tbody></table>
+				<script type="text/javascript">
+			var vue1 = new Vue(
+				{
+					el:"#cartList",
+					data : {
+						carts : [], // 查询的分类商品
+					},
+					created : function(){
+						// axios ...
+						axios.get("cart.do?op=query").then(res=>{
+							this.carts = res.data;
+						});
+					},
+					methods : {
+						// 删除功能, 请完成后台代码
+						del(id){
+							axios.get("cart.do?op=del&id=").then(res=>{
+								//this.carts = res.data;
+							});
+						}
+					}
+				}
+				
+			);
+		</script>
+				
 				
 				<dl id="giftItems" class="hidden" style="display: none;">
 				</dl>
