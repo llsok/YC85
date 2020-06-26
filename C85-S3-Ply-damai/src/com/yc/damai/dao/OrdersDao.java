@@ -25,13 +25,13 @@ public class OrdersDao {
 				"		dm_cart a\n" +
 				"	JOIN dm_product b ON a.pid = b.id\n" +
 				"	WHERE\n" +
-				"		a.uid = 2\n" +
+				"		a.uid = ?\n" +
 				"	GROUP BY\n" +
 				"		a.uid\n" +
 				") c ON a.id = c.uid\n" +
 				"WHERE\n" +
 				"	a.id = ?";
-		return new DBHelper().update(sql, uid);
+		return new DBHelper().update(sql, uid, uid);
 	}
 	
 	public static void main(String[] args) {
