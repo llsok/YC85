@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <link href="css/common.css" rel="stylesheet" type="text/css"/>
 <link href="css/product.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
 <title>大麦商城</title>
 </head>
 <body>
@@ -319,25 +319,28 @@
 		</div>
 </div>
 	
-		<div class="span18 last">
+		<div id="span18" class="span18 last">
 			
 			<div class="productImage">
 					<a title="" style="outline-style: none; text-decoration: none;" id="zoom" href="http://image/r___________renleipic_01/bigPic1ea8f1c9-8b8e-4262-8ca9-690912434692.jpg" rel="gallery">
-						<div class="zoomPad"><img style="opacity: 1;" title="" class="medium" src="products/1/cs10001.jpg"><div style="display: block; top: 0px; left: 162px; width: 0px; height: 0px; position: absolute; border-width: 1px;" class="zoomPup"></div><div style="position: absolute; z-index: 5001; left: 312px; top: 0px; display: block;" class="zoomWindow"><div style="width: 368px;" class="zoomWrapper"><div style="width: 100%; position: absolute; display: none;" class="zoomWrapperTitle"></div><div style="width: 0%; height: 0px;" class="zoomWrapperImage"><img src="%E5%B0%9A%E9%83%BD%E6%AF%94%E6%8B%89%E5%A5%B3%E8%A3%852013%E5%A4%8F%E8%A3%85%E6%96%B0%E6%AC%BE%E8%95%BE%E4%B8%9D%E8%BF%9E%E8%A1%A3%E8%A3%99%20%E9%9F%A9%E7%89%88%E4%BF%AE%E8%BA%AB%E9%9B%AA%E7%BA%BA%E6%89%93%E5%BA%95%E8%A3%99%E5%AD%90%20%E6%98%A5%E6%AC%BE%20-%20Powered%20By%20Mango%20Team_files/6d53c211-2325-41ed-8696-d8fbceb1c199-large.jpg" style="position: absolute; border: 0px none; display: block; left: -432px; top: 0px;"></div></div></div><div style="visibility: hidden; top: 129.5px; left: 106px; position: absolute;" class="zoomPreload">Loading zoom</div></div>
+						<div class="zoomPad">
+						<img style="opacity: 1;" title="" class="medium" :src="product.image">
+						<div style="display: block; top: 0px; left: 162px; width: 0px; height: 0px; position: absolute; border-width: 1px;" class="zoomPup"></div><div style="position: absolute; z-index: 5001; left: 312px; top: 0px; display: block;" class="zoomWindow"><div style="width: 368px;" class="zoomWrapper"><div style="width: 100%; position: absolute; display: none;" class="zoomWrapperTitle"></div><div style="width: 0%; height: 0px;" class="zoomWrapperImage"><img src="%E5%B0%9A%E9%83%BD%E6%AF%94%E6%8B%89%E5%A5%B3%E8%A3%852013%E5%A4%8F%E8%A3%85%E6%96%B0%E6%AC%BE%E8%95%BE%E4%B8%9D%E8%BF%9E%E8%A1%A3%E8%A3%99%20%E9%9F%A9%E7%89%88%E4%BF%AE%E8%BA%AB%E9%9B%AA%E7%BA%BA%E6%89%93%E5%BA%95%E8%A3%99%E5%AD%90%20%E6%98%A5%E6%AC%BE%20-%20Powered%20By%20Mango%20Team_files/6d53c211-2325-41ed-8696-d8fbceb1c199-large.jpg" style="position: absolute; border: 0px none; display: block; left: -432px; top: 0px;">
+						</div></div></div><div style="visibility: hidden; top: 129.5px; left: 106px; position: absolute;" class="zoomPreload">Loading zoom</div></div>
 					</a>
 				
 			</div>
-			<div class="name">韩版连帽加厚毛衣女外套</div>
+			<div class="name">{{product.pname}}</div>
 			<div class="sn">
-				<div>编号：1</div>
+				<div>编号：{{product.id}}</div>
 			</div>
 			<div class="info">
 				<dl>
 					<dt>商城价:</dt>
 					<dd>
-						<strong>￥：228.0元/份</strong>
+						<strong>￥：{{product.shop_price}}元/份</strong>
 							参 考 价：
-							<del>￥558.0元/份</del>
+							<del>￥{{product.market_price}}元/份</del>
 					</dd>
 				</dl>
 					<dl>
@@ -388,15 +391,36 @@
 						<strong>商品介绍</strong>
 					</div>
 					<div>
-						双11限量200件，拍完下架，加车享优惠，早下手早发货。。秋冬个性中长款毛衣，美丽和温度同在！限量供应，拒绝撞衫！迫于纱线和人工在不断上涨的双重压力下，产品涨价在即！少量现货出售中，手快有，手慢等哦，赶紧抢哦，绝对高大上。
+						{{product.pdesc}}
 						<br /><br />
-						<img src="products/1/cs10001.jpg" align="middle"/>
+						<img :src="product.image" align="middle"/>
 					</div>
 				</div>
 				
 				
 				
 		</div>
+		<script type="text/javascript">
+			var vue1 = new Vue(
+				{
+					el:"#span18",
+					data : {
+						product : {}, // 查询的分类商品
+					},
+					created : function(){
+						// 根据 锚点值 location.hash ==> #1 传来值进行商品查询
+						// 截取  location.hash 中的 数字 1
+						var id = location.hash.substring(1);
+						// axios ...
+						axios.get("product.do?op=queryById&id="+id).then(res=>{
+							this.product = res.data;
+						});
+					}
+				}
+				
+			);
+		</script>
+		
 	</div>
 <div class="container footer">
 	<div class="span24">

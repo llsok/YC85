@@ -22,6 +22,14 @@ public class ProductServlet extends BaseServlet {
 		page.put("list", list);
 		print( response, page);
 	}
+	
+	// 查询某件商品
+	protected void queryById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+		String sql = "select * from dm_product where id = ?";
+		List<?> list = new DBHelper().query(sql, id);
+		print( response, list.get(0));
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
