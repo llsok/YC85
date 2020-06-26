@@ -15,9 +15,11 @@ public class OrdersDao {
 				"	b.id\n" +
 				"FROM\n" +
 				"	dm_user a\n" +
+					// 获取默认地址 
 				"JOIN dm_address b ON a.id = b.uid\n" +
 				"AND dft = 1\n" +
 				"JOIN (\n" +
+					// 求订单总金额
 				"	SELECT\n" +
 				"		sum(b.shop_price * a.count) total,\n" +
 				"		a.uid\n" +
