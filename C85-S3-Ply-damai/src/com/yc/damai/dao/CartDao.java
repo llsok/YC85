@@ -33,5 +33,10 @@ public class CartDao {
 		return new DBHelper().query(sql, uid); 
 	}
 	
+	public int deleteByUid(String uid) {
+		String sql = "delete from dm_cart where uid=?";
+		return new DBHelper().update(sql, uid);
+	}
+	
 	
 }

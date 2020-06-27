@@ -38,10 +38,11 @@ public class OrdersDao {
 	}
 	
 	public static void main(String[] args) {
-		
+		// 这种写法有数据库事务的问题
 		new OrdersDao().insert("2");
+		// 出现异常, 会导致 订单被创建, 而订单明细没有创建, 购物车没有被清空
 		new OrderitemDao().insert("2");
-		
+		new CartDao().deleteByUid("2");
 	}
 
 }

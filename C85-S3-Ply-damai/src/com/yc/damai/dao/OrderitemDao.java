@@ -15,7 +15,8 @@ public class OrderitemDao {
 				"	a.count,\n" +
 				"	a.count * b.shop_price,\n" +
 				"	a.pid,\n" +
-				"	LAST_INSERT_ID()\n" +
+				// 使用子查询获取到当前新增的订单id
+				"	(select max(id) from dm_orders )\n" + 
 				"FROM\n" +
 				"	dm_cart a\n" +
 				"JOIN dm_product b ON a.pid = b.id\n" +
