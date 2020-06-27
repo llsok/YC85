@@ -6,6 +6,8 @@
 <title>大麦商城</title>
 <link href="css/common.css" rel="stylesheet" type="text/css"/>
 <link href="css/cart.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
 </head>
 <body>
 
@@ -126,7 +128,7 @@
 
 <div class="container cart">
 
-		<div class="span24">
+		<div id="orders" class="span24">
 		
 			<div class="step step1">
 				<ul>
@@ -147,75 +149,21 @@
 						<th>小计</th>
 					</tr>
 					
-						<tr>
+						<tr v-for="oi in orderitem">
 							<td width="60">
-								<img src="products/1/cs60003.png"/>
+								<img :src="oi.image"/>
 							</td>
 							<td>
-								<a target="_blank">商务修身羊毛呢子风衣 中长款呢大衣外套</a>
+								<a target="_blank">{{oi.pname}}</a>
 							</td>
 							<td>
-								299.0
+								{{oi.total / oi.count}}
 							</td>
 							<td class="quantity" width="60">
-									1							
+									{{oi.count}}						
 							</td>
 							<td width="140">
-								<span class="subtotal">￥299.0</span>
-							</td>
-						</tr>
-					
-						<tr>
-							<td width="60">
-								<img src="products/1/cs20004.jpg"/>
-							</td>
-							<td>
-								<a target="_blank">整貂皮大衣外套中长款收腰立领长袖进口真皮草裘皮</a>
-							</td>
-							<td>
-								9900.0
-							</td>
-							<td class="quantity" width="60">
-									3							
-							</td>
-							<td width="140">
-								<span class="subtotal">￥29700.0</span>
-							</td>
-						</tr>
-					
-						<tr>
-							<td width="60">
-								<img src="products/1/cs10007.jpg"/>
-							</td>
-							<td>
-								<a target="_blank">新款优雅奢华毛领白鸭绒轻薄羽绒服</a>
-							</td>
-							<td>
-								590.0
-							</td>
-							<td class="quantity" width="60">
-									1							
-							</td>
-							<td width="140">
-								<span class="subtotal">￥590.0</span>
-							</td>
-						</tr>
-					
-						<tr>
-							<td width="60">
-								<img src="products/1/cs10001.jpg"/>
-							</td>
-							<td>
-								<a target="_blank">韩版连帽加厚毛衣女外套</a>
-							</td>
-							<td>
-								228.0
-							</td>
-							<td class="quantity" width="60">
-									1							
-							</td>
-							<td width="140">
-								<span class="subtotal">￥228.0</span>
+								<span class="subtotal">￥{{oi.total}}</span>
 							</td>
 						</tr>
 					
@@ -225,17 +173,17 @@
 				</dl>
 				<div class="total">
 					<em id="promotion"></em>
-					商品金额: <strong id="effectivePrice">￥30817.0元</strong>
+					商品金额: <strong id="effectivePrice">￥{{orders.total}}元</strong>
 				</div>
 			<form id="orderForm" action="msg.html" method="post">
 				<input type="hidden" name="order.oid" value="73"/>
 				<div class="span24">
 					<p>
-							收货地址：<input name="order.addr" type="text" value="天子脚下" style="width:350px" />
+							收货地址：<input name="order.addr" type="text" :value="orders.addr" style="width:350px" />
 								<br />
-							收货人&nbsp;&nbsp;&nbsp;：<input name="order.name" type="text" value="Song" style="width:150px" />
+							收货人&nbsp;&nbsp;&nbsp;：<input name="order.name" type="text" :value="orders.name" style="width:150px" />
 								<br /> 
-							联系方式：<input name="order.phone" type="text" value="13283718600" style="width:150px" />
+							联系方式：<input name="order.phone" type="text" :value="orders.phone" style="width:150px" />
 
 						</p>
 						<hr />
@@ -269,6 +217,25 @@
 				</div>
 			</form>
 		</div>
+		<script type="text/javascript">
+			var vue1 = new Vue(
+				{
+					el:"#orders",
+					data : {
+						orders : {}, // 查询的分类商品
+						orderitem : []
+					},
+					created : function(){
+						// axios ...
+						axios.get("orders.do?op=query").then(res=>{
+							this.orders = res.data.orders;
+							this.orderitem = res.data.orderitem;
+						});
+					},
+				}
+			);
+		
+		</script>
 		
 	</div>
 <div class="container footer">

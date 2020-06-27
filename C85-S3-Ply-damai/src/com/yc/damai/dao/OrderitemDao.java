@@ -1,5 +1,8 @@
 package com.yc.damai.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.yc.damai.util.DBHelper;
 
 public class OrderitemDao {
@@ -23,6 +26,12 @@ public class OrderitemDao {
 				"WHERE\n" +
 				"	uid = ?";
 		return new DBHelper().update(sql, uid);
+	}
+	
+	public List<?> queryByOid(String oid) {
+		String sql = "select * from dm_orderitem a join dm_product b on a.pid=b.id"
+				+ " where oid=?";
+		return new DBHelper().query(sql, oid);
 	}
 	
 

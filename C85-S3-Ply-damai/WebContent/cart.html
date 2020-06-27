@@ -196,8 +196,24 @@
 				</div>
 				<div class="bottom">
 					<a href="cart.html" id="clear" class="clear">清空购物车</a>
-					<a href="pay.html" id="submit" class="submit">提交订单</a>
+					<a href="pay.html" id="submit" class="submit" @click="pay">提交订单</a>
 				</div>
+				<script type="text/javascript">
+				var vue2 = new Vue({
+					el : ".bottom",
+					methods : {
+						pay(){
+							axios.get("orders.do?op=add").then(res=>{
+								if(res.data.code){
+									location.href="pay.html";
+								} else {
+									alert("订单新增失败, 请联系客服小姐姐!");
+								}
+							});
+						}
+					}
+				});
+				</script>
 			
 		</div>
 	</div>
