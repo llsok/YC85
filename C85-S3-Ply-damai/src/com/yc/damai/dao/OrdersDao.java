@@ -4,6 +4,7 @@ import com.yc.damai.util.DBHelper;
 
 public class OrdersDao {
 	
+	// 添加订单主表记录 orders
 	public int insert(String uid) {
 		String sql = 
 		"INSERT INTO dm_orders SELECT\n" +
@@ -39,6 +40,7 @@ public class OrdersDao {
 	public static void main(String[] args) {
 		
 		new OrdersDao().insert("2");
+		new OrderitemDao().insert("2");
 		
 	}
 
