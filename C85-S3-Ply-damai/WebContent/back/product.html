@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>图书管理</title>
+<title>商品管理</title>
 <link rel="stylesheet" type="text/css"
 	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
@@ -19,7 +19,8 @@ input{
 	
 	//图片字段的格式化方法
 	function fmtImg(value, row, index) {
-		return "<img height='100px' src='"+value+"'>";
+		//  <img height='100px' src='../products/1/cs10001.jpg'>   
+		return "<img height='100px' src='../"+value+"'>";
 	}
 	
 	// 出版时间字段的格式化方法
@@ -82,7 +83,7 @@ input{
 		<div data-options="region:'center',title:'查询结果', iconCls:'icon-ok'">
 			<table class="easyui-datagrid" id="dg"
 				data-options="
-				url:'../QueryBookServlet.do',
+				url:'../product.do?op=query1',
 				method:'get',
 				border:false,
 				singleSelect:true,
@@ -90,17 +91,13 @@ input{
 				fitColumns:true">
 				<thead>
 					<tr>
-						<th data-options="field:'id', width:100">编号</th>
-						<th data-options="field:'bookname', width:100">书名</th>
-						<th data-options="field:'bookpress', width:100">出版社</th>
-						<th data-options="field:'pressdate', width:100">出版时间</th>
-						<th data-options="field:'bookauthor', width:100">作者</th>
-						<th data-options="field:'bookcount', width:100">数量</th>
-						<th data-options="field:'bookimage', 
-							width:100, 
-							formatter:fmtImg, 
-							align:'center'">图片</th>
-						<!-- 使用一个不存在字段名 就能看到按钮 -->
+						<th data-options="field:'id', width:20">编号</th>
+						<th data-options="field:'pname', width:100">名称</th>
+						<th data-options="field:'shop_price', width:50">价格</th>
+						<th data-options="field:'cid', width:100">分类</th>
+						<th data-options="field:'is_hot', width:20">热卖</th>
+						<th data-options="field:'createtime', width:100">上架日期</th>
+						<th data-options="field:'image', width:100, formatter:fmtImg">图片</th>
 						<th data-options="field:'idd', width:100, formatter:fmtOp,align:'center'">操作</th>
 					</tr>
 				</thead>
