@@ -1,6 +1,7 @@
 package com.yc.damai.web;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,7 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.yc.damai.dao.ProductDao;
+import com.yc.damai.po.DmProduct;
 import com.yc.damai.util.DBHelper;
 
 @WebServlet("/product.do")
@@ -26,12 +30,20 @@ public class ProductServlet extends BaseServlet {
 		print( response, page);
 	}
 	
-	protected void query1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void query1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IllegalAccessException, InvocationTargetException {
 		String page = request.getParameter("page");
 		String rows = request.getParameter("rows"); 
 		
-		List<?> list = pdao.query1(page, rows);
-		int total = pdao.count1();
+		/**
+		 * dp  要装载的 实体 对象
+		 * properties 存放属性值的 map 集合
+		 */
+		DmProduct dp = new DmProduct();
+		// 装载方法
+		BeanUtils.populate(dp, request.getParameterMap());
+		
+		List<?> list = pdao.query1(dp,page, rows);
+		int total = pdao.count1(dp);
 		
 		HashMap<String,Object> data = new HashMap<>();
 		data.put("rows", list);

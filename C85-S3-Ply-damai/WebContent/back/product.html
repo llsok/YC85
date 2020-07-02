@@ -33,9 +33,9 @@ input{
 	
 	function query(){
 		$('#dg').datagrid('load',{
-			name: $("#name").textbox('getValue'),
-			press: $("#press").textbox('getValue'),
-			date: $("#date").textbox('getValue'),
+			pname: $("#pname").textbox('getValue'),
+			cid: $("#cid").textbox('getValue'),
+			isHot: $("#isHot").checkbox('getValue'),
 		});
 	}
 	
@@ -72,8 +72,9 @@ input{
 				<!-- prompt="书名:"  ==  data-options="prompt:'书名:'" -->
 			<div style="height: 50px; margin: 10px">
 			<input class="easyui-textbox" label="名称:" style="width:200px" id="pname">
-			<input class="easyui-combobox" label="分类:" style="width:200px" id="cid">
-			<input class="topjui-checkbox" label="热卖:" style="width:200px" id="isHot" value=1>
+			<input class="easyui-combobox" label="分类:" style="width:200px" id="cid"
+				data-options="url:'../category.do?op=query', valueField:'id', textField:'cname'">
+			<input class="easyui-checkbox" label="热卖:" id="isHot" value=1>
 			<a id="btn" href="#" class="easyui-linkbutton"
 				data-options="iconCls:'icon-search'"
 				onclick="query()">查询</a>
