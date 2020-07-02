@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>图书管理</title>
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<style type="text/css">
+input{
+	width: 200px
+}
+
+</style>
+<script type="text/javascript">
+	
+	//图片字段的格式化方法
+	function fmtImg(value, row, index) {
+		return "<img height='100px' src='"+value+"'>";
+	}
+	
+	// 出版时间字段的格式化方法
+	function fmtDate(date){
+		var y = date.getFullYear();
+		var m = date.getMonth()+1;
+		var d = date.getDate();
+		return y + "-" + m + '-' + d;
+	}
+	
+	function query(){
+		$('#dg').datagrid('load',{
+			name: $("#name").textbox('getValue'),
+			press: $("#press").textbox('getValue'),
+			date: $("#date").textbox('getValue'),
+		});
+	}
+	
+	// 操作字段的格式化方法
+	function fmtOp(value, row, index) {
+		return "<button onclick='edit("+index+")'>修改</button>";
+	}
+	
+	// 打开修改窗口
+	function edit(index) {
+		var rows = $('#dg').datagrid("getRows");
+		$("#dd").dialog('open');
+		$('#ff').form('load',rows[index]);
+	}
+	
+	function save() {
+		$('#ff').form('submit',{
+			url : "../SaveBookServlet.do",
+			success : res=>{
+				alert(res);
+				// 关闭窗口
+				$("#dd").dialog('close');
+				// 刷新表格
+				$('#dg').datagrid("reload");
+			}
+		});
+	}
+	
+</script>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'north'" style="height: 50px;">
+				<!-- prompt="书名:"  ==  data-options="prompt:'书名:'" -->
+			<div style="height: 50px; margin: 10px">
+			<input class="easyui-textbox" label="书名:" style="width:200px" id="name">
+			<input class="easyui-textbox" label="出版社:" style="width:200px" id="press">
+			<input class="easyui-datebox" label="出版日期:" style="width:200px" id="date"
+				data-options="formatter:fmtDate">
+			<a id="btn" href="#" class="easyui-linkbutton"
+				data-options="iconCls:'icon-search'"
+				onclick="query()">查询</a>
+			</div>
+		</div>
+		<div data-options="region:'center',title:'查询结果', iconCls:'icon-ok'">
+			<table class="easyui-datagrid" id="dg"
+				data-options="
+				url:'../QueryBookServlet.do',
+				method:'get',
+				border:false,
+				singleSelect:true,
+				fit:true,
+				fitColumns:true">
+				<thead>
+					<tr>
+						<th data-options="field:'id', width:100">编号</th>
+						<th data-options="field:'bookname', width:100">书名</th>
+						<th data-options="field:'bookpress', width:100">出版社</th>
+						<th data-options="field:'pressdate', width:100">出版时间</th>
+						<th data-options="field:'bookauthor', width:100">作者</th>
+						<th data-options="field:'bookcount', width:100">数量</th>
+						<th data-options="field:'bookimage', 
+							width:100, 
+							formatter:fmtImg, 
+							align:'center'">图片</th>
+						<!-- 使用一个不存在字段名 就能看到按钮 -->
+						<th data-options="field:'idd', width:100, formatter:fmtOp,align:'center'">操作</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+	
+	<!-- 图书编辑窗口 -->
+	<div id="dd" class="easyui-dialog" title="My Dialog" style="width:400px;height:400px;"
+	    data-options="
+	    iconCls:'icon-save',
+	    resizable:true,
+	    modal:true,
+	    closed:true,
+	    buttons:'#bb'">
+	    <form id="ff">
+	    <input class="easyui-textbox" name="id" label="编号"><br>
+		<input class="easyui-textbox" name="bookname" label="书名"><br>
+		<input class="easyui-combobox" name="bookpress" label="出版社"
+			url="../GetBookpressItemsServlet.do"
+			valueField="bookpress"
+			textField="bookpress"><br>
+		<input class="easyui-datebox" name="pressdate" label="出版日期" data-options="formatter:fmtDate"><br>
+		<input class="easyui-textbox" name="bookauthor" label="作者"><br>
+		<input class="easyui-textbox" name="bookcount" label="库存"><br>
+		<input class="easyui-textbox" name="bookimage" label="图片"><br>
+		</form>
+	</div>
+	<div id="bb">
+		<a href="#" class="easyui-linkbutton" onclick="save()">保存</a>
+		<a href="#" class="easyui-linkbutton">放弃</a>
+	</div>
+	
+	
+	
+</body>
+</html>

@@ -23,6 +23,14 @@ public class ProductServlet extends BaseServlet {
 		print( response, page);
 	}
 	
+	protected void query1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String sql = "select * from dm_product";
+		List<?> list = new DBHelper().query(sql);
+		//HashMap<String,Object> page = new HashMap<>();
+		//page.put("list", list);
+		print( response, list);
+	}
+	
 	// 查询某件商品
 	protected void queryById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
