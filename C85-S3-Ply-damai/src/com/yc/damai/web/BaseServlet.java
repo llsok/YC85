@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * 所有的业务servlet的父类,  BaseServlet 不能被直接创建成功对象, 如何从语法上确保
@@ -50,7 +51,8 @@ public abstract class BaseServlet extends HttpServlet {
 	
 	// 输出页面内容
 	protected void print (HttpServletResponse response, Object obj) throws IOException {
-		response.getWriter().print(new Gson().toJson(obj));
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		response.getWriter().print(gson.toJson(obj));
 	}
 	
 }

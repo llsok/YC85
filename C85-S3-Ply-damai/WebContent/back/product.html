@@ -71,10 +71,9 @@ input{
 		<div data-options="region:'north'" style="height: 50px;">
 				<!-- prompt="书名:"  ==  data-options="prompt:'书名:'" -->
 			<div style="height: 50px; margin: 10px">
-			<input class="easyui-textbox" label="书名:" style="width:200px" id="name">
-			<input class="easyui-textbox" label="出版社:" style="width:200px" id="press">
-			<input class="easyui-datebox" label="出版日期:" style="width:200px" id="date"
-				data-options="formatter:fmtDate">
+			<input class="easyui-textbox" label="名称:" style="width:200px" id="pname">
+			<input class="easyui-combobox" label="分类:" style="width:200px" id="cid">
+			<input class="topjui-checkbox" label="热卖:" style="width:200px" id="isHot" value=1>
 			<a id="btn" href="#" class="easyui-linkbutton"
 				data-options="iconCls:'icon-search'"
 				onclick="query()">查询</a>
@@ -88,13 +87,14 @@ input{
 				border:false,
 				singleSelect:true,
 				fit:true,
-				fitColumns:true">
+				fitColumns:true,
+				pagination:true">
 				<thead>
 					<tr>
 						<th data-options="field:'id', width:20">编号</th>
 						<th data-options="field:'pname', width:100">名称</th>
 						<th data-options="field:'shop_price', width:50">价格</th>
-						<th data-options="field:'cid', width:100">分类</th>
+						<th data-options="field:'cname', width:100">分类</th>
 						<th data-options="field:'is_hot', width:20">热卖</th>
 						<th data-options="field:'createtime', width:100">上架日期</th>
 						<th data-options="field:'image', width:100, formatter:fmtImg">图片</th>

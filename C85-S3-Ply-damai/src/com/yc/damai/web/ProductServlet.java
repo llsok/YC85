@@ -9,11 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yc.damai.dao.ProductDao;
 import com.yc.damai.util.DBHelper;
 
 @WebServlet("/product.do")
 public class ProductServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private ProductDao pdao = new ProductDao();
     
 	protected void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sql = "select * from dm_product where is_hot=1 limit 0,10";
@@ -24,11 +27,16 @@ public class ProductServlet extends BaseServlet {
 	}
 	
 	protected void query1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sql = "select * from dm_product";
-		List<?> list = new DBHelper().query(sql);
-		//HashMap<String,Object> page = new HashMap<>();
-		//page.put("list", list);
-		print( response, list);
+		String page = request.getParameter("page");
+		String rows = request.getParameter("rows"); 
+		
+		List<?> list = pdao.query1(page, rows);
+		int total = pdao.count1();
+		
+		HashMap<String,Object> data = new HashMap<>();
+		data.put("rows", list);
+		data.put("total", total);
+		print( response, data);
 	}
 	
 	// 查询某件商品
