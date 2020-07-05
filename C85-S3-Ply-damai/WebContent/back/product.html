@@ -9,6 +9,7 @@
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/axios.min.js"></script>
 <style type="text/css">
 input{
 	width: 200px
@@ -79,6 +80,28 @@ input{
 		});
 	}
 	
+	function upload(newValue, oldValue){
+		var url = "../UploadServlet";
+		/**
+		products/upload/程序员.jpg
+		
+		product.html:85 Uncaught TypeError: 
+			Failed to construct 'FormData': 
+				parameter 1 is not of type 'HTMLFormElement'.
+		*/
+		var fd = new FormData(ff);
+		axios.post( url, fd).then(res=>{
+			alert(res.data.msg);
+			if(res.data.code){
+				// upImg 是原生的 html 控件对象
+				res.data.data = "../" + res.data.data;
+				upImg.src = res.data.data;
+				// tbImg 是Easyui的 控件对象
+				$("#tbImg").textbox('setValue',res.data.data);
+			}
+		});
+	}
+	
 </script>
 </head>
 <body>
@@ -125,7 +148,7 @@ input{
 	</div>
 	
 	<!-- 图书编辑窗口 -->
-	<div id="dd" class="easyui-dialog" title="My Dialog" style="width:400px;height:400px;"
+	<div id="dd" class="easyui-dialog" title="My Dialog" style="width:500px;height:500px;"
 	    data-options="
 	    iconCls:'icon-save',
 	    resizable:true,
@@ -141,7 +164,10 @@ input{
 		<input class="easyui-numberbox" name="shopPrice" label="商城价"><br>
 		<input class="easyui-textbox" name="pdesc" label="描述"><br>
 		<input class="easyui-textbox" name="isHot" label="热卖"><br>
-		<input class="easyui-textbox" name="image" label="图片"><br>
+		<input class="easyui-textbox" name="image" label="图片" id="tbImg"><br>
+		<input class="easyui-filebox" label="选择" id="file" name="file"
+			data-options="onChange:upload"><br>
+		<img alt="" src="../products/1/cs60001.png" height="100px" id="upImg"><br>
 		</form>
 	</div>
 	<div id="bb">
