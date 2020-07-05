@@ -14,6 +14,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.yc.damai.dao.ProductDao;
 import com.yc.damai.po.DmProduct;
+import com.yc.damai.po.Result;
 import com.yc.damai.util.DBHelper;
 
 @WebServlet("/product.do")
@@ -59,8 +60,22 @@ public class ProductServlet extends BaseServlet {
 		print( response, list.get(0));
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	// 保存商品
+	protected void save(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, IllegalAccessException, InvocationTargetException {
+		DmProduct dp = new DmProduct();
+		// 装载方法
+		BeanUtils.populate(dp, request.getParameterMap());
+		// 商品名称验证 空值验证, 长度判断
+		if(dp.getPname()==null || dp.getPname().trim().isEmpty()) {
+			print( response, new Result(0,"商品名称不能为空!"));
+			return;
+		}
+		if(dp.getShopPrice()==null || dp.getShopPrice()<=0) {
+			print( response, new Result(0,"商品商城价格必须大于0!"));
+			return;
+		}
+		pdao.insert(dp);
+		print( response, new Result(1,"商品添加成功!"));
 	}
 
 }

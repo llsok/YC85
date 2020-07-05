@@ -46,20 +46,35 @@ input{
 	
 	// 打开修改窗口
 	function edit(index) {
-		var rows = $('#dg').datagrid("getRows");
 		$("#dd").dialog('open');
-		$('#ff').form('load',rows[index]);
+		// index 有值 就是修改表格中的某一行记录, 否则是新增
+		if(index){
+			var rows = $('#dg').datagrid("getRows");
+			$('#ff').form('load',rows[index]);
+		} else {
+			$('#ff').form('clear');
+		}
 	}
 	
 	function save() {
+		// easyui 的表单的ajax提交方式
 		$('#ff').form('submit',{
-			url : "../SaveBookServlet.do",
+			url : "../product.do",
+			onSubmit: function(param){
+				//  扩展请求参数
+				param.op = "save";
+			},
 			success : res=>{
-				alert(res);
-				// 关闭窗口
-				$("#dd").dialog('close');
-				// 刷新表格
-				$('#dg').datagrid("reload");
+				// 原有的 res ==> 消息, 现在的 res ==> json对象  {  code , msg, data }
+				res = JSON.parse(res);
+				alert(res.msg);
+				if(res.code == 1 ){
+					// 关闭窗口
+					$("#dd").dialog('close');
+					// 刷新表格
+					$('#dg').datagrid("reload");
+				}
+				// 否则什么都不做 
 			}
 		});
 	}
@@ -78,6 +93,9 @@ input{
 			<a id="btn" href="#" class="easyui-linkbutton"
 				data-options="iconCls:'icon-search'"
 				onclick="query()">查询</a>
+			<a id="btn" href="#" class="easyui-linkbutton"
+				data-options="iconCls:'icon-add'"
+				onclick="edit()">添加</a>
 			</div>
 		</div>
 		<div data-options="region:'center',title:'查询结果', iconCls:'icon-ok'">
@@ -116,15 +134,14 @@ input{
 	    buttons:'#bb'">
 	    <form id="ff">
 	    <input class="easyui-textbox" name="id" label="编号"><br>
-		<input class="easyui-textbox" name="bookname" label="书名"><br>
-		<input class="easyui-combobox" name="bookpress" label="出版社"
-			url="../GetBookpressItemsServlet.do"
-			valueField="bookpress"
-			textField="bookpress"><br>
-		<input class="easyui-datebox" name="pressdate" label="出版日期" data-options="formatter:fmtDate"><br>
-		<input class="easyui-textbox" name="bookauthor" label="作者"><br>
-		<input class="easyui-textbox" name="bookcount" label="库存"><br>
-		<input class="easyui-textbox" name="bookimage" label="图片"><br>
+		<input class="easyui-textbox" name="pname" label="名称"><br>
+		<input class="easyui-combobox" name="cid" label="分类"
+			data-options="url:'../category.do?op=query', valueField:'id', textField:'cname'"><br>
+		<input class="easyui-numberbox" name="marketPrice" label="市场价"><br>
+		<input class="easyui-numberbox" name="shopPrice" label="商城价"><br>
+		<input class="easyui-textbox" name="pdesc" label="描述"><br>
+		<input class="easyui-textbox" name="isHot" label="热卖"><br>
+		<input class="easyui-textbox" name="image" label="图片"><br>
 		</form>
 	</div>
 	<div id="bb">

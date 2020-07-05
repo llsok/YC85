@@ -61,5 +61,17 @@ public class ProductDao {
 		String sql = "select count(*) from dm_product where 1=1" + where;
 		return new DBHelper().count(sql, params.toArray());
 	}
+	
+	public void insert(DmProduct dp) {
+		String sql = "insert into dm_product values(null,?,?,?,?,?,?,now(),?)";
+		new DBHelper().update(sql
+				,dp.getPname()
+				,dp.getMarketPrice()
+				,dp.getShopPrice()
+				,dp.getImage()
+				,dp.getPdesc()
+				,dp.getIsHot()
+				,dp.getCid());
+	}
 
 }
