@@ -74,4 +74,25 @@ public class ProductDao {
 				,dp.getCid());
 	}
 
+	public void update(DmProduct dp) {
+		String sql = "update dm_product set "
+				+ "pname=?,"
+				+ "market_price=?,"
+				+ "shop_price=?,"
+				+ "image=?,"
+				+ "pdesc=?,"
+				+ "is_hot = ?,"
+				+ "cid = ?"
+				+ " where id=?";
+		new DBHelper().update(sql
+				,dp.getPname()
+				,dp.getMarketPrice()
+				,dp.getShopPrice()
+				,dp.getImage()
+				,dp.getPdesc()
+				,dp.getIsHot()
+				,dp.getCid()
+				,dp.getId());
+	}
+
 }

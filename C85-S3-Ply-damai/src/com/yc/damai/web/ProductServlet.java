@@ -74,8 +74,12 @@ public class ProductServlet extends BaseServlet {
 			print( response, new Result(0,"商品商城价格必须大于0!"));
 			return;
 		}
-		pdao.insert(dp);
-		print( response, new Result(1,"商品添加成功!"));
+		if(dp.getId() == null) {
+			pdao.insert(dp);
+		} else {
+			pdao.update(dp);
+		}
+		print( response, new Result(1,"商品保存成功!"));
 	}
 
 }

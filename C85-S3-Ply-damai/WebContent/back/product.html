@@ -49,8 +49,13 @@ input{
 	function edit(index) {
 		$("#dd").dialog('open');
 		// index 有值 就是修改表格中的某一行记录, 否则是新增
-		if(index){
+		// edit() 不传参数 index 为 undefined
+		if(index != undefined){
 			var rows = $('#dg').datagrid("getRows");
+			rows[index].isHot = rows[index].is_hot;
+			rows[index].marketPrice = rows[index].market_price;
+			rows[index].shopPrice = rows[index].shop_price;
+			upImg.src = "../"+rows[index].image;
 			$('#ff').form('load',rows[index]);
 		} else {
 			$('#ff').form('clear');
