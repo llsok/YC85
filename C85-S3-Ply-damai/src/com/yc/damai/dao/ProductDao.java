@@ -58,7 +58,7 @@ public class ProductDao {
 			where += " and is_hot = ?";
 			params.add(dp.getIsHot());
 		}
-		String sql = "select count(*) from dm_product where 1=1" + where;
+		String sql = "select null from dm_product where 1=1" + where;
 		return new DBHelper().count(sql, params.toArray());
 	}
 	
