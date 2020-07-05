@@ -24,7 +24,7 @@ public class ProductServlet extends BaseServlet {
 	private ProductDao pdao = new ProductDao();
     
 	protected void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sql = "select * from dm_product where is_hot=1 limit 0,10";
+		String sql = "select * from dm_product where is_hot=1 order by id desc limit 0,10";
 		List<?> list = new DBHelper().query(sql);
 		HashMap<String,Object> page = new HashMap<>();
 		page.put("list", list);

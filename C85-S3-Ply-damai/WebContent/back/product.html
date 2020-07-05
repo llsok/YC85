@@ -94,8 +94,7 @@ input{
 			alert(res.data.msg);
 			if(res.data.code){
 				// upImg 是原生的 html 控件对象
-				res.data.data = "../" + res.data.data;
-				upImg.src = res.data.data;
+				upImg.src = "../" + res.data.data;
 				// tbImg 是Easyui的 控件对象
 				$("#tbImg").textbox('setValue',res.data.data);
 			}
@@ -167,7 +166,8 @@ input{
 		<input class="easyui-textbox" name="image" label="图片" id="tbImg"><br>
 		<input class="easyui-filebox" label="选择" id="file" name="file"
 			data-options="onChange:upload"><br>
-		<img alt="" src="../products/1/cs60001.png" height="100px" id="upImg"><br>
+		<img alt="" src="../products/1/cs60001.png" height="100px" id="upImg"
+			onclick="filebox_file_id_1.click()"><br>
 		</form>
 	</div>
 	<div id="bb">
