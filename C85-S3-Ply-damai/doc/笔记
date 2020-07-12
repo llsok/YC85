@@ -73,4 +73,28 @@ Vue => compoment 自定义组件 实现页面元素的导入
 
 
 
+tomcat目录\webapps\ROOT\upload\a.jpg
+对应的web路径是 : http://主机IP:端口/upload/a.jpg
+
+products/upload/O1CN01lPGIEs29lVuB8S9Fl_!!0-item_pic.jpg_430x430q90.jpg
+
+/upload/O1CN01lPGIEs29lVuB8S9Fl_!!0-item_pic.jpg_430x430q90.jpg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	

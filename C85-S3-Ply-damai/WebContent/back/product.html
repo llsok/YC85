@@ -99,7 +99,13 @@ input{
 			alert(res.data.msg);
 			if(res.data.code){
 				// upImg 是原生的 html 控件对象
-				upImg.src = "../" + res.data.data;
+				if(res.data.data.indexOf("/")!=0){
+					// 不以 / 开头的图片
+					upImg.src = "../" + res.data.data;
+				} else {
+					// 以 / 开头的图片( 上传的图片 )
+					upImg.src = res.data.data;
+				}
 				// tbImg 是Easyui的 控件对象
 				$("#tbImg").textbox('setValue',res.data.data);
 			}
