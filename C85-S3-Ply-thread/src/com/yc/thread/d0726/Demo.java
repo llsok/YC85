@@ -24,10 +24,27 @@ import java.net.URLConnection;
  * 	  2. 每块的大小 (自定义)
  * 	  3. 字节流的 skip() 跳过N个字节
  * 3. 多线程分块下载
+ * 	  1. 进度统计(顺便被打乱)
+ *    2. 合并的时机, 要等到所有的块下载完成才能合并
+ *    3. 时间的统计
+ *    
+ *    隐患: 对块数的限制 12M / 2M = 6
+ *    	1024M / 2M = 512 个子线程
+ *    	千万别下大文件
+ *    	必须要进行块数的限制     downNums 不能超过 10
+ *    
  */
 public class Demo {
 
-	public static void main(String[] args) throws IOException {
+	/**当前正在下载块*/
+	private int downNums = 0;
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+		new Demo().download();
+	}
+
+	// 定义下载方法
+	public void download() throws IOException, InterruptedException {
 		/**
 		 * 忽略 SSL 验证  (高航提供)
 		 */
@@ -43,7 +60,7 @@ public class Demo {
 		// 获取文件总大小
 		int filesize = conn.getContentLength();
 		// 每块的大小 (自定义 2M)
-		int blocksize = 2 * 1024 * 1024;
+		int blocksize = 1 * 1024 * 1024;
 		// 计算块数
 		int blocknums = filesize / blocksize;
 		if (filesize % blocksize != 0) {
@@ -53,49 +70,88 @@ public class Demo {
 
 		// 分块下载
 		for (int i = 0; i < blocknums; i++) {
-			System.out.println("第" + (i + 1) + "块开始下载");
-			/**在每次循环中 获取 一个连接对象*/
-			conn = url.openConnection();
-			InputStream in = conn.getInputStream();
-			FileOutputStream out = new FileOutputStream(filename + i);
-			// 开始的字节数
-			int beginBytes = i * blocksize;
-			// 结束的字节数
-			int endBytes = beginBytes + blocksize;
-			// 结束的字节数不能超过文件的大小
-			if (endBytes > filesize) {
-				endBytes = filesize;
-			}
-			// 跳过开始的字节数
-			in.skip(beginBytes);
-			/**
-			 * 	请下载当前块内的字节数
-			 * 	1. 计数
-			 * 	2. 判断
-			 */
-			// 当前下载到的位置
-			int position = beginBytes;
-			byte[] buffer = new byte[1024];
-			int count;
-			while ((count = in.read(buffer)) > 0) {
-				if (position + count > endBytes) {
-					// 计算超出部分
-					int a = position + count - endBytes;
-					// 减去超出的部分
-					count = count - a;
-				}
-				out.write(buffer, 0, count);
-				// 更新下载位置( 向前推进 )
-				position += count;
-				// 如果下载位置已经到达该块结束位置
-				if (position >= endBytes) {
-					break;
+			/**  开启线程下载     */
+			downNums++;
+			
+			/** 在此等待  限制下载的线程数量 */
+			synchronized (this) {
+				// 如果当前下载的块数 大于 0 则继续等待
+				while (downNums > 10) {
+					System.out.println("当前下载的块数达到10!");
+					wait();
 				}
 			}
-			in.close();
-			out.close();
-			System.out.println("第" + (i + 1) + "块结束下载");
+			
+			int index = i; // jdk 会自动对其 加 final
+			new Thread() {
+				public void run() {
+					try {
+						// 匿名类中访问的外部变量必须是 final 修饰的变量
+						System.out.println("第" + (index + 1) + "块开始下载");
+						/**在每次循环中 获取 一个连接对象*/
+						URLConnection conn = url.openConnection();
+						InputStream in = conn.getInputStream();
+						FileOutputStream out = new FileOutputStream(filename + index);
+						// 开始的字节数
+						int beginBytes = index * blocksize;
+						// 结束的字节数
+						int endBytes = beginBytes + blocksize;
+						// 结束的字节数不能超过文件的大小
+						if (endBytes > filesize) {
+							endBytes = filesize;
+						}
+						// 跳过开始的字节数
+						in.skip(beginBytes);
+						/**
+						 * 	请下载当前块内的字节数
+						 * 	1. 计数
+						 * 	2. 判断
+						 */
+						// 当前下载到的位置
+						int position = beginBytes;
+						byte[] buffer = new byte[1024];
+						int count;
+						while ((count = in.read(buffer)) > 0) {
+							if (position + count > endBytes) {
+								// 计算超出部分
+								int a = position + count - endBytes;
+								// 减去超出的部分
+								count = count - a;
+							}
+							out.write(buffer, 0, count);
+							// 更新下载位置( 向前推进 )
+							position += count;
+							// 如果下载位置已经到达该块结束位置
+							if (position >= endBytes) {
+								break;
+							}
+						}
+						in.close();
+						out.close();
+						System.out.println("第" + (index + 1) + "块结束下载");
+						// 匿名类中访问外部类对象的方式是  Demo.this
+						synchronized (Demo.this) {
+							Demo.this.downNums --;
+							// 通知等待中主线程, 尝试完成合并
+							Demo.this.notify();
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}.start();
+
 		}
+
+		/** 在此等待   */
+		synchronized (this) {
+			// 如果当前下载的块数 大于 0 则继续等待
+			while (downNums > 0) {
+				wait();
+			}
+		}
+
 		// 合并文件
 		marge(filename, blocknums);
 		/**
