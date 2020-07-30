@@ -6,5 +6,8 @@
 			没有实体的响应报文
 
 2. Cookie
+	HTTP 响应报文传送 Cookie 值使用通过 头域字段 Set-Cookie 实现
+	Set-Cookie 特殊之处在于, 响应报文中可以存放多个 Set-Cookie
+
 
 3. post 提交

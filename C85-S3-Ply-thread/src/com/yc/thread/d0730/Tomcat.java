@@ -20,6 +20,10 @@ public class Tomcat {
 		servletMap.put("/photo/hello", new HelloServlet());
 		// 让ToIndexServlet称为网站的默认页面
 		servletMap.put("/", new ToIndexServlet());
+		servletMap.put("/index", new ToIndexServlet());
+		servletMap.put("/toindex", new ToIndexServlet());
+		// 注册cookie servlet
+		servletMap.put("/cookie", new CookieServlet());
 		
 		
 		// 启动服务监听8080端口

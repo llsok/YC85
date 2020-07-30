@@ -4,7 +4,10 @@ import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -16,6 +19,8 @@ public class HttpServletResponse {
 	private String msg;
 	// 存放头域键值对的map集合
 	private Map<String, String> headerMap = new HashMap<>();
+	// 保存发送给浏览器的cookie
+	private List<Cookie> cookieList = new ArrayList<>();
 
 	public HttpServletResponse(OutputStream out) {
 		this.out = out;
@@ -60,6 +65,11 @@ public class HttpServletResponse {
 		for (Entry<String, String> entry : headerMap.entrySet()) {
 			out.write((entry.getKey() + ": " + entry.getValue() + "\n").getBytes());
 		}
+		// 迭代器循环
+		for (Iterator<Cookie> iterator = cookieList.iterator(); iterator.hasNext();) {
+			Cookie cookie = iterator.next();
+			out.write(cookie.toString().getBytes());
+		}
 		// 空行 CRLF
 		out.write("\n".getBytes());
 		// 实体
@@ -75,6 +85,10 @@ public class HttpServletResponse {
 		setStatus(301, "Redirect");
 		// 在头域中写入 Location: 要转的页面
 		headerMap.put("Location", uri);
+	}
+
+	public void addCookie(Cookie cookie) {
+		cookieList.add(cookie);
 	}
 
 }
