@@ -10,6 +10,8 @@ public class HttpServletRequest {
 	private String protocol;
 	// 存放头域键值对的map集合
 	private Map<String, String> headerMap = new HashMap<>();
+	// 存放参数的集合
+	private Map<String, String> paramsMap = new HashMap<>();
 
 	public HttpServletRequest(String requestText) {
 		// 完成对请求报文的解析
@@ -19,6 +21,22 @@ public class HttpServletRequest {
 		requestUri = items[1];
 		protocol = items[2];
 
+		int index = items[1].indexOf("?");
+		if (index != -1) {
+			// 解析参数
+			requestUri = items[1].substring(0, index);
+			String paramString = items[1].substring(index + 1);
+			String[] params = paramString.split("&");
+			for (int i = 0; i < params.length; i++) {
+				String[] nv = params[i].split("=");
+				if (nv.length == 1) {
+					paramsMap.put(nv[0], "");
+				} else if (nv.length > 1) {
+					paramsMap.put(nv[0], nv[1]);
+				}
+			}
+		}
+		
 		for (int i = 1; i < lines.length; i++) {
 			lines[i] = lines[i].trim();
 			if (lines[i].isEmpty()) {
@@ -66,7 +84,7 @@ public class HttpServletRequest {
 	 * @return
 	 */
 	public String getParameter(String name) {
-		return null;
+		return paramsMap.get(name);
 	}
 
 	/**
