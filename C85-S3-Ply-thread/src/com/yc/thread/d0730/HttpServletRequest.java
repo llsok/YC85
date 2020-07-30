@@ -1,6 +1,8 @@
 package com.yc.thread.d0730;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HttpServletRequest {
@@ -92,7 +94,18 @@ public class HttpServletRequest {
 	 * @return
 	 */
 	public Cookie[] getCookies() {
-		return null;
+		String cookieString = headerMap.get("Cookie");
+		if(cookieString == null) {
+			return null;
+		} else {
+			List<Cookie> cookieList = new ArrayList<>();
+			String[] sCookies = cookieString.split(";\\s*");
+			for (int i = 0; i < sCookies.length; i++) {
+				String[] nv = sCookies[i].split("=");
+				cookieList.add(new Cookie(nv[0], nv[1]));
+			}
+			return cookieList.toArray(new Cookie[0]);
+		}
 	}
 
 }

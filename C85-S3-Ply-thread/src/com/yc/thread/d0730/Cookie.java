@@ -26,4 +26,16 @@ public class Cookie {
 		this.maxAge = maxAge;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public int getMaxAge() {
+		return maxAge;
+	}
+
 }

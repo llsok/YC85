@@ -24,6 +24,8 @@ public class Tomcat {
 		servletMap.put("/toindex", new ToIndexServlet());
 		// 注册cookie servlet
 		servletMap.put("/cookie", new CookieServlet());
+		servletMap.put("/login.jsp", new LoginPageServlet());
+		servletMap.put("/photo/post.do", new LoginPageServlet());
 		
 		
 		// 启动服务监听8080端口
@@ -41,7 +43,7 @@ public class Tomcat {
 						System.out.println("接收到请求");
 						InputStream in = socket.getInputStream();
 						OutputStream out = socket.getOutputStream();
-						byte[] buffer = new byte[1024];
+						byte[] buffer = new byte[102400];
 						int count;
 						count = in.read(buffer);
 						if (count > 0) {
