@@ -18,6 +18,8 @@ public class Tomcat {
 		// 服务器初始化Servlet容器 ==> Map集合 ==> URL:Servlet对象
 		servletMap = new HashMap<>();
 		servletMap.put("/photo/hello", new HelloServlet());
+		// 让ToIndexServlet称为网站的默认页面
+		servletMap.put("/", new ToIndexServlet());
 		
 		
 		// 启动服务监听8080端口
