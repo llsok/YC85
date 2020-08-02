@@ -13,4 +13,18 @@
 		select * from dm_product
 	</select>
 	
+	<!-- 参数传入格式:  #{实体对象的属性名} -->
+	<insert id="insert">
+		insert into dm_category values( null, #{cname} , #{pid} )
+	</insert>
+	
+	<update id="update">
+		update dm_category set cname = #{cname} , pid = #{pid} 
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from dm_category where id = #{id}
+	</delete>
+	
 </mapper>
