@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 是当前接口的命名空间 -->
+<mapper namespace="com.yc.damai.dao.DmProductMapper">
+
+	<!-- 
+		id 是该select标签的唯一标识
+		resultType 表示返回的结果映射到的实体类的类型
+	 -->
+	<select id="selectAll" resultType="com.yc.damai.bean.DmProduct">
+		select * from dm_product
+	</select>
+	
+</mapper>

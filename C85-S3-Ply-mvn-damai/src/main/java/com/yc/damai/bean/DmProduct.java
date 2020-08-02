@@ -92,4 +92,12 @@ public class DmProduct {
     public void setCid(Integer cid) {
         this.cid = cid;
     }
+
+	@Override
+	public String toString() {
+		return "DmProduct [id=" + id + ", pname=" + pname + ", marketPrice=" + marketPrice + ", shopPrice=" + shopPrice
+				+ ", image=" + image + ", pdesc=" + pdesc + ", isHot=" + isHot + ", createtime=" + createtime + ", cid="
+				+ cid + "]";
+	}
+    
 }
