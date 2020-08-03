@@ -1,0 +1,30 @@
+MyBatis( iBatis ): 简单易用的持久层框架, 实现 ORM 映射
+
+是对JDBC封装
+
+将SQL语句和程序进行分离( 解耦合 )
+
+配置步骤
+1. pom.xml引入 mybatis依赖
+2. 创建 mybatis 框架配置文件  mybatis.xml (数据源, 映射文件配置)
+3. 定义SQL 映射文件 xxxMapper.xml
+	<mapper namespace="接口命名空间==>接口映射">
+	<select id="接口方法名"><insert>...
+4. 业务方法...
+
+
+本章内容:
+1. 接口映射
+	改善sql调用方式
+	
+2. 自定义字段映射
+
+
+3. 关系(关联)映射
+	一对一关联
+	订单明细=>商品
+	
+	
+	一对多关联
+
+

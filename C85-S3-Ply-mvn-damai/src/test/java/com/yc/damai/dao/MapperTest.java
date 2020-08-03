@@ -12,9 +12,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.yc.damai.bean.DmCategory;
+import com.yc.damai.bean.DmOrderitem;
 import com.yc.damai.bean.DmProduct;
 
-public class DmProductMapperTest {
+public class MapperTest {
 	
 	private SqlSession session ;
 	
@@ -46,9 +47,9 @@ public class DmProductMapperTest {
 		 *  list.size()>0 是实际值
 		 */
 		Assert.assertEquals(true, list.size() > 0);
-		/*for(DmProduct dp : list) {
+		for(DmProduct dp : list) {
 			System.out.println(dp);
-		}*/
+		}
 
 	}
 	
@@ -57,9 +58,13 @@ public class DmProductMapperTest {
 		DmCategory dc = new DmCategory();
 		dc.setCname("测试分类");
 		dc.setPid(1);
-		session.insert("com.yc.damai.dao.DmProductMapper.insert",dc);
+		// session.insert("com.yc.damai.dao.DmProductMapper.insert",dc);
+		// 获取映射接口实现类 (核心技术) 动态代理(JDK)
+		DmCategoryMapper mapper = session.getMapper(DmCategoryMapper.class);
+		mapper.insert(dc);
 		// 不commit, 会话会在关闭自动回滚
 		session.commit();
+		session.close();
 	}
 	
 	@Test
@@ -68,20 +73,40 @@ public class DmProductMapperTest {
 		dc.setId(44);
 		dc.setCname("修改后的测试分类");
 		dc.setPid(1);
-		session.update("com.yc.damai.dao.DmProductMapper.update",dc);
+		//session.update("com.yc.damai.dao.DmProductMapper.update",dc);
+		DmCategoryMapper mapper = session.getMapper(DmCategoryMapper.class);
+		mapper.update(dc);
 		// 不commit, 会话会在关闭自动回滚
 		session.commit();
+		session.close();
 	}
 	
 	@Test
 	public void test4() throws IOException {
-		DmCategory dc = new DmCategory();
+		/*DmCategory dc = new DmCategory();
 		dc.setId(44);
 		dc.setCname("修改后的测试分类");
-		dc.setPid(1);
-		session.delete("com.yc.damai.dao.DmProductMapper.delete",dc);
+		dc.setPid(1);*/
+		//session.delete("com.yc.damai.dao.DmProductMapper.delete",dc);
+		DmCategoryMapper mapper = session.getMapper(DmCategoryMapper.class);
+		mapper.delete(44);
 		// 不commit, 会话会在关闭自动回滚
 		session.commit();
+		session.close();
+	}
+	
+	@Test
+	public void test5() throws IOException {
+		/**
+		 * 1. 先查出一个订单明细记录
+		 * 2. 查出该订单明细对应的商品信息
+		 */
+		DmOrderitemMapper dom = session.getMapper(DmOrderitemMapper.class);
+		DmProductMapper dpm = session.getMapper(DmProductMapper.class);
+		DmOrderitem doi = dom.selectById(59);
+		DmProduct dp = dpm.selectById(doi.getPid());
+		System.out.println(dp);
+		session.close();
 	}
 
 }

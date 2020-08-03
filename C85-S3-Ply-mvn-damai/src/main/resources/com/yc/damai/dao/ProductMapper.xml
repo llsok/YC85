@@ -4,27 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace 是当前接口的命名空间 -->
 <mapper namespace="com.yc.damai.dao.DmProductMapper">
+	
+	<!-- 自定义的字段映射 -->
+	<resultMap type="com.yc.damai.bean.DmProduct" id="rmdp">
+		<!-- id 永远定义主键映射关系   主键在mybatis有特殊的作用  ==> 缓存  -->
+		<id column="id" property="id"/>
+		<!-- result 永远定义非主键映射关系 -->
+		<result column="market_price" property="marketPrice"/>
+		<result column="shop_price" property="shopPrice"/>
+		<result column="is_hot" property="isHot"/>
+	</resultMap>
 
 	<!-- 
 		id 是该select标签的唯一标识
 		resultType 表示返回的结果映射到的实体类的类型
+					简单自动映射
+		resultMap 引用自定义映射		
+		
 	 -->
-	<select id="selectAll" resultType="com.yc.damai.bean.DmProduct">
+	<select id="selectAll" resultMap="rmdp">
 		select * from dm_product
 	</select>
 	
-	<!-- 参数传入格式:  #{实体对象的属性名} -->
-	<insert id="insert">
-		insert into dm_category values( null, #{cname} , #{pid} )
-	</insert>
-	
-	<update id="update">
-		update dm_category set cname = #{cname} , pid = #{pid} 
-		where id = #{id}
-	</update>
-	
-	<delete id="delete">
-		delete from dm_category where id = #{id}
-	</delete>
+	<select id="selectById" resultMap="rmdp">
+		select * from dm_product where id = #{id}
+	</select>
 	
 </mapper>
