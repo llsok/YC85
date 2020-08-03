@@ -5,11 +5,19 @@
 <!-- namespace 是当前接口的命名空间 -->
 <mapper namespace="com.yc.damai.dao.DmOrderitemMapper">
 
+	<resultMap type="com.yc.damai.bean.DmOrderitem" id="rmdo">
+		<!-- 一对一关联查询 
+			select 用于指定完成关联查询的sql的id ==> 命名空间+sql.id
+		-->
+		<association property="dmProduct" column="pid" 
+			select="com.yc.damai.dao.DmProductMapper.selectById"></association>
+	</resultMap>
+
 	<!-- 
 		id 是该select标签的唯一标识
 		resultType 表示返回的结果映射到的实体类的类型
 	 -->
-	<select id="selectById" resultType="com.yc.damai.bean.DmOrderitem">
+	<select id="selectById" resultMap="rmdo">
 		select * from dm_orderitem where id = #{id}
 	</select>
 	

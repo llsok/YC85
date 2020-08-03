@@ -2,12 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- namespace 是当前接口的命名空间 -->
+<!-- namespace 是当前接口的命名空间
+	xml 中的类路径 可以使用  ctrl + 鼠标键 ==> 编程手型鼠标  ==> 对了 
+-->
 <mapper namespace="com.yc.damai.dao.DmCategoryMapper">
 
 	<!-- 
 		id 是该select标签的唯一标识
-		resultType 表示返回的结果映射到的实体类的类型
+		resultType 表示返回的结果映射到的实体类的类型s
 	 -->
 	<select id="selectAll" resultType="com.yc.damai.bean.DmCategory">
 		select * from dm_category

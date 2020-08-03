@@ -101,10 +101,19 @@ public class MapperTest {
 		 * 1. 先查出一个订单明细记录
 		 * 2. 查出该订单明细对应的商品信息
 		 */
-		DmOrderitemMapper dom = session.getMapper(DmOrderitemMapper.class);
+		/*DmOrderitemMapper dom = session.getMapper(DmOrderitemMapper.class);
 		DmProductMapper dpm = session.getMapper(DmProductMapper.class);
 		DmOrderitem doi = dom.selectById(59);
-		DmProduct dp = dpm.selectById(doi.getPid());
+		DmProduct dp = dpm.selectById(doi.getPid());*/
+		
+		/**
+		 * 测试驱动开发  ==> 先写好所有的测试代码 ==> 再业务代码 
+		 */
+		DmOrderitemMapper dom = session.getMapper(DmOrderitemMapper.class);
+		DmOrderitem doi = dom.selectById(59);
+		// java黑科技  ==> 反射 ==> 动态代理技术
+		DmProduct dp = doi.getDmProduct();  // 调用 dmProduct 属性的get方法
+		
 		System.out.println(dp);
 		session.close();
 	}

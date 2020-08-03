@@ -10,8 +10,19 @@ public class DmOrderitem {
     private Integer pid;
 
     private Integer oid;
+    
+    // 订单明细记录的商品信息的对象
+    private DmProduct dmProduct; 
 
-    public Integer getId() {
+    public DmProduct getDmProduct() {
+		return dmProduct;
+	}
+
+	public void setDmProduct(DmProduct dmProduct) {
+		this.dmProduct = dmProduct;
+	}
+
+	public Integer getId() {
         return id;
     }
 
