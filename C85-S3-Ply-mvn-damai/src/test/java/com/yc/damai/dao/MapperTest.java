@@ -156,5 +156,46 @@ public class MapperTest {
 		System.out.println("======================");
 		mapper.selectByObj(dp);
 	}
+	
+	/**
+	 * org.apache.ibatis.exceptions.PersistenceException: 
+		Cause: org.apache.ibatis.binding.BindingException: 
+		Parameter 'cids' not found. Available parameters are [array]
+		没找到指定参数
+	 * 
+	 * @throws IOException
+	 */
+	
+	@Test
+	public void test8() throws IOException {
+		DmProductMapper mapper = session.getMapper(DmProductMapper.class);
+		int[] cids = {1,2,3};
+		mapper.selectByCids(cids);
+	}
+	
+	@Test
+	public void test9() throws IOException {
+		DmProductMapper mapper = session.getMapper(DmProductMapper.class);
+		DmProduct dp = new DmProduct();
+		// 只修改一个字段(Market_Price)值
+		dp.setId(1);
+		dp.setMarketPrice(885d);
+		mapper.update(dp);
+		// 从数据库查出该记录, 验证结果
+		DmProduct dbdp = mapper.selectById(1);
+		
+		Assert.assertEquals((Double)885d, dbdp.getMarketPrice());
+		Assert.assertEquals((Double)228d, dbdp.getShopPrice());
+		Assert.assertEquals("韩版连帽加厚毛衣女外套", dbdp.getPname());
+		
+		/**
+		 * 	解决方案:
+		 * 	1. 在update之前先将数据库中该记录的值全部查询出来,设置到 dp 中
+		 * 		每次修改都是更新所有字段
+		 * 	2.动态生成更新sql, 只更新不为null的字段
+		 * 		如果有个字段要改成 null 值
+		 */
+		
+	}
 
 }

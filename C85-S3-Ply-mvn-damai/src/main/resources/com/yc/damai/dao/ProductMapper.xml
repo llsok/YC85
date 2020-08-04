@@ -62,7 +62,50 @@
 		</where>
 	</select>
 	
+	<select id="selectByCids" resultMap="rmdp">
+		select * from dm_product where
+			<!-- cid in (1,3,4) 
+				String sql = "cid in ("
+				for (cid : cids){
+					sql += cid
+				}
+				sql += ")"
+			-->
+			<foreach item="cid" collection="cids"
+					open="cid in (" close=")" separator=",">
+				#{cid}
+			</foreach>
+	</select>
 	
-	
+	<update id="update">
+		update dm_product
+		   <set> 
+			   <if test="pname!=null">
+			   	   pname=#{pname},
+			   </if>
+			   <if test="marketPrice!=null">
+			   	   market_price=#{marketPrice},
+			   </if>
+			   <if test="shopPrice!=null">
+			   	   shop_price=#{shopPrice},
+			   </if>
+			   <if test="image!=null">
+			   	   image=#{image},
+			   </if>
+			   <if test="pdesc!=null">
+			   	   pdesc=#{pdesc},
+			   </if>
+			   <if test="isHot!=null">
+			   	   is_hot=#{isHot},
+			   </if>
+			   <if test="createtime!=null">
+			   	   createtime=#{createtime},
+			   </if>
+			   <if test="cid!=null">
+			   	   cid=#{cid}
+			   </if>
+		   </set>
+		 where id=#{id}
+	</update>
 	
 </mapper>

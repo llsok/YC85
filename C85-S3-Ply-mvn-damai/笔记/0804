@@ -17,15 +17,24 @@
 
 1.一对多关联查询
 	订单 => 订单明细
-	
 	分类(大类) ==> 分类 (小类)  自关联
-	
-
+	主从表: 分类: 商品, 部门:员工
+	<resultMap>
+		<collection property column select fetchtype="lazy">
 
 2.动态sql
 	查询 ==> 组合条件查询 ==> java代码动态sql
+	<where> + <if> + <choose>
+	<foreach>
+	<set> + <if> + <choose>
+	
+	<sql> + <include>
 
-
+作业:
+	1. 实现订单 : 订单明细管理查询配置( 1对多)
+	2. 将分类关联查询, 请渲染到 damai 分类查询页面中
+		clist.html
+	3.扩展学习 <sql> + <include> 标签的使用
 
 
 
