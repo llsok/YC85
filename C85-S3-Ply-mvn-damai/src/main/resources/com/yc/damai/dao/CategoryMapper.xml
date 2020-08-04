@@ -6,12 +6,24 @@
 	xml 中的类路径 可以使用  ctrl + 鼠标键 ==> 编程手型鼠标  ==> 对了 
 -->
 <mapper namespace="com.yc.damai.dao.DmCategoryMapper">
+	<!-- 
+		fetchType="lazy" 惰性加载 ==> 延迟加载
+	 -->
+	<resultMap type="com.yc.damai.bean.DmCategory" id="rmdc">
+		<collection property="children" column="id"
+			select="selectChildren" fetchType="lazy"
+		></collection>
+	</resultMap>
+	
+	<select id="selectChildren" resultType="com.yc.damai.bean.DmCategory">
+		select * from dm_category where pid=#{id}
+	</select>
 
 	<!-- 
 		id 是该select标签的唯一标识
 		resultType 表示返回的结果映射到的实体类的类型s
 	 -->
-	<select id="selectAll" resultType="com.yc.damai.bean.DmCategory">
+	<select id="selectAll" resultMap="rmdc">
 		select * from dm_category
 	</select>
 	

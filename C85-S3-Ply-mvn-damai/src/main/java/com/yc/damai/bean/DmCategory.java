@@ -1,13 +1,26 @@
 package com.yc.damai.bean;
 
+import java.util.List;
+
 public class DmCategory {
     private Integer id;
 
     private String cname;
 
     private Integer pid;
+    
+    // 当前分类的子类集合
+    private List<DmCategory> children;
 
-    public Integer getId() {
+    public List<DmCategory> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<DmCategory> children) {
+		this.children = children;
+	}
+
+	public Integer getId() {
         return id;
     }
 

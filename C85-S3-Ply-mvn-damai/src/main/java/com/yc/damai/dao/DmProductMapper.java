@@ -9,4 +9,6 @@ public interface DmProductMapper {
 	List<DmProduct> selectAll();
 	
 	DmProduct selectById(int id);
+	
+	List<DmProduct> selectByObj(DmProduct dp);
 }

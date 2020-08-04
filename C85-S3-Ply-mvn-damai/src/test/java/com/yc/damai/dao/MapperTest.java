@@ -117,5 +117,44 @@ public class MapperTest {
 		System.out.println(dp);
 		session.close();
 	}
+	
+	@Test
+	public void test6() throws IOException {
+		DmCategoryMapper mapper = session.getMapper(DmCategoryMapper.class);
+		List<DmCategory> dcList = mapper.selectAll();
+		System.out.println("===========1==========");
+		DmCategory dc = dcList.get(1);
+		System.out.println("===========2==========");
+		Assert.assertEquals("鞋靴箱包", dc.getCname());
+		System.out.println("===========3==========");
+		Assert.assertEquals(6, dc.getChildren().size());
+		System.out.println("===========4==========");
+	}
+	
+	@Test
+	public void test7() throws IOException {
+		DmProductMapper mapper = session.getMapper(DmProductMapper.class);
+		System.out.println("======================");
+		mapper.selectByObj(null);
+		DmProduct dp = new DmProduct();
+		System.out.println("======================");
+		mapper.selectByObj(dp);
+		
+		dp.setPname("测试");
+		System.out.println("======================");
+		mapper.selectByObj(dp);
+		
+		dp.setPdesc("测试描述");
+		System.out.println("======================");
+		mapper.selectByObj(dp);
+		
+		dp.setIsHot(-1);
+		System.out.println("======================");
+		mapper.selectByObj(dp);
+		
+		dp.setIsHot(1);
+		System.out.println("======================");
+		mapper.selectByObj(dp);
+	}
 
 }
