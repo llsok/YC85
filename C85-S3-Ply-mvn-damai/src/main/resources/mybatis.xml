@@ -58,10 +58,18 @@
 		注册接口
 	 -->
 	<mappers>
+		<!-- xml + 注解的混合方案, 注册时使用xml配置注册 -->
 		<mapper resource="com/yc/damai/dao/ProductMapper.xml" />
-		<mapper resource="com/yc/damai/dao/CategoryMapper.xml" />
+		<!-- <mapper resource="com/yc/damai/dao/CategoryMapper.xml" /> -->
 		<mapper resource="com/yc/damai/dao/OrderitemMapper.xml" />
-		<mapper resource="com/yc/damai/dao/OrdersMapper.xml" />
+		<!-- <mapper resource="com/yc/damai/dao/OrdersMapper.xml" /> -->
+		
+		<!-- 注册接口 存注解方式 (无xml) -->
+		<mapper class="com.yc.damai.dao.DmOrdersMapper"/>
+		<mapper class="com.yc.damai.dao.DmCategoryMapper"/> 
+
+		<!-- 自动扫描包下的mapper接口  xml 也会被扫描到 -->
+		<!-- <package name="com.yc.damai.dao"/> -->
 	</mappers>
 	
 	

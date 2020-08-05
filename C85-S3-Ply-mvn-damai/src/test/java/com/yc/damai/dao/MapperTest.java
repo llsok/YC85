@@ -267,5 +267,11 @@ public class MapperTest {
 		
 		mapper2.selectByCids(cids);
 	}
+	
+	@Test
+	public void test12() throws IOException {
+		DmProductMapper mapper = session.getMapper(DmProductMapper.class);
+		mapper.selectById(1);
+	}
 
 }

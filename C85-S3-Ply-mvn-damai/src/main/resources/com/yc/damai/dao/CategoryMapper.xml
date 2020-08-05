@@ -33,8 +33,7 @@
 	</insert>
 	
 	<update id="update">
-		update dm_category set cname = #{cname} , pid = #{pid} 
-		where id = #{id}
+		update dm_category set cname = #{cname} , pid = #{pid} where id = #{id}
 	</update>
 	
 	<delete id="delete">
