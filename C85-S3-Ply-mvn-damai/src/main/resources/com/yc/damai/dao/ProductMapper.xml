@@ -4,6 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace 是当前接口的命名空间 -->
 <mapper namespace="com.yc.damai.dao.DmProductMapper">
+	<!-- 只要加入该标签就会开启当前接口的二级缓存 -->
+	<cache
+		eviction="FIFO"
+		size="512"
+		flushInterval="10000"
+		readOnly="true"
+	></cache>
 	
 	<!-- 自定义的字段映射 -->
 	<resultMap type="com.yc.damai.bean.DmProduct" id="rmdp">

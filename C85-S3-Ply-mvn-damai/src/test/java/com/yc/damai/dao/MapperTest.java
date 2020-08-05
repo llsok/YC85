@@ -13,11 +13,13 @@ import org.junit.Test;
 
 import com.yc.damai.bean.DmCategory;
 import com.yc.damai.bean.DmOrderitem;
+import com.yc.damai.bean.DmOrders;
 import com.yc.damai.bean.DmProduct;
 
 public class MapperTest {
 	
 	private SqlSession session ;
+	private SqlSession session2 ;
 	
 	//动态块
 	{
@@ -30,6 +32,7 @@ public class MapperTest {
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			// 开启会话
 			session = sqlSessionFactory.openSession();
+			session2 = sqlSessionFactory.openSession();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -196,6 +199,73 @@ public class MapperTest {
 		 * 		如果有个字段要改成 null 值
 		 */
 		
+	}
+	
+	@Test
+	public void test10() throws IOException {
+		DmOrdersMapper dosm = session.getMapper(DmOrdersMapper.class);
+		DmOrderitemMapper doim = session.getMapper(DmOrderitemMapper.class);
+		
+		// 生成订单业务
+		// 定义购买的2个订单明细
+		DmOrderitem doi1 = new DmOrderitem();
+		doi1.setPid(1);
+		doi1.setCount(1);
+		doi1.setTotal(100d);
+		DmOrderitem doi2 = new DmOrderitem();
+		doi2.setPid(2);
+		doi2.setCount(1);
+		doi2.setTotal(200d);
+		//定义订单主表记录
+		DmOrders dos = new DmOrders();
+		dos.setTotal(300d);
+		dos.setAid(1);
+		dos.setState(1);
+		dos.setUid(1);
+		
+		try {
+			// 写订单表
+			dosm.insert(dos);
+			/**
+			 * 	在添加订单明细记录时, 必须要获取到订单主表主键值 id
+			 * 	二阶段项目, 我在此处进行了一次查询   select max(id) from dm_orders
+			 *  	严重的问题: 多线程方式下会产生并发问题
+			 *  MyBatis 可以实现在 insert 的同时获取到数据新生成的 id, 不需要select
+			 */
+			doi1.setOid(dos.getId());
+			doi2.setOid(dos.getId());
+			// 写订单明细表
+			doim.insert(doi1);
+			doim.insert(doi2);
+			// 提交事务
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
+		
+	}
+	
+	@Test
+	public void test11() throws IOException {
+		DmProductMapper mapper = session.getMapper(DmProductMapper.class);
+		DmProductMapper mapper2 = session2.getMapper(DmProductMapper.class);
+		int[] cids = {1000};
+		/**
+		 * Cache Hit Ratio [com.yc.damai.dao.DmProductMapper]: 0.0
+		 * 	缓存命中:  当前查询结果在缓存出现的概率
+		 */
+		
+		mapper.selectByCids(cids);
+		// 提交
+		//session.commit();
+		session.close();
+		
+		mapper2.selectByCids(cids);
+		
+		mapper2.selectByCids(cids);
 	}
 
 }
