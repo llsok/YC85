@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<!-- xml有一个唯一的根标签 -->
+<configuration>
+
+	<!-- 数据环境  -->
+	<environments default="development">
+		<!-- 开发环境 -->
+		<environment id="development">
+			<!-- 事务管理的类型 jdbc -->
+			<transactionManager type="JDBC" />
+			<!-- type="POOLED" 数据源类型: 连接池  -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1/c85-s3-ply-favorite" />
+				<property name="username" value="root" />
+				<property name="password" value="a" />
+			</dataSource>
+		</environment>
+		
+		<!-- 测试环境 -->
+		<environment id="test">
+			<!-- 事务管理的类型 jdbc -->
+			<transactionManager type="JDBC" />
+			<!-- type="POOLED" 数据源类型: 连接池  -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1/c85-s2-ply-damai" />
+				<property name="username" value="root" />
+				<property name="password" value="a" />
+			</dataSource>
+		</environment>
+		
+		<!-- 生产环境 -->
+		<environment id="produce">
+			<!-- 事务管理的类型 jdbc -->
+			<transactionManager type="JDBC" />
+			<!-- type="POOLED" 数据源类型: 连接池  -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1/c85-s2-ply-damai" />
+				<property name="username" value="root" />
+				<property name="password" value="a" />
+			</dataSource>
+		</environment>
+		
+	</environments>
+	
+	
+	<!-- 映射文件配置 -->
+	<!-- 
+		org.apache.ibatis.binding.BindingException: 
+		Type interface com.yc.damai.dao.DmOrderitemMapper is not known to the MapperRegistry.
+		注册接口
+	 -->
+	<mappers>
+		<package name="com.yc.favorite.dao"/>
+	</mappers>
+	
+	
+	
+</configuration>
