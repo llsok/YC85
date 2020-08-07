@@ -36,17 +36,17 @@
 					<tr><td><a href="#" onclick="add();" style="font-weight:bold;">添加书签</a></td></tr>
 					<tr>
 						<td class="selected_label">
-							<a href="fav.do?op=toList&type=-1">全部</a>
+							<a href="#" @click="lookup(0)">全部</a>
 						</td>
 					</tr>
 					<tr>
 						<td >
-							<a href="fav.do?op=toList&type=0">未分类</a>
+							<a href="#" @click="lookup(null)">未分类</a>
 						</td>
 					</tr>
 						
 					<tr v-for="t in tags">
-						<td><a href="???">{{t.tname}}</a></td>
+						<td><a href="#" @click="lookup(t.tid)">{{t.tname}}</a></td>
 					</tr>
 						
 					
@@ -62,51 +62,18 @@
 			<!-- 右边fav内容 -->
 				<div class="content_links">
 				
-				<div style="padding:6px 10px;">	
+				<div style="padding:6px 10px;" v-for="f in favs">	
 					<div>
-						<a href="http://www.apache.org/struts/" style="color:blue;font-size:18px;" target="_blank">Apache Struts</a>
+						<a :href="'http://' + f.furl" 
+						style="color:blue;font-size:18px;" target="_blank">
+							{{f.flabel}}
+						</a>
 					</div>
 					<div style="color:black;font-size:16px;">	
-						Struts官方站点
+						{{f.fdesc}}
 					</div>
 					<div style="color:green;font-size:14px;">
-						http://www.apache.org/struts/
-					</div>
-				</div>	
-				
-				<div style="padding:6px 10px;">	
-					<div>
-						<a href="http://www.sougaou.com" style="color:blue;font-size:18px;" target="_blank">搜狗</a>
-					</div>
-					<div style="color:black;font-size:16px;">	
-						aa
-					</div>
-					<div style="color:green;font-size:14px;">
-						http://www.sougaou.com
-					</div>
-				</div>	
-				
-				<div style="padding:6px 10px;">	
-					<div>
-						<a href="http://www.sina.com" style="color:blue;font-size:18px;" target="_blank">新浪</a>
-					</div>
-					<div style="color:black;font-size:16px;">	
-						国内外著名门户网站
-					</div>
-					<div style="color:green;font-size:14px;">
-						http://www.sina.com
-					</div>
-				</div>	
-				
-				<div style="padding:6px 10px;">	
-					<div>
-						<a href="http://www.taobao.com" style="color:blue;font-size:18px;" target="_blank">淘宝</a>
-					</div>
-					<div style="color:black;font-size:16px;">	
-						这是一个好网站在。。
-					</div>
-					<div style="color:green;font-size:14px;">
-						http://www.taobao.com
+						http://{{f.furl}}
 					</div>
 				</div>	
 				
@@ -129,6 +96,13 @@
 				axios.get("queryTags.do").then(res=>{
 					this.tags = res.data;
 				});
+			},
+			methods : {
+				lookup(tid){
+					axios.get("queryFavs.do?tid=" + tid).then(res=>{
+						this.favs = res.data;
+					});
+				}
 			}
 		});
 	
