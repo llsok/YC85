@@ -1,5 +1,5 @@
 create table tag(
-   tid varchar(50) primary key ,
+   tid int primary key auto_increment,
    tname varchar(50),
    tcount int
 );
@@ -13,7 +13,7 @@ create table favorite(
  );
 --联合主键
 create table tagfavorite(
-	tid varchar(50),
+	tid int,
     fid int,
     primary key (tid,fid)
 );

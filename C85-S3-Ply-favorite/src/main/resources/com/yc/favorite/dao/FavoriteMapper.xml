@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 是当前接口的命名空间 -->
+<mapper namespace="com.yc.favorite.dao.FavoriteMapper">
+	<select id="selectByTid" resultType="com.yc.favorite.bean.Favorite">
+		select * from favorite a
+		<where>
+			<choose>
+				<when test="tid == null">
+					ftags is null
+				</when>	
+				<when test="tid > 0">
+					and exists ( select * 
+								   from tagfavorite b 
+								  where a.fid=b.fid 
+								    and b.tid=#{tid})
+				</when>
+			</choose>
+		</where>
+	</select>
+</mapper>

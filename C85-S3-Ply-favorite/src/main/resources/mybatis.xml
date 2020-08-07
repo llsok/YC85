@@ -58,7 +58,10 @@
 		注册接口
 	 -->
 	<mappers>
-		<package name="com.yc.favorite.dao"/>
+		<mapper resource="com/yc/favorite/dao/FavoriteMapper.xml"/>
+		<!-- <package name="com.yc.favorite.dao"/> -->
+		<mapper class="com.yc.favorite.dao.TagFavoriteMapper"/>
+		<mapper class="com.yc.favorite.dao.TagMapper"/>
 	</mappers>
 	
 	
