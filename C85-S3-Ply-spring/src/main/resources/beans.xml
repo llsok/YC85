@@ -6,5 +6,9 @@
 
     <bean id="hello" class="com.yc.spring.Hello">   
     </bean>
+    
+    <bean id="mdao" class="com.yc.spring.dao.OracleUserDao"></bean>
+    
+    <bean id="odao" class="com.yc.spring.dao.MySQLUserDao"></bean>
 
 </beans>
