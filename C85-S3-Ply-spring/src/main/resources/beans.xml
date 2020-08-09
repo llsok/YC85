@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="hello" class="com.yc.spring.Hello">   
-    </bean>
+	<bean id="hello" class="com.yc.spring.Hello">
+	</bean>
+
+	<bean id="mdao" class="com.yc.spring.dao.OracleUserDao"></bean>
+
+	<bean id="odao" class="com.yc.spring.dao.MySQLUserDao"></bean>
     
-    <bean id="mdao" class="com.yc.spring.dao.OracleUserDao"></bean>
     
-    <bean id="odao" class="com.yc.spring.dao.MySQLUserDao"></bean>
+    <!-- 
+    	Spring 依赖注入(DI) 注入方式有三种
+    	注入: 对象属性初始化设值
+    	1. setter 注入 (set方法注入)
+    		new 对象
+    		对象.setXXX
+    	2.     构造方法注入
+    	3.     接口注入   ==> SpringMVC大量的应用
+     -->
+     
+     <!-- 注入的例子使用的是 实体对象, 实际开发中很少对实体对象设值 -->
+	<bean id="p1" class="com.yc.spring.bean.Person">
+     	<!-- property 实现 setter 注入 -->
+		<property name="name" value="武松"></property>
+		<property name="age" value="35"></property>
+		<property name="killeds">
+			<list>
+				<value type="java.lang.String">潘金莲</value>
+				<value>西门庆</value>
+				<value type="java.lang.String">蒋门神</value>
+				<value>null</value>
+				<null></null>
+			</list>
+		</property>
+
+	</bean>
+     
+     <!-- primary="true" 设置当前的bean 是主要的, 默认class 方式获取的bean -->
+	<bean class="com.yc.spring.bean.Person" primary="true">
+		<constructor-arg name="name" value="李逵" index="1"></constructor-arg>
+		<constructor-arg name="alisa" value="黑旋风" index="2"></constructor-arg>
+		<constructor-arg name="age" value="33" index="0"></constructor-arg>
+	</bean>
+
+	<!-- ref 引用其他的bean -->
+	<bean id="p2" class="com.yc.spring.bean.Person">
+		<property name="name" value="吴用"></property>
+		<property name="age" value="38"></property>
+		<property name="friend" ref="p3">
+		</property>
+	</bean>
+
+	<bean id="p3" class="com.yc.spring.bean.Person">
+		<property name="name" value="华荣"></property>
+	</bean>
+	
+	<!-- 工厂方式创建对象 -->
+	<!-- 静态工厂方法配置 -->
+	<bean id="p5" class="com.yc.spring.bean.Person"
+		factory-method="PersonFactory">
+		<property name="name" value="王英"></property>
+	</bean>
+	
+	<!-- 实例工厂方法配置 -->
+	<bean id="p6" class="com.yc.spring.bean.Person"
+		factory-method="PersonFactory1" factory-bean="personFactory">
+		<property name="name" value="扈三娘"></property>
+	</bean>
+	
+	<bean id="personFactory" class="com.yc.spring.bean.Person">
+	</bean>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </beans>
