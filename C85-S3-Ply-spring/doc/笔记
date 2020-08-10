@@ -1,0 +1,18 @@
+Spring IOC( 控制反转 )
+
+Spring 大管家负责创建和管理对象
+1.对象池方式管理bean;
+2.同(DI 依赖注入)配置bean
+
+使用步骤:
+1. 配置 pom.xml ==> spring-context 依赖 (bean core aop ...)
+2. 配置 spring 的配置文件 : xml 和 注解
+3. 业务开发
+
+注入方式:
+1. setter 注入 (常用)
+2. 构造方法注入
+3. 接口注入  (SpringMVC 大量使用)
+
+bean 高级的特性和生命周期配置
+

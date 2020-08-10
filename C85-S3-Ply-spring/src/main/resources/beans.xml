@@ -70,21 +70,46 @@
 		factory-method="PersonFactory1" factory-bean="personFactory">
 		<property name="name" value="扈三娘"></property>
 	</bean>
-	
+
 	<bean id="personFactory" class="com.yc.spring.bean.Person">
 	</bean>
 
+	<!-- 
+		scope="singleton" 单例 默认 每次getBean的时候, 都会使用同一个bean
+		scope="prototype" 原型(多利) 每次getBean的时候, 都会创建一个新的bean
+		其他作用域 : session, request, global
+		prototype 模式每次都会创建新的bean , 每次都会调用 new or 工厂方法
+	 -->
+	<bean id="hello1" class="com.yc.spring.Hello" scope="prototype">
+	</bean>
 
+	<!-- 
+		lazy-init : 懒加载, 默认为 false, Spring容器在启动时, 就会创建所有未配置懒加载bean 
+		prototype 原型模式下 默认懒加载
+	-->
+	<bean id="hello2" class="com.yc.spring.Hello" lazy-init="true">
+		<constructor-arg name="a" value="100"></constructor-arg>
+	</bean>
 
-
-
-
-
-
-
-
-
-
-
+	<!-- 生命周期方法  init 初始化, destroy 销毁一些资源   -->
+	<bean id="hello3" class="com.yc.spring.Hello" 
+		init-method="init" destroy-method="destroy">
+	</bean>
+	
+	<!-- 
+		autowire="default" 自动装载, 根据一些规则自动的从IOC容器获取属性值 
+		byName: 用属性名从容器中获取指定id的bean
+		byType: 用类名从容器中获取指定类型的bean
+		constructor: 根据构造方法参数的类型获取bean
+		default ==> no 不自动装载
+	-->
+	<bean id="friend" class="com.yc.spring.bean.Person">
+		<property name="name" value="鲁智深"></property>
+	</bean>
+	<bean id="p7" class="com.yc.spring.bean.Person" autowire="byName">
+		<property name="name" value="武松"></property>
+		<property name="age" value="35"></property>
+		<!-- <property name="friend" ref="friend"></property> -->
+	</bean>
 
 </beans>
