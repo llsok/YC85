@@ -16,3 +16,47 @@ Spring 大管家负责创建和管理对象
 
 bean 高级的特性和生命周期配置
 
+
+Spring IOC 
+XML配置				注解配置
+beans.xml			BeanConfig.java + @Configuration
+<bean>				@Bean
+<init-lazy="true">	@Lazy
+<primary="true">	@Primary
+<init-method="">	@Bean(initMethod="")
+<property>			Java 代码  ==> setXXXX
+
+autowire			
+
+
+注解实现自动装配( 配置业务模块之间的依赖注入 )
+	xxxBiz ==> xxxDao
+	class xxxBiz {
+		private xxxDao xDao; // 实现自动的注入
+	}
+
+组件注解: 直接在业务类上定义的注解, 作用是替代 @Bean
+@Component		通用的组件注解
+@Controller		控制器组件注解 ==> 相对于 Servlet
+@Service		服务类组件注解 ==> xxxBiz, xxxService ...
+@Repository		Dao类组件注解 ==> xxxDao, xxxMapper ...
+
+在配置类上加上组件扫描注解
+
+	<div>  层
+	html5  <header><footer> .... 结构语义性
+
+
+AOP
+
+
+
+
+
+
+
+
+
+
+
+
