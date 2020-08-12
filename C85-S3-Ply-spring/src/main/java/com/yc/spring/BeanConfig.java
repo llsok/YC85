@@ -15,8 +15,8 @@ import com.yc.spring.dao.OracleUserDao;
 /**
  * 注解方式配置IOC容器
  */
-@Configuration  // IOC容器配置类的注解   ==> beans.xml
-@ComponentScan("com.yc.spring") // 扫描该包和它的所有子包
+//@Configuration  // IOC容器配置类的注解   ==> beans.xml
+//@ComponentScan("com.yc.spring") // 扫描该包和它的所有子包
 public class BeanConfig {
 	
 	// xml中的每一个bean 对应 java 的一个方法, 这个方法返回 bean 对象

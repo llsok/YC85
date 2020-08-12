@@ -73,5 +73,11 @@ public class MyAspect {
 		}
 		return ret;
 	}
+	
+	// 如果不拦截 hello 那么hello对象就是 new Hello() 出来的
+	@After("execution(*  com.yc.spring.Hello.*(..))")
+	public void afterForHello(JoinPoint jp) {
+		System.out.println("========== Hello 后置增强 ===========");
+	}
 
 }

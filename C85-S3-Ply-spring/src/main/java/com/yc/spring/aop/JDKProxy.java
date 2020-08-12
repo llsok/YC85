@@ -17,8 +17,8 @@ public class JDKProxy implements InvocationHandler {
 		bk.sale();
 		
 		// 必须使用接口, 否则报错
-		Houseowner bk1 = (Houseowner) jp.createProxyInstance(ho);
-		bk1.sale();
+		//Houseowner bk1 = (Houseowner) jp.createProxyInstance(ho);
+		//bk1.sale();
 	}
 	
 	// 被代理对象
