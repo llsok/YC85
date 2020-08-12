@@ -22,9 +22,8 @@ public class AOPTest {
 	@Autowired
 	@Qualifier("odao")
 	private UserDao odao;
-	//@Autowired
-	//@Qualifier("person")
-	//private Person person;
+	@Autowired
+	private Person person;
 	@Autowired
 	private Hello hello;
 	
@@ -46,7 +45,7 @@ public class AOPTest {
 		 */
 		System.out.println(mdao);	// JDK 代理命名规则 $Proxy
 		System.out.println(odao);	// JDK
-		//System.out.println(person);
+		System.out.println(person);
 		System.out.println(hello); // CGLIB debug 模式才能看到: 名字中带了 CGLIB
 	}
 	

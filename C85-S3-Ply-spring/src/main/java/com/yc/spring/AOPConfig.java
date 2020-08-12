@@ -16,7 +16,7 @@ import com.yc.spring.bean.Person;
 @EnableAspectJAutoProxy   // 对应  <aop:aspectj-autoproxy/>
 public class AOPConfig {
 	
-	@Bean
+	@Bean  // 未指定 id 方法名就是 id
 	public Person getPerson() {
 		return new Person();
 	}

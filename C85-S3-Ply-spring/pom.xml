@@ -35,5 +35,10 @@
 			<artifactId>spring-test</artifactId>
 			<version>5.2.4.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.3</version>
+		</dependency>
 	</dependencies>
 </project>
