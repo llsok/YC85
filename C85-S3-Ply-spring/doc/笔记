@@ -157,6 +157,23 @@ Spring的配置类(或xml) , 在扫描到其他配置类, 那么会将该配置类的配置信息合并到当前
 Bean 注解, 在没有配name (等同于id) 那么方法名就是 name
 
 
+=======================================
+Spring AOP 实现机制 (代理模式)
+静态代理
+动态代理
+	1. JDK 动态代理
+	2. CGLIB 实现
+	
+	
+Spring 事务管理
+
+1. Spring JDBC 编程
+	DBHelper (放弃)
+	MyBatis	 
+	SpringJDBC 最轻量级的jdbc封装(连接池, 事务管理, 模板操作(简化jdbc)) 
+	
+2. Spring 事务配置
+
 
 
 
