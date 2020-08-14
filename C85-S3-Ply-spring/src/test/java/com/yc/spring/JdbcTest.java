@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yc.spring.bank.biz.BankBiz;
+import com.yc.spring.bank.biz.BizException;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("/jdbc.xml")
@@ -30,11 +31,14 @@ public class JdbcTest {
 	}
 	
 	@Test
-	public void test3() {
-		bbiz.save(1, 500);
+	public void test3() throws BizException {
+		bbiz.save(1, 1300);
 	}
 	
-	
+	@Test
+	public void test4() throws BizException {
+		bbiz.save(1, 100);
+	}
 	
 	
 	

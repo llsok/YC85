@@ -175,6 +175,40 @@ Spring 事务管理
 2. Spring 事务配置
 
 
+Spring JDBC  JdbcTemplate 配置 ==> 高级版DBHelper
+
+银行业务:
+开户
+存取款
+转账
+
+account 账号表
+oprecord 流水表
+
+
+Spring的事务管理两种方式
+1. 编程式事务
+2. 声明式事务
+
+Spring 事务一般都是加在 业务层类上
+
+
+Spring 声明式事务配置
+1. xml 方式:
+	<bean id="txManager">
+	<tx:advice >
+	<aop:config>
+2. 注解配置
+	<bean id="txManager">
+	业务类上添加 Transactional 注解
+
+
+
+
+
+
+
+
 
 
 
