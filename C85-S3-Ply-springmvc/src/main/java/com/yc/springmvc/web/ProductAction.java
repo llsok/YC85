@@ -88,11 +88,9 @@ public class ProductAction {
 	public DmUser findUser() {
 		DmUser du = new DmUser();
 		du.setId(100);
-		du.setCname("lisi");
+		du.setCname("历史");
 		du.setPassword("123");
 		return du;
 	}
-	
-	
 	
 }

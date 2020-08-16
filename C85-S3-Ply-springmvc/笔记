@@ -1,0 +1,53 @@
+SpringMVC ==> 控制层框架
+
+框架搭建:
+1. pom.xml 引入 SpringMVC 依赖 ==> spring-webmvc
+2. web.xml 配置 转发器Servlet ==> 接收所有的请求, 将请求封装后发送给对应的控制器方法
+3. beans.xml
+	<mvc:annotation-driven>   		注解驱动
+	<mvc:default-servlet-handler/>	静态资源处理
+4. 编写控制器类 ==> POJO类
+	@RestController (控制器方法返回json) 
+	or 
+	@Controller (控制方法返回也页面(视图)名称) ==> 跳转 jsp, html
+	
+	@RequestMapping: 定义在方法之上, 类的上面
+		@GetMapping
+		@PostMapping
+		@PutMapping
+		...
+		
+	@RequestParam  : 定义在方法参数之上, 自定义的参数映射
+		请求参数名 ==> 方法参数名  自动完成
+		
+	SpringMVC 的 参数自动装箱
+		请求参数设置到实体对象中
+		
+		
+SpringMVC配置进阶
+1. 地址映射
+	通配符映射
+	1. ?	1 个字符
+	2. *	1~N个字符
+	3. **	0~N级目录
+	RequestMapping 在类上的定义 用于定义该类所有方法的共同父路径
+	
+2. 控制器方法参数注入
+	头域, 
+	cookie,
+	servlet对象
+	地址参数
+	会话对象
+	
+3. 静态资源映射
+	可以将静态资源保存到工程外部文件
+
+
+
+
+
+
+
+
+	
+	
