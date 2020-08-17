@@ -14,12 +14,37 @@
    <!-- 手动添加 Spring xml 文件 命名空间 -->
    
    <!-- 主键扫描 -->
-   <context:component-scan base-package="com.yc.springmvc"></context:component-scan>
+	<context:component-scan
+		base-package="com.yc.springmvc"></context:component-scan>
    
    <!-- SpringMVC 控制器注解驱动标签 -->
-   <mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven></mvc:annotation-driven>
    
    <!-- 静态资源处理的定义 html , css ... -->
-   <mvc:default-servlet-handler/>
+	<mvc:default-servlet-handler />
    
+   <!-- <mvc:resources 
+   		location="被映射的路径, 工程外的路径 C:/d" 
+   		classpath:/META-INF/public-web-resources/  映射类路径中的文件夹
+   		file:/c:/page	映射本地文件夹
+   		mapping="映射后的路径, 工程内部的路径 page/">
+   </mvc:resources> -->
+	<mvc:resources
+		location="file:/F:/Tomcat/webapps/photo/images/fulls/"
+		mapping="/photo/**">
+	</mvc:resources>
+   
+   <!-- 配置文件上传解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    <!-- 最大上传文件的大小 -->
+		<property name="maxUploadSize" value="10000000" />
+
+	</bean>
+
+
+
+
+
 </beans>

@@ -36,11 +36,25 @@ SpringMVC配置进阶
 	头域, 
 	cookie,
 	servlet对象
-	地址参数
-	会话对象
+	地址参数:  @PathVariable  "user/{参数名}/{参数}/"
+	会话对象: @SessionAttributes(监听),   @SessionAttribute
 	
-3. 静态资源映射
+
+3. 静态资源映射 + 文件上传
 	可以将静态资源保存到工程外部文件
+	
+4. 日期类型处理: 提交参数, 返回日期数据
+
+5. 数据校验
+
+6. 异常处理
+
+7. 拦截器 ==> 类似 Filter 
+
+
+
+
+
 
 
 
