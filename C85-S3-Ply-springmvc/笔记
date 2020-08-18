@@ -42,14 +42,32 @@ SpringMVC配置进阶
 
 3. 静态资源映射 + 文件上传
 	可以将静态资源保存到工程外部文件
+	<mvc:resoures location="被映射的目录" mapping="web的路径">
+	文件上传
+	1.添加文件上传解析器
+		<bean id class="apache文件上传组件 or Servlet3.0上传组件">
+		pom.xml ==> 添加相关依赖
+	2.控制器的上传方法添加 @RequestParam MultipartFile file
+	3.<form action="上传方法映射地址" method="post" enctype="multipart/form-data">  
 	
 4. 日期类型处理: 提交参数, 返回日期数据
+	@DateTimeFormat 加载 Date 类型属性上	==> 接收日期参数
+	@JsonFormat 加载 Date 类型属性上		==> 返回json
+	@NumberFormat  对数字格式化
 
+	乱码问题:
+	1. web.xml 中添加过滤器  ==> 解决提交参数中的非西方文字的编码解析
+	2. @RequestMapping中添加 produces="text/html;charset=utf-8"
+				==> 解决控制器返回字符串(html)的 content-type的设置问题
+				==> response.setContentType("text/html;charset=utf-8");
+	
 5. 数据校验
 
-6. 异常处理
+6. 拦截器 ==> 类似 Filter 
 
-7. 拦截器 ==> 类似 Filter 
+7. 异常处理
+
+
 
 
 

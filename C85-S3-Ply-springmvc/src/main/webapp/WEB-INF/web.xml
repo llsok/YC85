@@ -25,11 +25,21 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- / 用于匹配所有的请求路径  -->
+	<!-- /用于匹配所有的请求路径  -->
 	<servlet-mapping>
 		<servlet-name>app</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+<!-- 	<servlet>
+		<servlet-name>default</servlet-name>
+		<servlet-class>org.mortbay.jetty.servlet.DefaultServlet</servlet-class>
+		<init-param>
+			<param-name>useFileMappedBuffer</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet> -->
 
 	<!-- 
 		SpringMVC解决乱码问题的过滤器

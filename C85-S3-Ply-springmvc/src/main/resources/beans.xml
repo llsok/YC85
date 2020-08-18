@@ -43,8 +43,16 @@
 
 	</bean>
 
-
-
+	<!-- 拦截器定义 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 这里的地址定义 != Servlet 的url定义 -->
+			<mvc:mapping path="/demo/*.do"/>
+			<mvc:mapping path="/demo/reg.html"/>
+			<mvc:exclude-mapping path="/demo/reg.do"/>
+			<bean class="com.yc.springmvc.web.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 
 </beans>
