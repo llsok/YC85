@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 是当前接口的命名空间 -->
+<mapper namespace="com.yc.damai.dao.DmProductMapper">
+	<!-- 只要加入该标签就会开启当前接口的二级缓存 -->
+	<cache
+		eviction="FIFO"
+		size="512"
+		flushInterval="10000"
+		readOnly="true"
+	></cache>
+	
+	<!-- 自定义的字段映射 -->
+	<!-- <resultMap type="com.yc.damai.bean.DmProduct" id="rmdp">
+		id 永远定义主键映射关系   主键在mybatis有特殊的作用  ==> 缓存 
+		<id column="id" property="id"/>
+		result 永远定义非主键映射关系
+		<result column="market_price" property="marketPrice"/>
+		<result column="shop_price" property="shopPrice"/>
+		<result column="is_hot" property="isHot"/>
+	</resultMap> -->
+
+	<!-- 
+		id 是该select标签的唯一标识
+		resultType 表示返回的结果映射到的实体类的类型
+					简单自动映射
+		resultMap 引用自定义映射		
+		
+	 -->
+	<!-- <select id="selectAll" resultMap="rmdp">
+		select * from dm_product
+	</select>
+	
+	<select id="selectById" resultMap="rmdp">
+		select * from dm_product where id = #{id}
+	</select> -->
+	
+	<select id="selectByObj" resultMap="rmdp">
+		select * from dm_product
+		<where>
+			<!-- test 用于对传入的对象属性值的判断   -->
+			<if test="pname!=null">
+				and pname like concat('%', #{pname}, '%')
+			</if>
+		
+			<if test="pdesc!=null">
+				and pdesc like concat('%', #{pdesc}, '%')
+			</if>
+			<!-- 
+				isHot 有值( 0 或 1)   isHot = 值
+				isHot 无值   isHot is null
+				isHot -1  isHot is not null
+				isHot -2  exists ( 复杂的子查询 )
+				...
+			 -->
+			<choose>
+				<when test="isHot == null">
+					and is_hot is null
+				</when>
+				<when test="isHot == -1">
+					and is_hot is not null
+				</when>
+				<otherwise>
+					and is_hot = #{isHot}
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
+	<select id="selectByCids" resultMap="rmdp">
+		select * from dm_product where
+			<!-- cid in (1,3,4) 
+				String sql = "cid in ("
+				for (cid : cids){
+					sql += cid
+				}
+				sql += ")"
+			-->
+			<foreach item="cid" collection="cids"
+					open="cid in (" close=")" separator=",">
+				#{cid}
+			</foreach>
+	</select>
+	
+	<update id="update">
+		update dm_product
+		   <set> 
+			   <if test="pname!=null">
+			   	   pname=#{pname},
+			   </if>
+			   <if test="marketPrice!=null">
+			   	   market_price=#{marketPrice},
+			   </if>
+			   <if test="shopPrice!=null">
+			   	   shop_price=#{shopPrice},
+			   </if>
+			   <if test="image!=null">
+			   	   image=#{image},
+			   </if>
+			   <if test="pdesc!=null">
+			   	   pdesc=#{pdesc},
+			   </if>
+			   <if test="isHot!=null">
+			   	   is_hot=#{isHot},
+			   </if>
+			   <if test="createtime!=null">
+			   	   createtime=#{createtime},
+			   </if>
+			   <if test="cid!=null">
+			   	   cid=#{cid}
+			   </if>
+		   </set>
+		 where id=#{id}
+	</update>
+	
+</mapper>

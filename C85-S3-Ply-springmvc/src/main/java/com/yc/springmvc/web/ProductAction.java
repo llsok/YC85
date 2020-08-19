@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yc.damai.bean.DmCart;
 import com.yc.damai.bean.DmUser;
 
-@RestController
+//@RestController
+@RequestMapping("demo")
 public class ProductAction {
 
 	/**

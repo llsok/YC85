@@ -58,7 +58,7 @@
 	</mvc:interceptors>
 	
 	<!-- 配置数据源 -->
-	<context:property-placeholder location="jdbc.properties" />
+	<context:property-placeholder location="classpath:jdbc.properties" />
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"
@@ -72,9 +72,10 @@
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" 
+			value="classpath*:com/yc/damai/dao/*.xml" />
 	</bean>
 
 	<!-- 发现映射器   映射器扫描 -->
 	<mybatis:scan base-package="com.yc.damai.dao"/>
-
 </beans>

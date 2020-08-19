@@ -29,7 +29,8 @@ public interface DmProductMapper {
 	@ResultMap("rmdp")
 	DmProduct selectById(int id);
 	
-	
+	@Select("select * from dm_product where is_hot=1")
+	List<DmProduct> selectForHot();
 
 	List<DmProduct> selectByObj(DmProduct dp);
 
