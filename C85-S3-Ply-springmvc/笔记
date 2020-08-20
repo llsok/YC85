@@ -71,12 +71,18 @@ SpringMVC配置进阶
 
 
 
+1. 依赖版本的兼容性问题: 4.3.17 ==> 5.2.4
+2. 配置地狱 Spring 替代 EJB
 
 
+Spring boot 致力于简洁，让开发者写更少的配置，程序能够更快的运行和启动。它是下一代javaweb框架，并且它是spring cloud（微服务）的基础。
+如果说Maven整合了所有的jar包，Spring boot整合了所有的框架。并把相关的框架整合成套餐
 
-
-
-
+独立运行：springboot可以以jar包的形式进行独立运行，使用java -jar xx.jar 就可以成功运行项目。
+内嵌容器：内嵌servlet容器，使得我们可以执行运行项目的主程序main函数，使得项目可以快速运行。
+简化依赖：springboot提供了一系列的starter pom用来简化maven依赖。如：常用的spring-boot-starter-web、spring-boot-starter-tomcat
+约定优于配置：在多数情况下，启动一个应用时，无需做太多的配置，应用就能正常启动。
+应用监控：springboot提供了基于HTTP、ssh、telnet对运行时的项目进行监控。
 
 
 
