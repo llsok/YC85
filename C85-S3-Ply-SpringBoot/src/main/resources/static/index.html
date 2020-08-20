@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>大麦商城</title>
+<link href="css/slider.css" rel="stylesheet" type="text/css"/>
+<link href="css/common.css" rel="stylesheet" type="text/css"/>
+<link href="css/index.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/axios.min.js"></script>
+
+<script type="text/javascript" src="js/comp.js"></script>
+</head>
+<body>
+
+<div id="header">
+	<page-head></page-head>
+</div>
+<script type="text/javascript">
+	new Vue({el:"#header"});
+</script>
+
+<div id="indexdiv" class="container index">
+		
+
+		<div class="span24">
+			<div id="hotProduct" class="hotProduct clearfix">
+					<div class="title">
+						<strong>热门商品</strong>
+						<!-- <a  target="_blank"></a> -->
+					</div>
+					<ul class="tab">
+							<li class="current">
+								<a href="./蔬菜分类.htm?tagIds=1" target="_blank"></a>
+							</li>
+							<li>
+								<a  target="_blank"></a>
+							</li>
+							<li>
+								<a target="_blank"></a>
+							</li>
+					</ul>
+						<ul class="tabContent" style="display: block;">
+							<li v-for=" h in hotList ">
+								<a target="_blank" :href="'detail.html?#' + h.id">
+									<img :src="h.image" style="display: block;">
+								</a>
+							</li>
+						</ul>
+			</div>
+		</div>
+		<div class="span24">
+			<div id="newProduct" class="newProduct clearfix">
+					<div class="title">
+						<strong>最新商品</strong>
+						<a  target="_blank"></a>
+					</div>
+					<ul class="tab">
+							<li class="current">
+								<a href="./蔬菜分类.htm?tagIds=2" target="_blank"></a>
+							</li>
+							<li>
+								<a  target="_blank"></a>
+							</li>
+							<li>
+								<a target="_blank"></a>
+							</li>
+					</ul>				
+						 <ul class="tabContent" style="display: block;">
+						 
+									<li>
+										<a href="detail.html?72" target="_blank"><img src="products/1/cs10011.jpg" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?57" target="_blank"><img src="products/1/cs60006.png" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?4" target="_blank"><img src="products/1/cs10004.jpg" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?45" target="_blank"><img src="products/1/cs50004.png" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?51" target="_blank"><img src="products/1/cs50010.png" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?68" target="_blank"><img src="products/1/cs70007.png" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?60" target="_blank"><img src="products/1/cs60009.png" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?30" target="_blank"><img src="products/1/cs30010.png" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?6" target="_blank"><img src="products/1/cs10006.jpg" style="display: block;"></a>
+									</li>
+						
+									<li>
+										<a href="detail.html?2" target="_blank"><img src="products/1/cs10002.jpg" style="display: block;"></a>
+									</li>
+						
+						</ul>
+			</div>
+		</div>
+		<div class="span24">
+			<div class="friendLink">
+				<dl>
+					<dd>新手指南</dd>
+							<dd>
+								<a  target="_blank">支付方式</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">配送方式</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">售后服务</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">购物帮助</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">蔬菜卡</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">礼品卡</a>
+								|
+							</dd>
+							<dd>
+								<a target="_blank">银联卡</a>
+								|
+							</dd>
+							<dd>
+								<a  target="_blank">亿家卡</a>
+								|
+							</dd>
+							
+					<dd class="more">
+						<a >更多</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var vue = new Vue({
+		el : "#indexdiv",
+		data : {
+			hotList : [],
+			newList : []
+		},
+		created : function() {
+			axios.get("product.do?op=query")
+				.then( (res)=>{
+					console.info(res.data.list)
+					this.hotList = res.data.list;
+				});
+		}
+	});
+	</script>
+	
+	<div id="footer">
+		<page-foot></page-foot>
+	</div>
+	<script type="text/javascript">
+		new Vue({el:"#footer"});
+	</script>
+</body></html>

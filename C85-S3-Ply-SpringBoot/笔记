@@ -1,0 +1,32 @@
+SpringBoot推荐的配置文件：application.yml
+YAML 是一种简洁的非标记语言。
+基本规则
+	大小写敏感 
+	使用缩进表示层级关系 
+	禁止使用tab缩进，只能使用空格键 
+	缩进长度没有限制，只要元素缩进对齐就表示这些元素属于一个层级。
+	使用#表示注释 
+	三种数据结构：list、map、scalar
+	设值时冒号后要带空格
+	
+SpringBoot 摒弃了 XML 配置方式, 转而使用 注解 + yml
+	约定大于配置
+	
+spring-jdbc
+	<bean class="...">
+		<property>...
+		<property>...
+		<property>...
+		<property>...
+	</bean>
+	
+
+Spring 		传统的配置:   class + 属性 ==> bean
+SpringBoot	a, b, c ==> A
+			a, c, d ==> B
+	
+	
+	
+	
+	
+	
