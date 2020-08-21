@@ -10,6 +10,9 @@ spring:
      password: a
      driver-class-name: com.mysql.jdbc.Driver
      
+# mybaits:
+#   typeAliasesPackage: MyBatis别名配置
+     
 # 邮件发送  Yml 配置规则: 如果某个阶段有重复配置情况, 必要要合并
   mail:
       # 邮箱服务器地址

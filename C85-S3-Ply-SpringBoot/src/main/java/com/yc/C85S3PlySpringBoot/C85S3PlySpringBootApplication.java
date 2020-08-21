@@ -11,5 +11,10 @@ public class C85S3PlySpringBootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(C85S3PlySpringBootApplication.class, args);
 	}
+	
+	/*@Bean   可以定义Bean
+	public XXXBiz getXxxBiz() {
+		return new XXXBiz();
+	}*/
 
 }
