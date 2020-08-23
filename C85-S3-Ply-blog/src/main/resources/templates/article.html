@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
@@ -72,27 +72,26 @@
   <div class="content-wrap">
     <div class="content">
       <header class="article-header">
-        <h1 class="article-title"><a href="article.html">php如何判断一个日期的格式是否正确</a></h1>
+        <h1 class="article-title"><a href="article.html" th:text="${article.title}">php如何判断一个日期的格式是否正确</a></h1>
         <div class="article-meta"> <span class="item article-meta-time">
-          <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：2016-1-4 10:29:39"><i class="glyphicon glyphicon-time"></i> 2016-1-4 10:29:39</time>
-          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区"><i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：后端程序"><i class="glyphicon glyphicon-list"></i> <a href="program" title="">后端程序</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：120"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</span> </div>
+          <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：2016-1-4 10:29:39">
+          <i class="glyphicon glyphicon-time"></i>
+          <span th:text="${article.createtime}">2016-1-4 10:29:39</span>
+          </time>
+          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区">
+          <i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span> 
+          <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：后端程序">
+          <i class="glyphicon glyphicon-list"></i> 
+          <a href="program" title="" th:text="${article.categoryid}">后端程序</a></span> 
+          <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：120">
+          <i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> 
+          <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0">
+          <i class="glyphicon glyphicon-comment"></i> 0个不明物体</span> 
+          </div>
       </header>
       <article class="article-content">
         <p><img data-original="images/banner/banner_03.jpg" src="images/banner/banner_03.jpg" alt="" /></p>
-        <p> 用php获取上个月最后一天的时间，有两种方法，都非常简单，详细实现源码如下： </p>
-        <pre class="prettyprint lang-php">&lt;?php
-  date_default_timezone_set("PRC"); //设置时区
-  //方法一
-  $times = date("d") * 24 * 3600;
-  echo date("Y-m-d H:i:s", time()-$times);
-  echo '&lt;br/&gt;';
-  //方法二
-  $day = date('d');
-  echo date("Y-m-d H:i:s", strtotime(-$day.' day'));
-?&gt;</pre>
-        <p> 方法一是利用当前时间离本月初有多少时间，然后用当前时间减去这个时间差，就可以得到上月最后一天了。 </p>
-        <p> 方法二是先计算本月多少号，即离月初有多少天，然后用strtotime计算出$day天前的时间戳，也可以得到上个月的最后一天。 </p>
-        <p class="article-copyright hidden-xs">未经允许不得转载：<a href="">异清轩博客</a> » <a href="article.html">php如何判断一个日期的格式是否正确</a></p>
+        <div th:utext="${article.content}"></div>
       </article>
       <div class="article-tags">标签：<a href="" rel="tag">PHP</a></div>
       <div class="relates">
