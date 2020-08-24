@@ -117,14 +117,14 @@ document.body.onselectstart = document.body.ondrag = function () {
 $('[data-toggle="tooltip"]').tooltip();
  
  
-//无限滚动反翻页
+//无限滚动翻页
 var page = 1;
 $(function(){
 	var ias = jQuery.ias({
 		// 动态加载内容的容器标签, 放置 article 的容器
 		container : '.content',
 		// 动态加载项目 ==> 每个文章的标签 : article
-		item : '.post',
+		item : '.excerpt',
 		// 分页标签
 		pagination : '#pagination',
 		// 分页标签内部的超链接, 用于发起第N次请求
@@ -136,7 +136,7 @@ $(function(){
 	});
 	// 加载图片
 	ias.extension(new IASSpinnerExtension({
-	    src: 'loading.gif', // 图片地址
+	    src: 'images/loading.gif', // 图片地址
 	}));
 	
 	ias.extension(new IASTriggerExtension({

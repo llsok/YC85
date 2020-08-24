@@ -43,7 +43,9 @@
             </ul>
           </li>
         </ul>
-        <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;<a href="javascript:;" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;<a href="" rel="nofollow">找回密码</a> </div>
+        <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
+        <a href="toreg" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
+        <a href="" rel="nofollow">找回密码</a> </div>
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         <h1 class="logo hvr-bounce-in"><a href="" title=""><img src="images/logo.png" alt=""></a></h1>
@@ -102,7 +104,7 @@
         <div class="more"><a href="">PHP</a><a href="">JavaScript</a><a href="">EmpireCMS</a><a href="">Apache</a><a href="">MySQL</a></div>
       </div>
       
-      <article th:each="a : ${alist}" class="excerpt excerpt-1 post"><a class="focus" th:href="'article?id=' + ${a.id}" title=""><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></a>
+      <article th:each="a : ${alist}" class="excerpt excerpt-1"><a class="focus" th:href="'article?id=' + ${a.id}" title=""><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></a>
         <header><a class="cat" href="program" th:text="${a.categoryid}">后端程序<i></i></a>
           <h2><a th:href="'article?id=' + ${a.id}" title="" th:text="${a.title}">php如何判断一个日期的格式是否正确</a></h2>
         </header>
@@ -119,7 +121,7 @@
       </article>
       
       <div id="pagination">
-			<a href="/" class="next">next</a>
+			<a href="" class="next">next</a>
 		</div>
     </div>
   </div>
@@ -191,6 +193,7 @@
   </div>
   <div id="gotop"><a class="gotop"></a></div>
 </footer>
+<div id="last">
 <!--微信二维码模态框-->
 <div class="modal fade user-select" id="WeChat" tabindex="-1" role="dialog" aria-labelledby="WeChatModalLabel">
   <div class="modal-dialog" role="document" style="margin-top:120px;max-width:280px;">
@@ -260,5 +263,6 @@
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/jquery.ias.js"></script> 
 <script src="js/scripts.js"></script>
+</div>
 </body>
 </html>
