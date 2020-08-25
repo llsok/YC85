@@ -45,7 +45,8 @@
             </ul>
           </li>
         </ul>
-        <a data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
+        <a th:text="${session.loginedUser} != null ? '你好 '+${session.loginedUser.name} : 'Hi,请登录'"
+        	data-toggle="modal" data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
         <a href="toreg" class="register" rel="nofollow">我要注册</a>&nbsp;&nbsp;
         <a href="" rel="nofollow">找回密码</a> </div>
       <div class="navbar-header">
@@ -236,11 +237,11 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="loginModalUserNmae">用户名</label>
+            <label for="loginModalUserNmae">用户名 <span id="err_account" style="color:red"></span></label>
             <input v-model="user.account" type="text" class="form-control" id="loginModalUserNmae" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
           </div>
           <div class="form-group">
-            <label for="loginModalUserPwd">密码</label>
+            <label for="loginModalUserPwd">密码 <span id="err_pwd" style="color:red"></span></label>
             <input v-model="user.pwd" type="password" class="form-control" id="loginModalUserPwd" placeholder="请输入密码" maxlength="18" autocomplete="off" required>
           </div>
         </div>
@@ -261,12 +262,23 @@
       		methods : {
       			login(){
       				// var params = new SearchParam ...
-      				axios.get("login.do",{
-      					params : this.user
-      				}).then( res => {
+      				// 改用 POST 方式提交
+      				var params = new URLSearchParams();
+      				params.append("account", this.user.account);
+      				params.append("pwd", this.user.pwd);
+      				axios.post( "login.do" , params ).then( res => {
       					// res.data ==> Result 对象 (  code, msg, data)
       					if(res.data.code == 0){
-      						alert(res.data.msg);
+      						// 如果有 data 表示有字段验证错误
+      						if(res.data.data){
+      							// 展示字段验证错误
+      							for(var name in res.data.data){
+      								$("#err_"+name).text(res.data.data[name]);
+      							}
+      						} else {
+      							// 否则显示 msg
+          						alert(res.data.msg);
+      						}
       					} else {
       						// 修改页面的登录链接 ...
       						var dbuser = res.data.data;

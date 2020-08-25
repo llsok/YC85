@@ -63,14 +63,15 @@ public class UserAction {
 	 * 	登录: Ajax提交 ==> Vue
 	 * 	405 请求方法错误,  发 get 请求 对应 actinon 是只能响应 Post 请求
 	 */
-	@RequestMapping("login.do")
+	@PostMapping("login.do")
 	// 是在 Controller 使用 ==> 方法返回视图名 
 	// @ResponseBody 表示该方法的返回值是json数据
 	@ResponseBody
 	public Result login(@Valid User user, Errors errors, HttpSession session) {
 		try {
 			if (errors.hasFieldErrors("account") || errors.hasFieldErrors("pwd")) {
-				Result res = new Result(0, "验证错误!", errors.getFieldErrors());
+				// 将错误结果转换成 Map集合再返回
+				Result res = new Result(0, "验证错误!", asMap(errors));
 				return res;
 			}
 			User dbuser = ubiz.login(user);
