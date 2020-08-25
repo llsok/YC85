@@ -15,6 +15,8 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.C85S3Plyblog.bean.Result;
 import com.yc.C85S3Plyblog.bean.User;
@@ -49,7 +51,7 @@ public class UserAction {
 		}
 		// index 请求转发方式跳转到 index
 		// 使用响应重定向方式跳转
-		return "redirect:/"; 
+		return "redirect:/";
 	}
 
 	@GetMapping("toreg")
@@ -59,17 +61,25 @@ public class UserAction {
 
 	/**
 	 * 	登录: Ajax提交 ==> Vue
+	 * 	405 请求方法错误,  发 get 请求 对应 actinon 是只能响应 Post 请求
 	 */
-	@PostMapping("login.do")
-	public Result login(User user, HttpSession session) {
+	@RequestMapping("login.do")
+	// 是在 Controller 使用 ==> 方法返回视图名 
+	// @ResponseBody 表示该方法的返回值是json数据
+	@ResponseBody
+	public Result login(@Valid User user, Errors errors, HttpSession session) {
 		try {
+			if (errors.hasFieldErrors("account") || errors.hasFieldErrors("pwd")) {
+				Result res = new Result(0, "验证错误!", errors.getFieldErrors());
+				return res;
+			}
 			User dbuser = ubiz.login(user);
 			session.setAttribute("loginedUser", dbuser);
+			return new Result(1, "登录成功!", dbuser);
 		} catch (BizException e) {
 			e.printStackTrace();
 			return new Result(e.getMessage());
 		}
-		return new Result(1, "登录成功!");
 	}
 
 	/**
