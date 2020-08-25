@@ -31,9 +31,4 @@ public class IndexAction {
 		return "article";
 	}
 	
-	@GetMapping("addArticle")
-	public String addArticle() {
-		return "addArticle";
-	}
-
 }

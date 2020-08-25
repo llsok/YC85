@@ -2,6 +2,8 @@ package com.yc.C85S3Plyblog.bean;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Article implements java.io.Serializable{
 	/**
 	 * 
@@ -9,11 +11,15 @@ public class Article implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String author;
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String content;
 	private String keywords;
 	private String description;
+	@NotEmpty
 	private Integer categoryid;
+	@NotEmpty
 	private String label;
 	private String titleimgs;
 	private String status;
