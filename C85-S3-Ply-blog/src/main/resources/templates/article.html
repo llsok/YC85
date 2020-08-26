@@ -80,34 +80,61 @@
           <h3 class="text-muted">当前文章禁止评论</h3>
         </div>
       </div>-->
+      <div id="comms">
       <div id="respond">
         <form action="" method="post" id="comment-form">
           <div class="comment">
             <div class="comment-title"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
             <div class="comment-box">
-              <textarea placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" ></textarea>
+              <textarea v-model="content" placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" ></textarea>
+              <!-- 文章的id 从 thymeleaf 对象 article 中获取 -->
+              <input type="hidden" v-model="articleid" th:value="${article.id}">
               <div class="comment-ctrl"> <span class="emotion"><img src="images/face/5.png" width="20" height="20" alt="" />表情</span>
                 <div class="comment-prompt"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text"></span> </div>
                 <input type="hidden" value="1" class="articleid" />
-                <button type="submit" name="comment-submit" id="comment-submit" tabindex="5" articleid="1">评论</button>
+                <button type="button" @click="commit" name="comment-submit" id="comment-submit" tabindex="5" articleid="1">评论</button>
               </div>
             </div>
           </div>
         </form>
       </div>
       <div id="postcomments">
-        <ol class="commentlist">
+        <ol class="commentlist" v-for="comm in commList">
           <li class="comment-content"><span class="comment-f">#1</span>
             <div class="comment-avatar"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
             <div class="comment-main">
               <p>来自<span class="address">河南郑州</span>的用户<span class="time">(2016-01-06)</span><br />
-                这是匿名评论的内容这是匿名评论的内容，这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容这是匿名评论的内容。</p>
+              	<span>{{comm.content}}</span>
+              </p>
             </div>
           </li>
         </ol>
         
         <div class="quotes"><span class="disabled">首页</span><span class="disabled">上一页</span><a class="current">1</a><a href="">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span></div>
       </div>
+      </div>
+      <script type="text/javascript">
+      	var vue = new Vue({
+      		el:"#comms",
+      		data:{
+      			content: "",
+      			articleid: 0,
+      			commList : []
+      		},
+      		methods : {
+      			commit(){
+      				var params = new URLSearchParam();
+      				params.append("content",this.content);
+      				params.append("articleid",this.articleid);
+      				axios.post("comment", params).then(res=>{
+      					// 返回评论的对象
+      					this.commList.push(res.data.data);
+      				});
+      			}
+      		}
+      	});
+      
+      </script>
     </div>
   </div>
   <aside class="sidebar">
