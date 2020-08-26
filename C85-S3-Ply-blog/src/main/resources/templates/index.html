@@ -121,7 +121,7 @@
           <a class="comment" href="article.html#comment">
           <i class="glyphicon glyphicon-comment"></i> 
           0个不明物体</a></p>
-        	<p class="note" th:text="${a.content.substring(0,50)}">可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式 ... </p>
+        	<p class="note" th:text="${a.content.substring(0,T(Math).min(50,a.content.length()))}">可以用strtotime()把日期（$date）转成时间戳，再用date()按需要验证的格式转成一个日期，来跟$date比较是否相同来验证这个日期的格式是否是正确的。所以要验证日期格式 ... </p>
       </article>
       
       <div id="pagination">
