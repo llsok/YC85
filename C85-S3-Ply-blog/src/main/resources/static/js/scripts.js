@@ -167,7 +167,7 @@ $(window).scroll(function () {
 };*/
 
 /*自定义右键菜单*/
-(function () {
+/*(function () {
     var oMenu = document.getElementById("rightClickMenu");
     var aLi = oMenu.getElementsByTagName("li");
 	//加载后隐藏自定义右键菜单
@@ -201,7 +201,7 @@ $(window).scroll(function () {
         $(oMenu).fadeOut(100);
 		//oMenu.style.display = "none"
     }
-})();
+})();*/
 
 /*禁止键盘操作*/
 /*document.onkeydown=function(event){
@@ -212,7 +212,7 @@ $(window).scroll(function () {
 }; */
 
 /*文章评论*/
-$(function(){
+/*$(function(){
 	$("#comment-submit").click(function(){
 		var commentContent = $("#comment-textarea");
 		var commentButton = $("#comment-submit");
@@ -238,16 +238,16 @@ $(function(){
 				promptText.text('评论成功!');
 			    commentContent.val(null);
 				$(".commentlist").fadeIn(300);
-				/*$(".commentlist").append();*/
+				$(".commentlist").append();
 				commentButton.attr('disabled',false);
 				commentButton.removeClass('disabled');
 			}
 		});
-		/*$(".commentlist").append(replace_em(commentContent.val()));*/
+		$(".commentlist").append(replace_em(commentContent.val()));
 		promptBox.fadeOut(100);
 		return false;
 	});
-});
+});*/
 //对文章内容进行替换
 function replace_em(str){
 	str = str.replace(/\</g,'&lt;');
@@ -257,10 +257,10 @@ function replace_em(str){
 }
 
 //Console
-try {
+/*try {
     if (window.console && window.console.log) {
         console.log("\n欢迎访问异清轩博客！\n\n在本站可以看到前端技术，后端程序，网站内容管理系统等文章；\n\n还有我的程序人生！！！\n");
         console.log("\n请记住我们的网址：%c www.ylsat.com", "color:red");
         console.log("\nPOWERED BY WY ALL RIGHTS RESERVED");
     }
-} catch (e) {};
+} catch (e) {};*/
