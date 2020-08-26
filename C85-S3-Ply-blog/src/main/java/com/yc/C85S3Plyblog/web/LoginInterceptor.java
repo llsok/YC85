@@ -21,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 					if(accept.startsWith("application/json")) {
 						// ajax 请求
 						response.setContentType("application/json;charset=utf-8");
-						response.getWriter().append("{code:0,msg:'请先登录系统'}");
+						response.getWriter().append("{\"code\":\"0\",\"msg\":\"请先登录系统\"}");
 					} else {
 						// 页面跳转请求
 						response.setContentType("text/html;charset=utf-8");

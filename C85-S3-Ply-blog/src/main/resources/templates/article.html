@@ -87,8 +87,6 @@
             <div class="comment-title"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
             <div class="comment-box">
               <textarea v-model="content" placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" ></textarea>
-              <!-- 文章的id 从 thymeleaf 对象 article 中获取 -->
-              <input type="hidden" v-model="articleid" th:value="${article.id}">
               <div class="comment-ctrl"> <span class="emotion"><img src="images/face/5.png" width="20" height="20" alt="" />表情</span>
                 <div class="comment-prompt"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text"></span> </div>
                 <input type="hidden" value="1" class="articleid" />
@@ -118,17 +116,27 @@
       		el:"#comms",
       		data:{
       			content: "",
-      			articleid: 0,
+      			articleid: [[${article.id}]],   // js 代码中引用 thymeleaf 对象 要使用该语法
       			commList : []
+      		},
+      		created : function () {
+      			axios.get("queryComm?articleid=" + this.articleid).then(res=>{
+  					this.commList = res.data.data;
+  				});
       		},
       		methods : {
       			commit(){
-      				var params = new URLSearchParam();
+      				var params = new URLSearchParams();
       				params.append("content",this.content);
       				params.append("articleid",this.articleid);
       				axios.post("comment", params).then(res=>{
       					// 返回评论的对象
-      					this.commList.push(res.data.data);
+      					if(res.data.code==1){
+      						this.commList.push(res.data.data);	
+      					} else {
+      						alert(res.data.msg);
+      					}
+      					
       				});
       			}
       		}

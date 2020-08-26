@@ -28,7 +28,10 @@ public class C85S3PlyBlogApplication implements WebMvcConfigurer {
 		InterceptorRegistration ir = registry.addInterceptor(new LoginInterceptor());
 		// 互联网项目 ==> 拦截少数资源
 		// 企业内部管理系统 ==> 拦截多数资源
-		ir.addPathPatterns("/toAddArticle", "/addArticle.do");
+		ir.addPathPatterns(
+				"/toAddArticle", 
+				"/addArticle.do",
+				"/comment");
 
 	}
 
