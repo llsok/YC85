@@ -109,7 +109,7 @@
       </div>
       
       <article th:each="a : ${alist}" class="excerpt excerpt-1"><a class="focus" th:href="'article?id=' + ${a.id}" title=""><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></a>
-        <header><a class="cat" href="program" th:text="${a.categoryid}">后端程序<i></i></a>
+        <header><a class="cat" href="program" th:text="${a.category.name}">后端程序<i></i></a>
           <h2><a th:href="'article?id=' + ${a.id}" title="" th:text="${a.title}">php如何判断一个日期的格式是否正确</a></h2>
         </header>
         <p class="meta">
