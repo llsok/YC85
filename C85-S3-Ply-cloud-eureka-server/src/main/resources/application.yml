@@ -9,3 +9,24 @@ eureka:
    client:
       registerWithEureka: false
       fetchRegistry: false
+      serviceUrl:
+         defaultZone: http://127.0.0.1:7999/eureka,http://127.0.0.1:7998/eureka
+      
+---
+spring:
+   profiles: server1
+server:
+   port: 7999
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://127.0.0.1:8000/eureka,http://127.0.0.1:7998/eureka 
+---
+spring:
+   profiles: server2
+server:
+   port: 7998
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://127.0.0.1:7999/eureka,http://127.0.0.1:8000/eureka
