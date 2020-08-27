@@ -17,14 +17,11 @@ server:
    port: 8007
 # 配置块名
 spring:
-   profiles:
-      active: order8007
+   profiles: order8007
    
 ---
 server:
    port: 8008
-   
 # 配置块名
 spring:
-   profiles:
-      active: order8008
+   profiles: order8008

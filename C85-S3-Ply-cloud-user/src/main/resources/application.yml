@@ -17,14 +17,11 @@ server:
    port: 8005
 # 配置块名
 spring:
-   profiles:
-      active: user8005
+   profiles: user8005
    
 ---
 server:
    port: 8006
-   
 # 配置块名
 spring:
-   profiles:
-      active: user8006
+   profiles: user8006
