@@ -20,9 +20,14 @@ public class UserAction {
 				req.getLocalPort());
 	}
 	
+	/**
+	 * 	127.0.0.1:8002 ==> 用户地址
+	 * 	浏览器测试地址: http://127.0.0.1:8001/order
+	 * 	
+	 */
 	@GetMapping("order")
 	public String order() {
-		String url="http://127.0.0.1:8002/order";
+		String url="http://order/order";
 		String res = restTemplate.getForObject(url, String.class);
 		return res;
 	}

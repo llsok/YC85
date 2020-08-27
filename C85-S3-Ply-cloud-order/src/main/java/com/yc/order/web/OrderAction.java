@@ -20,9 +20,15 @@ public class OrderAction {
 				req.getLocalPort());
 	}
 	
+	/**
+	 * 	127.0.0.1:8002 ==> 订单地址
+	 * 	浏览器测试地址: http://127.0.0.1:8002/user
+	 * 				http://order/user  
+	 */
 	@GetMapping("user")
 	public String user() {
-		String url="http://127.0.0.1:8001/user";
+		//String url="http://127.0.0.1:8001/user";
+		String url="http://user/user";  // 系统内部的远程调用地址
 		String res = restTemplate.getForObject(url, String.class);
 		return res;
 	}
