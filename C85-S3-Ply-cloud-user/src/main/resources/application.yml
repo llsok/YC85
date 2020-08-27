@@ -10,3 +10,21 @@ eureka:
    client:
       serviceUrl:
          defaultZone: http://127.0.0.1:8000/eureka
+         
+# yml支持同一个文件内部的配置块, 使用 --- 分隔每一个配置块, 每个配置块都必须有个名字, 没有名字作为默认配置块
+---
+server:
+   port: 8005
+# 配置块名
+spring:
+   profiles:
+      active: user8005
+   
+---
+server:
+   port: 8006
+   
+# 配置块名
+spring:
+   profiles:
+      active: user8006
