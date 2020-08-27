@@ -30,7 +30,18 @@ public class OrderAction {
 		//String url="http://127.0.0.1:8001/user";
 		String url="http://user/user";  // 系统内部的远程调用地址
 		String res = restTemplate.getForObject(url, String.class);
+		// Map ==> 实体类
+		// map.get("id") ==> obj.getId();
 		return res;
+	}
+	
+	@Resource
+	IUserAction iua;
+	
+	@GetMapping("user1")
+	public String user1() {
+		// 声明式远程服务调用
+		return iua.user();
 	}
 	
 }
