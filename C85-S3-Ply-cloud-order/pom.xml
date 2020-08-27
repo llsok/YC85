@@ -15,6 +15,8 @@
 		<java.version>1.8</java.version>
 		<!-- 加了还报错是因为 eclipse 版本低了 -->
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<!-- spring-cloud.版本 -->
+		<spring-cloud.version>Hoxton.SR7</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -27,6 +29,18 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

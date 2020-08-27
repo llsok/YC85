@@ -27,6 +27,4 @@ public class OrderAction {
 		return res;
 	}
 	
-
-
 }
