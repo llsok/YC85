@@ -6,21 +6,26 @@ spring:
       name: server
       
 eureka:
+   instance:
+      hostname: es1
    client:
-      registerWithEureka: false
-      fetchRegistry: false
+      registerWithEureka: true
+      fetchRegistry: true
       serviceUrl:
-         defaultZone: http://127.0.0.1:7999/eureka,http://127.0.0.1:7998/eureka
-      
+         defaultZone: http://es2:7999/eureka
+      server:
+         enable-self-preservation: false
 ---
 spring:
    profiles: server1
 server:
    port: 7999
 eureka:
+   instance:
+      hostname: es2
    client:
       serviceUrl:
-         defaultZone: http://127.0.0.1:8000/eureka,http://127.0.0.1:7998/eureka 
+         defaultZone: http://es1:8000/eureka
 ---
 spring:
    profiles: server2
