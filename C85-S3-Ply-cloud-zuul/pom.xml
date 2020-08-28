@@ -38,7 +38,8 @@
 		
 		<!-- 服务网关 zuul  -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>	<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 		</dependency>
 
 
