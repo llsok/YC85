@@ -9,7 +9,12 @@ spring:
 eureka:
    client:
       serviceUrl:
-         defaultZone: http://127.0.0.1:8000/eureka
+         defaultZone: http://es1:8000/eureka,http://es2:7999/eureka
+         
+# 开启声明式服务降级   
+feign:
+  hystrix:
+    enabled: true
 
 # yml支持同一个文件内部的配置块, 使用 --- 分隔每一个配置块, 每个配置块都必须有个名字, 没有名字作为默认配置块
 ---
@@ -25,3 +30,6 @@ server:
 # 配置块名
 spring:
    profiles: order8008
+   
+   
+
