@@ -1,0 +1,9 @@
+Eureka 注册服务器(中心)的集群配置
+1. 注册服务器defaultZone: 配置其他服务器的地址
+2.    注册服务器的只能配置 主机名:  其他服务器的主机名:8000	
+	C:\Windows\System32\drivers\etc\hosts IP==>域名映射文件
+3.  eureka.client.registerWithEureka=true
+    eureka.client.fetchRegistry=true
+    	服务器互相注册
+    eureka.client.enable-self-preservation=false
+    	关闭自我保护
