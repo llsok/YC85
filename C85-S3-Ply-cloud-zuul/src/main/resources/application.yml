@@ -18,14 +18,30 @@ eureka:
 
 zuul:
   routes:
-    # 路由名
+    # 路由名 (简单路由)
+    simple:
+       # 映射地址
+       path: /simple/163
+       # 简单路由 url 地址 使用  http 和 https 开头的地址
+       url: http://www.163.com
+       
+    # 路由名(跳转路由)  跳转到当前项目的某个action方法
+    forward:
+       # 映射地址
+       path: /forward/**
+       # 使用forward:开头
+       url: forward:/test
+       
+    # 路由名(Ribbon路由)
     user:
       # 对应接口的地址  /** 表示所有的接口(包含子目录)
       path: /user/**
+      # 配置服务名
       serviceId: user
       
     # 路由名
     order:
       # 对应接口的地址  /** 表示所有的接口(包含子目录)
-      path: /order/**
-      serviceId: order
+      path: /odr/**
+      # 路由名与服务名一致, 可以省略服务名配置
+      #serviceId: order

@@ -17,3 +17,12 @@ http://es1:8002/order
 http://es3/user/user   ==>   http://es1:8001/user
 
 http://es3/order/order ==>   http://es1:8002/order
+
+
+1. Eureka集群配置
+2. 熔断与降级
+3. Zuul网关配置
+
+
+
+
