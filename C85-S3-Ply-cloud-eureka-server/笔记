@@ -7,3 +7,13 @@ Eureka 注册服务器(中心)的集群配置
     	服务器互相注册
     eureka.client.enable-self-preservation=false
     	关闭自我保护
+    	
+    	
+
+http://es1:8001/user
+http://es1:8002/order
+
+
+http://es3/user/user   ==>   http://es1:8001/user
+
+http://es3/order/order ==>   http://es1:8002/order
