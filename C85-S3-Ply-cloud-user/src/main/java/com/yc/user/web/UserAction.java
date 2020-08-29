@@ -1,7 +1,9 @@
 package com.yc.user.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +16,16 @@ public class UserAction {
 	private RestTemplate restTemplate;
 	
 	@GetMapping("user")
-	public String user(HttpServletRequest req) {
+	public String user(HttpServletRequest req, HttpServletResponse resp) {
+		
+		System.out.println(req.getHeader("Cookie"));
+		
+		System.out.println(req.getHeader("Authorization"));
+		
+		// 添加cookie ==> Set-Cookie
+		Cookie cookie = new Cookie("test","test");
+		resp.addCookie(cookie);
+		
 		return String.format("server:user ; ip:%s ; port:%s",
 				req.getLocalAddr(),
 				req.getLocalPort());
