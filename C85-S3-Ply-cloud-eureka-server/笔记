@@ -26,3 +26,34 @@ http://es3/order/order ==>   http://es1:8002/order
 
 
 
+分布式微服务架构 ----- 远程调用
+
+单体架构 ===> 分布式
+
+注册服务器(注册中心): 负责注册,发现和管理服务 ==> Eureka服务器
+通过服务名进行远程调用
+	RestTemplate ==> 'http:IP:端口/业务路径'
+				 ==> 'http:服务名/业务路径'   : 注册服务器
+	声明式的服务调用:  Feign
+	
+服务熔断与降级:
+
+Zuul 服务网关
+	简单映射:
+		网关名 + path(映射地址) + url( http or https 开头)
+	跳转映射
+		网关名 + path(映射地址) + url( forward 开头, 并且跳转当前项目的资源  )
+	Ribbon映射
+		网关名 + path(映射地址) + serviceId( 服务名 )  ,  服务名 + path
+
+
+
+
+
+
+
+
+
+
+
+
