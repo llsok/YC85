@@ -17,8 +17,11 @@ eureka:
 # http://es3/order/order ==>   http://es1:8002/order
 
 zuul:
-  routes:
-    
+  # 后面不定义配置参数, 表示 无敏感头 ==> 空集合
+  # 全局敏感头设定
+  sensitiveHeaders:
+  
+  routes:  
     # 忽略路由
     # 默认忽略所有的服务, 除了单独配置的路由
     #ignoredServices: '*'
@@ -46,10 +49,6 @@ zuul:
       serviceId: user
       # 敏感头设置,  数据类型是集合
       # sensitiveHeaders: Authorization
-      # 后面不定义配置参数, 表示 无敏感头 ==> 空集合
-      sensitiveHeaders: 
-     
-      
       
     # 路由名
     #order:
