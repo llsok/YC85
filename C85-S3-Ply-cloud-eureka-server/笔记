@@ -57,6 +57,46 @@ Zuul过滤器 + token(令牌)
 
 
 
+SpringCloud案例
+
+灿然书店(真实案例)
+
+书籍查询
+分类展示
+书籍详情
+购物车
+
+
+用户功能: 注册,登录....
+
+服务拆分:
+	1.前台
+		crbook-index
+	2.后台
+		crbook-book
+		crbook-user
+
+服务网元:
+	注册服务器
+		crbook-eureka
+	服务网关
+		crbook-zuul
+	配置中心
+		crbook-config
+		
+
+工程架构
+	crbook-parent1
+	       |
+	crbook-parent2, crbook-eureka, crbook-zuul, crbook-config
+		   |  crbook-common
+	crbook-index, crbook-book, crbook-user
+
+
+
+
+
+
 
 
 
