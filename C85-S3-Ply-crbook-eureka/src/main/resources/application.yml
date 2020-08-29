@@ -1,4 +1,11 @@
+server:
+   port: 8761
 # 定义当前服务名
 spring:
    application:
       name: creureka
+      
+eureka:
+   client:
+      registerWithEureka: false
+      fetchRegistry: false

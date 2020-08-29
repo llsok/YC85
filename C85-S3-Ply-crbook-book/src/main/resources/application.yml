@@ -5,3 +5,8 @@ server:
 spring:
    application:
       name: crbook
+   datasource:
+      url: jdbc:mysql://127.0.0.1/C85-S2-Ply-damai?serverTimezone=UTC&CharacterEncoding=UTF-8&useSSL=false
+      username: root
+      password: a
+      driver-class-name: com.mysql.jdbc.Driver
