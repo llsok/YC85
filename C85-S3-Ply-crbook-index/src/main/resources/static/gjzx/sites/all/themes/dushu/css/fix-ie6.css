@@ -1,0 +1,77 @@
+/**
+ * @file
+ * custom Styling
+ */
+
+
+
+.wmain .right-extra .middle{
+  overflow:hidden;
+}
+
+#content .wmain {
+width:1000px;
+}
+#content{
+  width:1000px;
+  padding-left:0px;
+}
+#content .wmain .right-extra {
+  width:780px;
+}
+
+.view-front-recommend .views-field-uc-product-image {
+    height: 140px;
+    margin-right: 0px;
+}
+.front  .middle .pane-front-recommend-panel-pane-1{
+  height:309px;
+}
+.front  .right .pane-uc-popular-products{
+ height:450px;
+}
+
+.front  .right .pane-1{
+ height:230px;
+}
+
+.front .view-uc-popular-products .item-list ul li {
+  clear:both;
+  padding-left: 0px;
+
+}
+
+.front .view-uc-popular-products .item-list ul li span.counter {
+	float:left;
+	display:block;
+}
+
+.front .view-uc-popular-products .item-list ul li .detail-right{
+  float:left;
+  padding-left:20px;
+}
+
+.front .view-uc-popular-products .item-list ul li .detail-right .views-field-title,
+.front .view-uc-popular-products .item-list ul li .detail-right .views-field-list-price,
+.front .view-uc-popular-products .item-list ul li .detail-right .views-field-sell-price{
+  float:left;
+}
+/*
+#content .panel-front .panel-col-last {
+    float: right;
+	position:absolute;
+}
+*/
+
+#content .panel-front .panel-col-first .inside {
+    margin: 0 0 0 0;
+}
+
+
+.head_nav .head_nav_innner .region-head-nav{
+    margin: 0 auto;
+    width: 1000px;
+}
+#header  .head_nav  .menu {
+  width:none;
+}
