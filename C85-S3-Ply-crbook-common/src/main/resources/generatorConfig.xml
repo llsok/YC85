@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 命令：
+	-Dmybatis.generator.overwrite=true mybatis-generator:generate
+	-->
+	<context id="SQLiteTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 不生成注释 -->
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1/C85-S3-Ply-crbook" 
+			userId="root" password="a">
+		</jdbcConnection>
+		
+		<!-- 实体类包名 -->
+		<javaModelGenerator targetPackage="com.yc.crbook.bean"
+			targetProject="src/main/java">
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- XML文件包名 -->
+		<sqlMapGenerator targetPackage="com.yc.crbook.dao"
+			targetProject="src/main/resources">
+		</sqlMapGenerator>
+		<!-- Mapper类包名 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.yc.crbook.dao" targetProject="src/main/java">
+		</javaClientGenerator>
+		
+		<!-- 要反向生成的表的配置 -->
+		<table tableName="%" >
+			<!-- 自定义列映射或主键配置 -->
+			<generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+		</table>
+
+	</context>
+</generatorConfiguration>
