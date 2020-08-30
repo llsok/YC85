@@ -5,14 +5,3 @@ server:
 spring:
    application:
       name: crindex
-      
-zuul:
-   routes:
-      # 路由名 == 服务名
-      base: 
-         url: /simple/163
-         path: http://www.163.com
-         
-      index: 
-         url: /index/**
-         serviceId: crindex

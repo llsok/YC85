@@ -4,9 +4,30 @@ server:
 spring:
   application:
      name: crzuul
+     
+zuul:
+   routes:
+      # 路由名 == 服务名
+      test: 
+         path: /simple/163
+         url: http://www.163.com
+      # crbook 服务名映射 到 book
+      crbook: /book/**
+      # cruser 服务名映射 到 user
+      cruser: /user/**
+      # 默认路由
+      base:
+         path: /**
+         serviceId: crindex
 
 # 解决 zuul 网关报错的问题
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+hystrix:
+   command:
+      default:
+         execution:
+            isolation:
+               thread:
+                  timeoutInMilliseconds: 60000
 ribbon:
   ConnectTimeout: 3000
   ReadTimeout: 60000
