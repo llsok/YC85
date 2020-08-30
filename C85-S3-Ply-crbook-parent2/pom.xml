@@ -41,13 +41,6 @@
 			<artifactId>spring-session-data-redis</artifactId>
 		</dependency>
 		
-		<!-- 分页查询 -->
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.2.13</version>
-		</dependency>
-		
 		<!-- 配置中心依赖  spring-cloud-config -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
