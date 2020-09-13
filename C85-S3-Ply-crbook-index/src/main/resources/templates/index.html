@@ -2407,181 +2407,50 @@
 
 													<tbody>
 														<tr class="row-1 row-first">
-															<td class="col-1 col-first">
+															<td th:each=" show,s : ${recom1}" th:if="${s.index < 4}" class="col-1 col-first">
 
 																<div class="views-field views-field-uc-product-image">
 																	<div class="field-content">
-																		<a href="book.html" title="论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一 中华书局出版" target="_blank"><img
-																			data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_29.jpg?itok=rnrU2LPL" src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif"
+																		<a href="book.html" th:title="${show.book.name}" target="_blank"><img
+																			th:data-src="${show.book.pic}" src="sites/all/modules/lazyloader/image_placeholder.gif"
 																			width="130" height="130" alt="" />
 																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_29.jpg?itok=rnrU2LPL" width="130" height="130" alt="" />
+																				<img th:src="${show.book.pic}" width="130" height="130" alt="" />
 																			</noscript></a>
 																	</div>
 																</div>
 																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一 中华书局出版" target="_blank">论语译注（简体字本）--徐德琳老师推荐北...</a></span>
+																	<span class="field-content"><a href="book.html" th:title="${show.book.name}" target="_blank" th:text="${show.book.name}">论语译注（简体字本）--徐德琳老师推荐北...</a></span>
 																</div>
 																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥26.00</span></span>
+																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price" th:text="${show.book.price}">¥26.00</span></span>
 																</div>
 																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥20.80</span></span>
-																</div>
-															</td>
-															<td class="col-2">
-
-																<div class="views-field views-field-uc-product-image">
-																	<div class="field-content">
-																		<a href="book.html" title="掌故（第五集）（毛边本） 中华书局出版" target="_blank"><img data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/6_4.jpg?itok=Ml5uw62i"
-																			src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif" width="130" height="130" alt="" />
-																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/6_4.jpg?itok=Ml5uw62i" width="130" height="130" alt="" />
-																			</noscript></a>
-																	</div>
-																</div>
-																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="掌故（第五集）（毛边本） 中华书局出版" target="_blank">掌故（第五集）（毛边本）</a></span>
-																</div>
-																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																</div>
-																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																</div>
-															</td>
-															<td class="col-3">
-
-																<div class="views-field views-field-uc-product-image">
-																	<div class="field-content">
-																		<a href="book.html" title="唐诗之美日历（2020·琴诗和鸣）（精） 中华书局出版" target="_blank"><img
-																			data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710114069901.jpg?itok=52UdRoxc"
-																			src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif" width="130" height="130" alt="" />
-																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710114069901.jpg?itok=52UdRoxc" width="130" height="130" alt="" />
-																			</noscript></a>
-																	</div>
-																</div>
-																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="唐诗之美日历（2020·琴诗和鸣）（精） 中华书局出版" target="_blank">唐诗之美日历（2020·琴诗和鸣）（精）</a></span>
-																</div>
-																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥88.00</span></span>
-																</div>
-																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥70.40</span></span>
-																</div>
-															</td>
-															<td class="col-4 col-last">
-
-																<div class="views-field views-field-uc-product-image">
-																	<div class="field-content">
-																		<a href="book.html" title="中华大藏经（汉文部分）·续编：南传典籍部、藏传典籍部（全2册）（精） 中华书局出版" target="_blank"><img
-																			data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_120.jpg?itok=0SV8rO_i" src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif"
-																			width="130" height="130" alt="" />
-																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_120.jpg?itok=0SV8rO_i" width="130" height="130" alt="" />
-																			</noscript></a>
-																	</div>
-																</div>
-																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="中华大藏经（汉文部分）·续编：南传典籍部、藏传典籍部（全2册）（精） 中华书局出版" target="_blank">中华大藏经（汉文部分）·续编：南传典籍部...</a></span>
-																</div>
-																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥760.00</span></span>
-																</div>
-																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥608.00</span></span>
+																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price" th:text="${show.book.price}">¥20.80</span></span>
 																</div>
 															</td>
 														</tr>
-														<tr class="row-2 row-last">
-															<td class="col-1 col-first">
+														<tr class="row-1 row-first">
+															<td th:each=" show,s : ${recom1}" th:if="${s.index >= 4}" class="col-1 col-first">
 
 																<div class="views-field views-field-uc-product-image">
 																	<div class="field-content">
-																		<a href="book.html" title="中华大藏经（汉文部分）·续编：印度典籍部（全4册）（精） 中华书局出版" target="_blank"><img
-																			data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_112.jpg?itok=pzl8k-Aa" src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif"
+																		<a href="book.html" th:title="${show.book.name}" target="_blank"><img
+																			th:data-src="${show.book.pic}" src="sites/all/modules/lazyloader/image_placeholder.gif"
 																			width="130" height="130" alt="" />
 																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_112.jpg?itok=pzl8k-Aa" width="130" height="130" alt="" />
+																				<img th:src="${show.book.pic}" width="130" height="130" alt="" />
 																			</noscript></a>
 																	</div>
 																</div>
 																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="中华大藏经（汉文部分）·续编：印度典籍部（全4册）（精） 中华书局出版" target="_blank">中华大藏经（汉文部分）·续编：印度典籍部...</a></span>
+																	<span class="field-content"><a href="book.html" th:title="${show.book.name}" target="_blank" th:text="${show.book.name}">论语译注（简体字本）--徐德琳老师推荐北...</a></span>
 																</div>
 																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥1,520.00</span></span>
+																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price" th:text="${show.book.price}">¥26.00</span></span>
 																</div>
 																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥1,216.00</span></span>
-																</div>
-															</td>
-															<td class="col-2">
-
-																<div class="views-field views-field-uc-product-image">
-																	<div class="field-content">
-																		<a href="book.html" title="父亲的声音（毛边本） 中华书局出版" target="_blank"><img
-																			data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710113292201.jpg?itok=TU35jNMX"
-																			src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif" width="130" height="130" alt="" />
-																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710113292201.jpg?itok=TU35jNMX" width="130" height="130" alt="" />
-																			</noscript></a>
-																	</div>
-																</div>
-																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="父亲的声音（毛边本） 中华书局出版" target="_blank">父亲的声音（毛边本）</a></span>
-																</div>
-																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																</div>
-																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																</div>
-															</td>
-															<td class="col-3">
-
-																<div class="views-field views-field-uc-product-image">
-																	<div class="field-content">
-																		<a href="book.html" title="隋书（精）--点校本二十四史修订本 中华书局出版" target="_blank"><img
-																			data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710113628901.jpg?itok=96VAjs1t"
-																			src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif" width="130" height="130" alt="" />
-																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710113628901.jpg?itok=96VAjs1t" width="130" height="130" alt="" />
-																			</noscript></a>
-																	</div>
-																</div>
-																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="隋书（精）--点校本二十四史修订本 中华书局出版" target="_blank">隋书（精）--点校本二十四史修订本</a></span>
-																</div>
-																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥380.00</span></span>
-																</div>
-																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥304.00</span></span>
-																</div>
-															</td>
-															<td class="col-4 col-last">
-
-																<div class="views-field views-field-uc-product-image">
-																	<div class="field-content">
-																		<a href="book.html" title="南齐书（全3册）（精）---点校二十四史修订本 中华书局出版" target="_blank"><img
-																			data-src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_32.jpg?itok=nDFTcBVX" src="http://115.28.134.82/sites/all/modules/lazyloader/image_placeholder.gif"
-																			width="130" height="130" alt="" />
-																		<noscript>
-																				<img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/4_32.jpg?itok=nDFTcBVX" width="130" height="130" alt="" />
-																			</noscript></a>
-																	</div>
-																</div>
-																<div class="views-field views-field-title">
-																	<span class="field-content"><a href="book.html" title="南齐书（全3册）（精）---点校二十四史修订本 中华书局出版" target="_blank">南齐书（全3册）（精）---点校二十四史...</a></span>
-																</div>
-																<div class="views-field views-field-list-price">
-																	<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥200.00</span></span>
-																</div>
-																<div class="views-field views-field-sell-price">
-																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥160.00</span></span>
+																	<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price" th:text="${show.book.price}">¥20.80</span></span>
 																</div>
 															</td>
 														</tr>

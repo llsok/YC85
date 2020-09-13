@@ -8,6 +8,8 @@
     <result column="relatb" jdbcType="VARCHAR" property="relatb" />
     <result column="relaid" jdbcType="INTEGER" property="relaid" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
+    <association property="book" column="relaid" select="com.yc.crbook.dao.CrBookMapper.selectByPrimaryKey"></association>
+    <association property="article" column="relaid" select="com.yc.crbook.dao.CrArticleMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
