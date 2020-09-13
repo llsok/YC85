@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-hans" version="XHTML+RDFa 1.0" dir="ltr">
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
 
 <head profile="http://www.w3.org/1999/xhtml/vocab">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -2752,130 +2751,42 @@
 
 														<tbody>
 															<tr class="row-1 row-first">
-																<td class="col-1 col-first">
+																<td th:each=" book,s : ${newBooks} " th:if="${s.index < 6}" class="col-1 col-first">
 
 																	<div class="views-field views-field-uc-product-image">
 																		<div class="field-content">
-																			<a href="book.html" title="脂砚斋重评石头记：庚辰本（全4册）（精）---红楼梦古抄本丛刊 人民文学出版社出版"><img
-																				src="http://115.28.134.82/sites/default/files/styles/130_130/public/default_images/defaultimg5.jpg?itok=meGirds7" alt="脂砚斋重评石头记：庚辰本（全4册）（精）---红楼梦古抄本丛刊 人民文学出版社出版"></a>
+																			<a href="book.html" th:title="${book.name}"><img
+																				th:src="${book.pic}" th:alt="${book.name}"></a>
 																		</div>
 																	</div>
 																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">脂砚斋重评石头记：庚辰本（全4册）（精）...</a></span>
+																		<span class="field-content"><a href="book.html" th:text="${book.name}">脂砚斋重评石头记：庚辰本（全4册）（精）...</a></span>
 																	</div>
 																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥290.00</span></span>
+																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price" th:text="${book.price}">¥290.00</span></span>
 																	</div>
 																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥232.00</span></span>
-																	</div>
-																</td>
-																<td class="col-2">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="掌故（第五集）（毛边本） 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/6_4.jpg?itok=Ml5uw62i" alt="掌故（第五集）（毛边本） 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">掌故（第五集）（毛边本）</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																	</div>
-																</td>
-																<td class="col-3">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="二条十年（1955—1964）（毛边本） 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/6_5.jpg?itok=oN15pt2g"
-																				alt="二条十年（1955—1964）（毛边本） 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">二条十年（1955—1964）（毛边本）</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥56.00</span></span>
-																	</div>
-																</td>
-																<td class="col-4">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="唐诗之美日历（2020·琴诗和鸣）（精） 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710114069901.jpg?itok=52UdRoxc"
-																				alt="唐诗之美日历（2020·琴诗和鸣）（精） 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">唐诗之美日历（2020·琴诗和鸣）（精）</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥88.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥70.40</span></span>
-																	</div>
-																</td>
-																<td class="col-5">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="龚自珍己亥杂诗注---中国古典文学基本丛书 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/6_6.jpg?itok=gRZYxjsz"
-																				alt="龚自珍己亥杂诗注---中国古典文学基本丛书 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">龚自珍己亥杂诗注---中国古典文学基本丛...</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥48.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥38.40</span></span>
-																	</div>
-																</td>
-																<td class="col-6 col-last">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="资治通鉴启示录（全2册） 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710113912901.jpg?itok=m8BFrId5"
-																				alt="资治通鉴启示录（全2册） 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">资治通鉴启示录（全2册）</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥68.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥54.40</span></span>
+																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price"  th:text="${book.price}">¥232.00</span></span>
 																	</div>
 																</td>
 															</tr>
 															<tr class="row-2 row-last">
-																<td class="col-1 col-first">
+																<td th:each=" book,s : ${newBooks} " th:if="${s.index >= 6}" class="col-1 col-first">
 
 																	<div class="views-field views-field-uc-product-image">
 																		<div class="field-content">
-																			<a href="book.html" title="荔尾词存 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710113886301.jpg?itok=oKEJ5FIT" alt="荔尾词存 中华书局出版"></a>
+																			<a href="book.html" th:title="${book.name}"><img
+																				th:src="${book.pic}" th:alt="${book.name}"></a>
 																		</div>
 																	</div>
 																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">荔尾词存</a></span>
+																		<span class="field-content"><a href="book.html" th:text="${book.name}">脂砚斋重评石头记：庚辰本（全4册）（精）...</a></span>
 																	</div>
 																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥68.00</span></span>
+																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price" th:text="${book.price}">¥290.00</span></span>
 																	</div>
 																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥54.40</span></span>
+																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price"  th:text="${book.price}">¥232.00</span></span>
 																	</div>
 																</td>
 																<td class="col-2">
