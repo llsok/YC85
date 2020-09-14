@@ -2,13 +2,17 @@ package com.yc.crbook.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CrUser {
     private Integer id;
 
+    @NotEmpty(message = "账号不能为空")
     private String account;
 
     private String name;
 
+    @NotEmpty(message = "密码不能为空")
     private String pwd;
 
     private String gender;
