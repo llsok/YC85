@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-hans" version="XHTML+RDFa 1.0" dir="ltr">
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
 
 <head profile="http://www.w3.org/1999/xhtml/vocab">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,103 +44,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
 
 <!--��ҳͷ��-->
 
-<div id="mininav">
-   <div class="mininav_inner">
-     <div id="mininav_left" class="mininav_left">
-            <div class="region region-mininav-left">
-    <div id="block-block-2" class="block block-block">
+<div id="mininav" th:replace="index::#mininav"></div>
 
-    
-  <div class="content">
-    <div><span><a href="login.html">[登录]</a><a class="link-regist" href="register.html">[免费注册]</a></span></div>
-  </div>
-</div>
-  </div>
-     </div>
-     <div class="mininav_right" id="mininav_right">
-            <div class="region region-mininav-right">
-    <div id="block-block-3" class="block block-block">
-
-    
-  <div class="content">
-    <ul class="topnav">
-<li id="wechat"><a class="link4" target="_blank" title="中华书局官方微信">微信<span><p><img src="sites/all/themes/dushu/images/qrcode_crbook.jpg"/></p></span></a></li>
-<li class="ddnewhead_cart"><a dd_name="购物车" name="购物车" href="cart.html"><i class="icon_card"></i>购物车<b id="cart_items_count"></b></a></li>
-<li id="myorder"><a class="link4" target="_blank" title="我的订单" href="user_order.html">我的订单</a></li>
-<li id="myaccount"><a class="link4" target="_blank" title="我的书屋" href="user/0">我的书屋</a></li>
-<li id="help-center"><a class="link4" target="_blank" title="帮助中心" href="node/10">帮助中心</a></li>
-
-</ul>  </div>
-</div>
-  </div>
-     </div>
-   </div>
-</div>
-
-<div id="header-wrapper1">
- <div id="header-wrapper2">
-
- <div id="header">
-   <div class="head_main">
-      <div class="head_left">
-	<a class="logo" href="/" id="logo"><img src="sites/all/themes/dushu/images/logo.png" /></a>
-	<div id="search_form" class="text_box">   <div class="region region-search-form">
-    <div id="block-search-form" class="block block-search">
-
-    
-  <div class="content">
-    <form action="/user" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
-      <h2 class="element-invisible">搜索表单</h2>
-    <div class="form-item form-type-textfield form-item-search-block-form">
-  <label class="element-invisible" for="edit-search-block-form--2">搜索 </label>
- <input title="请输入您想搜索的关键词。" type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text" />
-</div>
-<div class="form-actions form-wrapper" id="edit-actions--2"><input type="submit" id="edit-submit--2" name="op" value="搜索" class="form-submit" /></div><input type="hidden" name="form_build_id" value="form-9aLUSn715IiUUV7Gf0-U45sdlimNnNjxTdCdTAMTwzA" />
-<input type="hidden" name="form_id" value="search_block_form" />
-</div>
-<div id="advsearch-link"><a href="/advsearch">高级搜索</a></div>
-</div></form>  </div>
-</div>
-<div id="block-block-28" class="block block-block">
-
-    
-  <div class="content">
-    <div id="hotwords">
-  <strong>热门搜索：</strong>
-  <a href="/search/content?keyword=史记" target="_blank">史记</a>
-  <a href="/search/content?keyword=资治通鉴" target="_blank">资治通鉴</a>
-  <a href="/search/content?keyword=清史稿" target="_blank">清史稿</a>
-  <a href="/search/content?keyword=二十四史" target="_blank">二十四史</a>
-  <a href="/search/content?keyword=佛教" target="_blank">佛教</a>
-  <a href="/search/content?keyword=大藏经" target="_blank">大藏经</a>
-  <a href="/hotkeywords" target="_blank">更多</a>
-</div>
-  </div>
-</div>
-  </div>
- </div>
-      </div>
-      <div class="head_right">  <div class="region region-head-right">
-    <div id="block-obcustom-shopping-cart" class="block block-obcustom">
-
-    
-  <div class="content">
-    <div id="shopping-cart-block">
-  <dl class="">
-  <dt class="ld"><s></s><span class="shopping"><span id="shopping-amount"></span></span><a id="cart-url" href="/cart">去购物车结算</a> <b></b> 
-  </dt>
-  </dl>
-</div>  </div>
-</div>
-  </div>
-</div>
-   </div>  
-    
- </div>
-
-
- </div>
-</div>
+<div id="header-wrapper1" th:replace="index::#header-wrapper1"></div>
 
 <div class="class_nav">
 </div>
@@ -180,75 +85,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
   </div>
         </div>
 <div class="clear"></div>
-<div id="footer">
-   <div class="region region-footer">
-    <div id="block-menu-menu-help" class="block block-menu">
 
-    
-  <div class="content">
-    <ul class="menu"><li class="first expanded"><a href="/node/6" title="">新手上路</a><ul class="menu"><li class="first leaf"><a href="/node/1" title="">新用户注册</a></li>
-<li class="leaf"><a href="/node/2" title="">订单流程</a></li>
-<li class="last leaf"><a href="/node/4" title="">会员积分计划</a></li>
-</ul></li>
-<li class="expanded"><a href="/node/7" title="">付款方式</a><ul class="menu"><li class="first leaf"><a href="/node/12" title="">支付宝</a></li>
-<li class="leaf"><a href="/node/11" title="">邮局汇款</a></li>
-<li class="last leaf"><a href="/node/13" title="">银行汇款</a></li>
-</ul></li>
-<li class="expanded"><a href="/node/9" title="">售前售后服务</a><ul class="menu"><li class="first leaf"><a href="/node/17" title="">退换书政策</a></li>
-<li class="leaf"><a href="/node/16" title="">退换书申请</a></li>
-<li class="last leaf"><a href="/node/18" title="">退换书通道</a></li>
-</ul></li>
-<li class="expanded"><a href="/node/8" title="">配送服务</a><ul class="menu"><li class="first leaf"><a href="/node/15" title="">配送时间，范围</a></li>
-<li class="leaf"><a href="/node/14" title="">配送费收取标准</a></li>
-<li class="last leaf"><a href="/node/5" title="">发票制度</a></li>
-</ul></li>
-<li class="last expanded"><a href="/node/10" title="">帮助中心</a><ul class="menu"><li class="first leaf"><a href="/node/19" title="">常见热点问题</a></li>
-<li class="last leaf"><a href="/node/20" title="">忘记了密码</a></li>
-</ul></li>
-</ul>  </div>
-</div>
-<div id="block-block-10" class="block block-block">
+<div id="footer" th:replace="index::#footer"></div>
 
-    
-  <div class="content">
-    <img width="990" height="60" src="sites/all/themes/dushu/images/footer-credit.jpg?201303181432">  </div>
-</div>
-<div id="block-menu-menu-footernav" class="block block-menu">
-
-    
-  <div class="content">
-    <ul class="menu"><li class="first leaf"><a href="/node/21" title="">关于我们</a></li>
-<li class="leaf"><a href="/node/22" title="">联系我们</a></li>
-<li class="leaf"><a href="/node/23" title="">安全交易</a></li>
-<li class="leaf"><a href="/node/24" title="">网站地图</a></li>
-<li class="leaf"><a href="book.html" title="">营业执照</a></li>
-<li class="leaf"><a href="book.html" title="">出版物经营许可证</a></li>
-<li class="last leaf"><a href="book.html" title="">域名证书</a></li>
-</ul>  </div>
-</div>
-<div id="block-block-1" class="block block-block">
-
-    
-</div>
-<div id="block-block-11" class="block block-block">
-
-    
-  <div class="content">
-    <div>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?99ca8d8fc0b9acb4ce09e093ac6b6027";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-</div>  </div>
-</div>
-  </div>
-</div>
 <a class="go_top" href="javascript:void(0);"></a>
 
 

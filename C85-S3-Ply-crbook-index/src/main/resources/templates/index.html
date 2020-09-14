@@ -2620,12 +2620,12 @@
 
 														<tbody>
 															<tr class="row-1 row-first">
-																<td th:each=" book,s : ${newBooks} " th:if="${s.index < 6}" class="col-1 col-first">
+																<td th:each=" book,s : ${newBooks} " th:if="${s.index < 6}" th:class="'col-' + ${s.count} + ${s.count==1?' col-first':s.count==6?' col-last':''}">
 
 																	<div class="views-field views-field-uc-product-image">
 																		<div class="field-content">
 																			<a href="book.html" th:title="${book.name}"><img
-																				th:src="${book.pic}" th:alt="${book.name}"></a>
+																				th:src="${book.pic}" th:alt="${book.name}" width="130px" height="130px"></a>
 																		</div>
 																	</div>
 																	<div class="views-field views-field-title">
@@ -2640,12 +2640,12 @@
 																</td>
 															</tr>
 															<tr class="row-2 row-last">
-																<td th:each=" book,s : ${newBooks} " th:if="${s.index >= 6}" class="col-1 col-first">
+																<td th:each=" book,s : ${newBooks} " th:if="${s.index >= 6}" th:class="'col-' + ${s.count-6} + ${s.count==7?' col-first':s.count==12?' col-last':''}">
 
 																	<div class="views-field views-field-uc-product-image">
 																		<div class="field-content">
 																			<a href="book.html" th:title="${book.name}"><img
-																				th:src="${book.pic}" th:alt="${book.name}"></a>
+																				th:src="${book.pic}" th:alt="${book.name}" width="130px" height="130px"></a>
 																		</div>
 																	</div>
 																	<div class="views-field views-field-title">
@@ -2656,95 +2656,6 @@
 																	</div>
 																	<div class="views-field views-field-sell-price">
 																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price"  th:text="${book.price}">¥232.00</span></span>
-																	</div>
-																</td>
-																<td class="col-2">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="陶渊明集译注 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710111653301.jpg?itok=pBXH8avE" alt="陶渊明集译注 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">陶渊明集译注</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥29.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥23.20</span></span>
-																	</div>
-																</td>
-																<td class="col-3">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="明代文学思想史（全2册）---罗宗强文集 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710111653301_0.jpg?itok=iLSlrWFv"
-																				alt="明代文学思想史（全2册）---罗宗强文集 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">明代文学思想史（全2册）---罗宗强文集</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥98.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥78.40</span></span>
-																	</div>
-																</td>
-																<td class="col-4">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="玄学与魏晋士人心态---罗宗强文集 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710111653301_1.jpg?itok=jmZsV6wL"
-																				alt="玄学与魏晋士人心态---罗宗强文集 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">玄学与魏晋士人心态---罗宗强文集</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥46.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥36.80</span></span>
-																	</div>
-																</td>
-																<td class="col-5">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="唐诗小史---罗宗强文集 中华书局出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/cover/978710111653301_2.jpg?itok=94KU1I3D"
-																				alt="唐诗小史---罗宗强文集 中华书局出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">唐诗小史---罗宗强文集</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥36.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥28.80</span></span>
-																	</div>
-																</td>
-																<td class="col-6 col-last">
-
-																	<div class="views-field views-field-uc-product-image">
-																		<div class="field-content">
-																			<a href="book.html" title="国语集解（精）---中华国学文库 出版"><img src="http://115.28.134.82/sites/default/files/styles/130_130/public/default_images/defaultimg5.jpg?itok=meGirds7"
-																				alt="国语集解（精）---中华国学文库 出版"></a>
-																		</div>
-																	</div>
-																	<div class="views-field views-field-title">
-																		<span class="field-content"><a href="book.html">国语集解（精）---中华国学文库</a></span>
-																	</div>
-																	<div class="views-field views-field-list-price">
-																		<span class="views-label views-label-list-price">定价: </span> <span class="field-content"><span class="uc-price">¥68.00</span></span>
-																	</div>
-																	<div class="views-field views-field-sell-price">
-																		<span class="views-label views-label-sell-price">销售价: </span> <span class="field-content"><span class="uc-price">¥54.40</span></span>
 																	</div>
 																</td>
 															</tr>
