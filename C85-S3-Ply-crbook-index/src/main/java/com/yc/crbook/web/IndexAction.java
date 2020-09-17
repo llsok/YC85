@@ -102,8 +102,7 @@ public class IndexAction {
 		
 		if(repwd == null || repwd.trim().isEmpty()) {
 			errors.rejectValue("pwd", "repwdError", "请输入确认密码");
-		}
-		if(repwd.equals(user.getPwd()) == false) {
+		} else if(repwd.equals(user.getPwd()) == false) {
 			errors.rejectValue("pwd", "repwdError", "两次输入的密码不一致");
 		}
 		if (errors.hasErrors()) {
