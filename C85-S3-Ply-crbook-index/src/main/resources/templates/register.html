@@ -68,20 +68,20 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
 </ul>	                            <div class="region region-content">
     <div id="block-system-main" class="block block-system">
 
-    
+   
   <div class="content">
     <form class="user-info-from-cookie" enctype="multipart/form-data" action="/register" method="post" id="user-register-form" accept-charset="UTF-8"><div><div id="edit-account" class="form-wrapper"><div class="form-item form-type-textfield form-item-name">
   <label for="edit-name">用户名 <span class="form-required" title="此项必填。">*</span>
   <span class="emsg" th:each="e : ${errors}" th:if="${e.field=='account'}" th:text="${e.defaultMessage}"></span>
   </label>
- <input class="username form-text required" type="text" id="edit-name" name="account" value="" size="60" maxlength="60" />
+ <input th:value="${user?.account}" class="username form-text required" type="text" id="edit-name" name="account" value="" size="60" maxlength="60" />
 <div class="description">允许空格；除英文句号（.）、横线（-）、单引号（'）和下划线（_）外的标点符号不允许。</div>
 </div>
 <div class="form-item form-type-textfield form-item-mail">
   <label for="edit-mail">电子邮件地址 <span class="form-required" title="此项必填。">*</span>
   <span class="emsg" th:each="e : ${errors}" th:if="${e.field=='email'}" th:text="${e.defaultMessage}"></span>
   </label>
- <input type="text" id="edit-mail" name="email" value="" size="60" maxlength="254" class="form-text required" />
+ <input th:value="${user?.email}" type="text" id="edit-mail" name="email" value="" size="60" maxlength="254" class="form-text required" />
 <div class="description">需要一个合法的邮件地址。所有的系统邮件都会发送到此地址。此地址不对外公开，当需要获取新密码或获取特定消息及通知时会使用此邮件地址。</div>
 </div>
 <div class="form-item form-type-password-confirm form-item-pass">
@@ -89,7 +89,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
   <label for="edit-pass-pass1">密码 <span class="form-required" title="此项必填。">*</span>
   <span class="emsg" th:each="e : ${errors}" th:if="${e.field=='pwd'}" th:text="${e.defaultMessage}"></span>
   </label>
- <input class="password-field form-text required" type="password" id="edit-pass-pass1" name="pwd" size="25" maxlength="128" />
+ <input th:value="${user?.pwd}" class="password-field form-text required" type="password" id="edit-pass-pass1" name="pwd" size="25" maxlength="128" />
 </div>
 <div class="form-item form-type-password form-item-pass-pass2">
   <label for="edit-pass-pass2">确认密码 <span class="form-required" title="此项必填。">*</span></label>

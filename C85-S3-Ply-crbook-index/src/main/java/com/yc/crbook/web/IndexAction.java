@@ -71,7 +71,7 @@ public class IndexAction {
 		if (errors.hasErrors()) {
 			// 讲用户填写的数据传回页面
 			m.addAttribute("user", user);
-			m.addAttribute("errors", errors.getFieldError());
+			m.addAttribute("errors", errors.getFieldErrors());
 			return "login";
 		}
 
@@ -85,7 +85,7 @@ public class IndexAction {
 		} else {
 			// 自定义一个错误
 			errors.rejectValue("account", "AccountOrPwdError", "用户名或密码错误");
-			m.addAttribute("errors", errors.getFieldError());
+			m.addAttribute("errors", errors.getFieldErrors());
 			// 如果错误，跳转回登录页
 			return "login";
 		}
@@ -109,7 +109,7 @@ public class IndexAction {
 		if (errors.hasErrors()) {
 			// 讲用户填写的数据传回页面
 			m.addAttribute("user", user);
-			m.addAttribute("errors", errors.getFieldError());
+			m.addAttribute("errors", errors.getFieldErrors());
 			return "register";
 		}
 		
@@ -120,7 +120,7 @@ public class IndexAction {
 		if (res.getCode() == 1) {
 			return index(m);
 		} else {
-			m.addAttribute("errors", errors.getFieldError());
+			m.addAttribute("errors", errors.getFieldErrors());
 			// 如果错误，跳转回注册页
 			return "register";
 		}
