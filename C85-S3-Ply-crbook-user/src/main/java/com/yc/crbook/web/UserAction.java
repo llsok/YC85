@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,5 +32,13 @@ public class UserAction {
 			// 将登陆成功的用户对象返回
 			return new Result(1, "登录成功！", list.get(0));
 		}
+	}
+	
+	@PostMapping("register")
+	public Result register(@RequestBody CrUser user) {
+		// 带 Selective 的insert 是动态生成 字段, 非 null 字段才会参与 insert
+		// insert into 表名 values ( 所有的字段值 )
+		uMapper.insertSelective(user);
+		return new Result(1, "注册成功!", user);
 	}
 }

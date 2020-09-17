@@ -15,5 +15,8 @@ public interface IUserAction {
 	 */
 	@PostMapping("user/login")
 	Result login(@RequestBody CrUser user);
+	
+	@PostMapping("user/register")
+	Result register(@RequestBody CrUser user);
 
 }
