@@ -55,6 +55,8 @@ public class IndexAction {
 		
 		// 验证用户输入的数据是否正确
 		if(errors.hasErrors()) {
+			// 讲用户填写的数据传回页面
+			m.addAttribute("user", user);
 			m.addAttribute("errors", errors.getFieldError());
 			return "login";
 		}

@@ -146,7 +146,7 @@
 									<span th:each="e : ${errors}" th:if="${e.field=='account'}" th:text="${e.defaultMessage}"></span>									
 								</label> <input type="text" id="edit-name"
 									name="account" value="" size="60" maxlength="60"
-									class="form-text required" />
+									class="form-text required" th:value="${user?.account}"/><!-- 判断输出user的account属性值 -->
 								<div class="description">输入您在 灿然书屋 的用户名。</div>
 							</div>
 							<div class="form-item form-type-password form-item-pass">
@@ -155,7 +155,7 @@
 									<span th:each="e : ${errors}" th:if="${e.field=='pwd'}" th:text="${e.defaultMessage}"></span>	
 								</label> <input type="password" id="edit-pass"
 									name="pwd" size="60" maxlength="128"
-									class="form-text required" />
+									class="form-text required" th:value="${user?.pwd}"/>
 								<div class="description">输入与您用户名相匹配的密码。</div>
 							</div>
 							<input type="hidden" name="form_build_id"
