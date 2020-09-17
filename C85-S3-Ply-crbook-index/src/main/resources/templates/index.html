@@ -1051,7 +1051,8 @@
 
 						<div class="content">
 							<div>
-								<span><a href="login.html">[登录]</a><a class="link-regist" href="register.html">[免费注册]</a></span>
+								<span th:if="${session.loginedUser==null}"><a href="login.html">[登录]</a><a class="link-regist" href="register.html">[免费注册]</a></span>
+								<span th:if="${session.loginedUser!=null}">欢迎 <span th:text="${session.loginedUser.name}"></span><a class="link-regist" href="logout">[退出]</a></span>
 							</div>
 						</div>
 					</div>

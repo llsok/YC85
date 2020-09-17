@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.yc.crbook.bean.CrBook;
 import com.yc.crbook.bean.CrShow;
@@ -19,6 +21,7 @@ import com.yc.crbook.web.remote.IBookAction;
 import com.yc.crbook.web.remote.IUserAction;
 
 @Controller
+@SessionAttributes ("loginedUser")
 public class IndexAction {
 	
 	@Resource
@@ -50,6 +53,17 @@ public class IndexAction {
 		return "login";
 	}
 	
+	@GetMapping(path= {"logout"})
+	// SessionStatus 用于终止会话
+	public String logout(SessionStatus ss) {
+		ss.setComplete();
+		return "index";
+	}
+	
+	/**
+	 *  @RestController 控制器存会话, 必须获取HttpSession对象
+	 *  @Controller 控制器存会话, 使用 @SessionAttributes 
+	 */
 	@PostMapping("login")
 	public String login( @Valid CrUser user, Errors errors, Model m) {
 		
@@ -66,6 +80,7 @@ public class IndexAction {
 		
 		// 根据返回的结果，如果正确跳转首页
 		if(res.getCode() == 1) {
+			m.addAttribute("loginedUser", res.getData());
 			return index(m);
 		} else {
 			// 自定义一个错误
