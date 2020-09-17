@@ -2412,7 +2412,7 @@
 
 																<div class="views-field views-field-uc-product-image">
 																	<div class="field-content">
-																		<a href="book.html" th:title="${show.book.name}" target="_blank"><img
+																		<a th:href="'book.html?id='+${show.book.id}" th:title="${show.book.name}" target="_blank"><img
 																			th:data-src="${show.book.pic}" src="sites/all/modules/lazyloader/image_placeholder.gif"
 																			width="130" height="130" alt="" />
 																		<noscript>
@@ -2436,7 +2436,7 @@
 
 																<div class="views-field views-field-uc-product-image">
 																	<div class="field-content">
-																		<a href="book.html" th:title="${show.book.name}" target="_blank"><img
+																		<a th:href="'book.html?id='+${show.book.id}" th:title="${show.book.name}" target="_blank"><img
 																			th:data-src="${show.book.pic}" src="sites/all/modules/lazyloader/image_placeholder.gif"
 																			width="130" height="130" alt="" />
 																		<noscript>
@@ -2625,7 +2625,7 @@
 
 																	<div class="views-field views-field-uc-product-image">
 																		<div class="field-content">
-																			<a href="book.html" th:title="${book.name}"><img
+																			<a th:href="'book.html?id='+${book.id}" th:title="${book.name}"><img
 																				th:src="${book.pic}" th:alt="${book.name}" width="130px" height="130px"></a>
 																		</div>
 																	</div>
@@ -2645,7 +2645,7 @@
 
 																	<div class="views-field views-field-uc-product-image">
 																		<div class="field-content">
-																			<a href="book.html" th:title="${book.name}"><img
+																			<a th:href="'book.html?id='+${book.id}" th:title="${book.name}"><img
 																				th:src="${book.pic}" th:alt="${book.name}" width="130px" height="130px"></a>
 																		</div>
 																	</div>

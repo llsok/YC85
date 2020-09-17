@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-hans" version="XHTML+RDFa 1.0" dir="ltr">
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
 
 <head profile="http://www.w3.org/1999/xhtml/vocab">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -46,98 +45,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
 
 <!--首页头部-->
 
-<div id="mininav">
-   <div class="mininav_inner">
-     <div id="mininav_left" class="mininav_left">
-            <div class="region region-mininav-left">
-    <div id="block-block-2" class="block block-block">
+<div id="mininav" th:replace="index::#mininav"></div>
 
-    
-  <div class="content">
-    <div><span><a href="login.html">[登录]</a><a class="link-regist" href="register.html">[免费注册]</a></span></div>
-  </div>
-</div>
-  </div>
-     </div>
-     <div class="mininav_right" id="mininav_right">
-            <div class="region region-mininav-right">
-    <div id="block-block-3" class="block block-block">
-
-    
-  <div class="content">
-    <ul class="topnav">
-<li id="wechat"><a class="link4" target="_blank" title="中华书局官方微信">微信<span><p><img src="sites/all/themes/dushu/images/qrcode_crbook.jpg"/></p></span></a></li>
-<li class="ddnewhead_cart"><a dd_name="购物车" name="购物车" href="cart.html"><i class="icon_card"></i>购物车<b id="cart_items_count"></b></a></li>
-<li id="myorder"><a class="link4" target="_blank" title="我的订单" href="user_order.html">我的订单</a></li>
-<li id="myaccount"><a class="link4" target="_blank" title="我的书屋" href="user/0">我的书屋</a></li>
-<li id="help-center"><a class="link4" target="_blank" title="帮助中心" href="node/10">帮助中心</a></li>
-
-</ul>  </div>
-</div>
-  </div>
-     </div>
-   </div>
- </div>
-
-<div id="header-wrapper1">
-<div id="header-wrapper2">
-  <div id="header">
-   <div class="head_main">
-    <div class="head_left"><a class="logo" title="灿然书屋（中华书局旗下网上书店）" href="/" id="logo"><img alt="灿然书屋（中华书局旗下网上书店）Logo" src="sites/all/themes/dushu/images/logo.png" /></a>
-	<div id="search_form" class="text_box">   <div class="region region-search-form">
-    <div id="block-search-form" class="block block-search">
-
-    
-  <div class="content">
-    <form action="book.html" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
-      <h2 class="element-invisible">搜索表单</h2>
-    <div class="form-item form-type-textfield form-item-search-block-form">
-  <label class="element-invisible" for="edit-search-block-form--2">搜索 </label>
- <input title="请输入您想搜索的关键词。" type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text" />
-</div>
-<div class="form-actions form-wrapper" id="edit-actions--2"><input type="submit" id="edit-submit" name="op" value="搜索" class="form-submit" /></div><input type="hidden" name="form_build_id" value="form-lq3ajAD51T8hz01QjGqJCYVGuXFp79LvikwD26wMJfQ" />
-<input type="hidden" name="form_id" value="search_block_form" />
-</div>
-<div id="advsearch-link"><a href="/advsearch">高级搜索</a></div>
-</div></form>  </div>
-</div>
-<div id="block-block-28" class="block block-block">
-
-    
-  <div class="content">
-    <div id="hotwords">
-  <strong>热门搜索：</strong>
-  <a href="/search/content?keyword=史记" target="_blank">史记</a>
-  <a href="/search/content?keyword=资治通鉴" target="_blank">资治通鉴</a>
-  <a href="/search/content?keyword=清史稿" target="_blank">清史稿</a>
-  <a href="/search/content?keyword=二十四史" target="_blank">二十四史</a>
-  <a href="/search/content?keyword=佛教" target="_blank">佛教</a>
-  <a href="/search/content?keyword=大藏经" target="_blank">大藏经</a>
-  <a href="/hotkeywords" target="_blank">更多</a>
-</div>
-  </div>
-</div>
-  </div>
- </div>
-    </div>
-    <div class="head_right">  <div class="region region-head-right">
-    <div id="block-obcustom-shopping-cart" class="block block-obcustom">
-
-    
-  <div class="content">
-    <div id="shopping-cart-block">
-  <dl class="">
-  <dt class="ld"><s></s><span class="shopping"><span id="shopping-amount"></span></span><a id="cart-url" href="/cart">去购物车结算</a> <b></b> 
-  </dt>
-  </dl>
-</div>  </div>
-</div>
-  </div>
-</div>
-   </div>
-  </div>
-</div>
-</div>
+<div id="header-wrapper1" th:replace="index::#header-wrapper1"></div>
 
 <div class="head_nav">
     <div class="head_nav_innner">
@@ -1669,7 +1579,10 @@ $(function() {
   <div class="book_pic">
     <div class="pic">
 	<a href="#" class="jqzoom" rel='gal1'  >
-	  <img data-src="sites/default/files/styles/200_200/public/cover/4_29.jpg?itok=7XJVE-_T" src="sites/all/modules/lazyloader/image_placeholder.gif" width="200" height="200" alt="" /><noscript><img src="sites/default/files/styles/200_200/public/cover/4_29.jpg?itok=7XJVE-_T" width="200" height="200" alt="" /></noscript> 
+	  <img  th:data-src="${book.pic}"
+	  	src="sites/all/modules/lazyloader/image_placeholder.gif" width="200" height="200" alt="" />
+	  	<noscript>
+	  	<img  th:src="${book.pic}" width="200" height="200" alt="" /></noscript> 
 	</a>
     </div>
 	
@@ -1698,13 +1611,13 @@ $(function() {
   </div>
   <div class="book_basic">
     <div name="Title_pub" class="head">
-    <h1>  论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一    </h1>
+    <h1 th:text="${book.name}">  论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一    </h1>
     </div> 
   
     <div class="sale">
     <div class="price_d">
-	会员价： <span class="num"><span class="uc-price">¥20.80</span></span>
-	<span>定价：<span class="uc-price">¥26.00</span></span>
+	会员价： <span class="num"><span class="uc-price" th:text="${book.price}">¥20.80</span></span>
+	<span>定价：<span class="uc-price" th:text="${book.price}">¥26.00</span></span>
 	<span>折扣：<span class="red">80折</span></span>
 	<span> </span>
 	</div>
@@ -1724,10 +1637,10 @@ $(function() {
     </div>
 	</div>
     <div class="book_detailed" name="__Property_pub">
-      <div class="clearfix m_t6"><div class="show_info_left">作　　者：</div> <div class="show_info_right">杨伯峻译注</div></div>
-      <div class="clearfix m_t6"><div class="show_info_left">出 版 社：</div> <div class="show_info_right"><a href="/books/publihser/1408">中华书局</a></div></div>
-      <div class="clearfix m_t6"><div class="show_info_left">出版时间：</div> <div class="show_info_right"><span class="date-display-single">2017-10-01</span></div></div>
-      <div class="clearfix m_t6"><div class="show_info_left">ＩＳＢＮ:</div> <div class="show_info_right">9787101127867</div></div>
+      <div class="clearfix m_t6"><div class="show_info_left">作　　者：</div> <div class="show_info_right"  th:text="${book.author}">杨伯峻译注</div></div>
+      <div class="clearfix m_t6"><div class="show_info_left">出 版 社：</div> <div class="show_info_right"><a href="/books/publihser/1408"  th:text="${book.publisher}">中华书局</a></div></div>
+      <div class="clearfix m_t6"><div class="show_info_left">出版时间：</div> <div class="show_info_right"><span class="date-display-single"  th:text="${book.pressDate}">2017-10-01</span></div></div>
+      <div class="clearfix m_t6"><div class="show_info_left">ＩＳＢＮ:</div> <div class="show_info_right" th:text="${book.isbn}">9787101127867</div></div>
     </div>
     <div class="count">送积分：<a href="#" class="point" target="_blank" id="pointsTag">20</a>收藏人气：<span>0</span>
 	 浏览次数：<span>4717</span>
@@ -1798,11 +1711,11 @@ $(function() {
                         <div clstag="shangpin|keycount|bookitem|1303" class="nav-minicart-btn "><a href="/cart/add/p45473?destination=cart" target="_blank">加入购物车</a></div>
                         <div class="nav-minicart-con hide">
                             <div class="p-img">
-							<img src="sites/default/files/styles/100_100/public/cover/4_29.jpg?itok=QzZxU5Lq" />
+							<img  th:src="${book.pic}"/>
                                                             </div>
-                            <div class="p-name">论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一</div>
+                            <div class="p-name" th:text="${book.name}">论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一</div>
                             <div class="p-price">
-                                <strong><span class="uc-price">¥20.80</span></strong><span>(80折)</span>                            </div>
+                                <strong><span class="uc-price" th:text="${book.price}">¥20.80</span></strong><span>(80折)</span>                            </div>
                         </div>
                         <div class="clb"></div>
                     </div>
@@ -1812,41 +1725,41 @@ $(function() {
   <div data-widget="tab-content" class="mc hide" id="product-detail-1" style="display: block;">
   <div class="section">
   <ul class="key clearfix">
-        <li>版　　次：2</li>
-		<li>页　　数：244</li>
-		<li>字　　数：140千字</li>
-        <li>印刷时间：</li>
-		<li>开　　本：32开</li>
+        <li>版　　次：<span th:text="${book.pressSn}"></span></li>
+		<li>页　　数：<span th:text="${book.pages}"></span></li>
+		<li>字　　数：<span th:text="${book.words}"></span>千字</li>
+        <li>印刷时间：<span th:text="${book.printTime}"></span></li>
+		<li>开　　本：<span th:text="${book.bookSize}"></span></li>
 		<li>纸　　张：</li>
-        <li>印　　次：30</li>
-		<li>包　　装：平装</li>
-		<li>版式：简体横排</li>
+        <li>印　　次：<span th:text="${book.printSn}"></span></li>
+		<li>包　　装：<span th:text="${book.packing}"></span></li>
+		<li>版式：<span th:text="${book.format}"></span></li>
    </ul>
   </div>
     <div id="abstract">
       <h4>编辑推荐</h4>
-      <div id="abstract_text" class="customize">
+      <div id="abstract_text" class="customize" th:utext="${book.abst}">
 	    	  </div>
     </div>
     <div id="book_content">
       <h4>内容简介</h4>
-      <div id="content_text" class="customize">
+      <div id="content_text" class="customize" th:utext="${book.contentIntro}">
 	    <p><span style="color: rgb(51, 51, 51); font-family: 微软雅黑, Arial; font-size: 14px; background-color: rgb(255, 255, 255);">本书系名家力作，杨伯峻先生在精研《论语》的基础上，对《论语》二十篇进行了精确细致的注释和翻译。每章分为原文、注释、译文三部分，注释精准，译文流畅明白，不但给专业研究者提供了若干研究线索，更便于普通读者正确理解《论文》，实为雅俗共赏之佳作。</span></p>
 	  </div>
     </div>
     <div id="authorintro">
       <h4>作者简介</h4>
-      <div id="authorintro_text" class="customize">
+      <div id="authorintro_text" class="customize" th:utext="${book.authorIntro}">
 	    	  </div>
     </div>
     <div id="catalog">
       <h4>目录</h4>
-      <div id="catalog_text" class="customize">
+      <div id="catalog_text" class="customize" th:utext="${book.catalog}">
 	    	  </div>
     </div>
     <div id="extract">
       <h4>书摘</h4>
-      <div id="extract_text" class="customize">
+      <div id="extract_text" class="customize" th:utext="${book.extract}">
 	    	  </div>
     </div>
 			
@@ -1932,75 +1845,9 @@ $(function() {
   </div>
         </div>
 <div class="clear"></div>
-<div id="footer">
-   <div class="region region-footer">
-    <div id="block-menu-menu-help" class="block block-menu">
 
-    
-  <div class="content">
-    <ul class="menu"><li class="first expanded"><a href="/node/6" title="">新手上路</a><ul class="menu"><li class="first leaf"><a href="/node/1" title="">新用户注册</a></li>
-<li class="leaf"><a href="/node/2" title="">订单流程</a></li>
-<li class="last leaf"><a href="/node/4" title="">会员积分计划</a></li>
-</ul></li>
-<li class="expanded"><a href="/node/7" title="">付款方式</a><ul class="menu"><li class="first leaf"><a href="/node/12" title="">支付宝</a></li>
-<li class="leaf"><a href="/node/11" title="">邮局汇款</a></li>
-<li class="last leaf"><a href="/node/13" title="">银行汇款</a></li>
-</ul></li>
-<li class="expanded"><a href="/node/9" title="">售前售后服务</a><ul class="menu"><li class="first leaf"><a href="/node/17" title="">退换书政策</a></li>
-<li class="leaf"><a href="/node/16" title="">退换书申请</a></li>
-<li class="last leaf"><a href="/node/18" title="">退换书通道</a></li>
-</ul></li>
-<li class="expanded"><a href="/node/8" title="">配送服务</a><ul class="menu"><li class="first leaf"><a href="/node/15" title="">配送时间，范围</a></li>
-<li class="leaf"><a href="/node/14" title="">配送费收取标准</a></li>
-<li class="last leaf"><a href="/node/5" title="">发票制度</a></li>
-</ul></li>
-<li class="last expanded"><a href="/node/10" title="">帮助中心</a><ul class="menu"><li class="first leaf"><a href="/node/19" title="">常见热点问题</a></li>
-<li class="last leaf"><a href="/node/20" title="">忘记了密码</a></li>
-</ul></li>
-</ul>  </div>
-</div>
-<div id="block-block-10" class="block block-block">
+<div id="footer" th:replace="index::#footer"></div>
 
-    
-  <div class="content">
-    <img width="990" height="60" src="sites/all/themes/dushu/images/footer-credit.jpg?201303181432">  </div>
-</div>
-<div id="block-menu-menu-footernav" class="block block-menu">
-
-    
-  <div class="content">
-    <ul class="menu"><li class="first leaf"><a href="/node/21" title="">关于我们</a></li>
-<li class="leaf"><a href="/node/22" title="">联系我们</a></li>
-<li class="leaf"><a href="/node/23" title="">安全交易</a></li>
-<li class="leaf"><a href="/node/24" title="">网站地图</a></li>
-<li class="leaf"><a href="book.html" title="">营业执照</a></li>
-<li class="leaf"><a href="book.html" title="">出版物经营许可证</a></li>
-<li class="last leaf"><a href="book.html" title="">域名证书</a></li>
-</ul>  </div>
-</div>
-<div id="block-block-1" class="block block-block">
-
-    
-</div>
-<div id="block-block-11" class="block block-block">
-
-    
-  <div class="content">
-    <div>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?99ca8d8fc0b9acb4ce09e093ac6b6027";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-</div>  </div>
-</div>
-  </div>
-</div>
 <a class="go_top" href="javascript:void(0);"></a>
 
 

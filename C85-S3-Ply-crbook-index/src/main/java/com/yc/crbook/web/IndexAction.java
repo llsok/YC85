@@ -124,5 +124,14 @@ public class IndexAction {
 			return "register";
 		}
 	}
+	
+	
+	@GetMapping(path = { "book", "book.html" })
+	public String book(int id, Model m) {
+		m.addAttribute("book", baction.getById(id));
+		return "book";
+	}
+	
+	
 
 }
