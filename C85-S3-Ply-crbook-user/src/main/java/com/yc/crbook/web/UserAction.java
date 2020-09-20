@@ -22,15 +22,15 @@ public class UserAction {
 	private CrUserMapper uMapper;
 
 	@PostMapping("login")
-	public Result login(@RequestBody CrUser user) {
+	public Result<CrUser> login(@RequestBody CrUser user) {
 		CrUserExample cue = new CrUserExample();
 		cue.createCriteria().andAccountEqualTo(user.getAccount()).andPwdEqualTo(user.getPwd());
 		List<CrUser> list = uMapper.selectByExample(cue);
 		if (list.isEmpty()) {
-			return new Result(0, "用户名或密码错误！");
+			return new Result<CrUser>(0, "用户名或密码错误！");
 		} else {
 			// 将登陆成功的用户对象返回
-			return new Result(1, "登录成功！", list.get(0));
+			return new Result<CrUser>(1, "登录成功！", list.get(0));
 		}
 	}
 	

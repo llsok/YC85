@@ -78,10 +78,14 @@ public class IndexAction {
 		}
 
 		// 发起远程服务调用， 传递2个参数（用户名，密码）
-		Result res = uaction.login(user);
+		Result<CrUser> res = uaction.login(user);
 
 		// 根据返回的结果，如果正确跳转首页
 		if (res.getCode() == 1) {
+			/**
+			 * Feign 对于 Result.data 的类型, 如果data是Object类型, 会将其转为 LinkedHashMap
+			 * 		 使用泛型那么 Feign 就是正确转换类型
+			 */
 			m.addAttribute("loginedUser", res.getData());
 			return index(m);
 		} else {

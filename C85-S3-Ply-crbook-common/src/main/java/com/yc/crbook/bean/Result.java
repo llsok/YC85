@@ -1,6 +1,6 @@
 package com.yc.crbook.bean;
 
-public class Result implements java.io.Serializable{
+public class Result<T> implements java.io.Serializable{
 
 	/**
 	 * 
@@ -8,7 +8,7 @@ public class Result implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private int code; // 0失败，  1成功
 	private String msg;
-	private Object data;
+	private T data;
 	
 	/**
 	 * 	JavaBean 规范 ：一定要定义无参数的构造函数
@@ -20,7 +20,7 @@ public class Result implements java.io.Serializable{
 		this.msg = msg;
 	}
 	
-	public Result(int code, String msg, Object data) {
+	public Result(int code, String msg, T data) {
 		this.code = code;
 		this.msg = msg;
 		this.data = data;
@@ -38,10 +38,10 @@ public class Result implements java.io.Serializable{
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public Object getData() {
+	public T getData() {
 		return data;
 	}
-	public void setData(Object data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 	

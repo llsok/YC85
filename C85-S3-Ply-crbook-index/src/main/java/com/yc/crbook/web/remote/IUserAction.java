@@ -19,7 +19,7 @@ public interface IUserAction {
 	 * Feigin 要求对象参数标注 @RequestBody 注解 
 	 */
 	@PostMapping("user/login")
-	Result login(@RequestBody CrUser user);
+	Result<CrUser> login(@RequestBody CrUser user);
 	
 	@PostMapping("user/register")
 	Result register(@RequestBody CrUser user);
