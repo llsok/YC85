@@ -7,7 +7,13 @@
     <result column="bid" jdbcType="INTEGER" property="bid" />
     <result column="cnt" jdbcType="INTEGER" property="cnt" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <association property="book" column="bid" select="selectBook"></association>
   </resultMap>
+  
+  <select id="selectBook" resultType="com.yc.crbook.bean.CrBook">
+  	select * from cr_book where id=#{uid}
+  </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

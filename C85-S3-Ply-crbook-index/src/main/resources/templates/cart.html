@@ -1,7 +1,5 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-hans" version="XHTML+RDFa 1.0" dir="ltr">
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
 
 <head profile="http://www.w3.org/1999/xhtml/vocab">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,98 +43,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
 
 <!--首页头部-->
 
-<div id="mininav">
-   <div class="mininav_inner">
-     <div id="mininav_left" class="mininav_left">
-            <div class="region region-mininav-left">
-    <div id="block-block-2" class="block block-block">
+	<div id="mininav" th:replace="index::#mininav"></div>
 
-    
-  <div class="content">
-    <div><span><a href="login.html">[登录]</a><a class="link-regist" href="register.html">[免费注册]</a></span></div>
-  </div>
-</div>
-  </div>
-     </div>
-     <div class="mininav_right" id="mininav_right">
-            <div class="region region-mininav-right">
-    <div id="block-block-3" class="block block-block">
-
-    
-  <div class="content">
-    <ul class="topnav">
-<li id="wechat"><a class="link4" target="_blank" title="中华书局官方微信">微信<span><p><img src="sites/all/themes/dushu/images/qrcode_crbook.jpg"/></p></span></a></li>
-<li class="ddnewhead_cart"><a dd_name="购物车" name="购物车" href="cart.html"><i class="icon_card"></i>购物车<b id="cart_items_count"></b></a></li>
-<li id="myorder"><a class="link4" target="_blank" title="我的订单" href="user_order.html">我的订单</a></li>
-<li id="myaccount"><a class="link4" target="_blank" title="我的书屋" href="user/0">我的书屋</a></li>
-<li id="help-center"><a class="link4" target="_blank" title="帮助中心" href="node/10">帮助中心</a></li>
-
-</ul>  </div>
-</div>
-  </div>
-     </div>
-   </div>
- </div>
-
-<div id="header-wrapper1">
-<div id="header-wrapper2">
-  <div id="header">
-   <div class="head_main">
-    <div class="head_left"><a class="logo" title="灿然书屋（中华书局旗下网上书店）" href="/" id="logo"><img alt="灿然书屋（中华书局旗下网上书店）Logo" src="sites/all/themes/dushu/images/logo.png" /></a>
-	<div id="search_form" class="text_box">   <div class="region region-search-form">
-    <div id="block-search-form" class="block block-search">
-
-    
-  <div class="content">
-    <form action="/cart" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
-      <h2 class="element-invisible">搜索表单</h2>
-    <div class="form-item form-type-textfield form-item-search-block-form">
-  <label class="element-invisible" for="edit-search-block-form--2">搜索 </label>
- <input title="请输入您想搜索的关键词。" type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text" />
-</div>
-<div class="form-actions form-wrapper" id="edit-actions--2"><input type="submit" id="edit-submit" name="op" value="搜索" class="form-submit" /></div><input type="hidden" name="form_build_id" value="form-IRwD4Xxa8723FbJOzRjOUP1WgC9cSulXOo8ANPS8THM" />
-<input type="hidden" name="form_id" value="search_block_form" />
-</div>
-<div id="advsearch-link"><a href="/advsearch">高级搜索</a></div>
-</div></form>  </div>
-</div>
-<div id="block-block-28" class="block block-block">
-
-    
-  <div class="content">
-    <div id="hotwords">
-  <strong>热门搜索：</strong>
-  <a href="/search/content?keyword=史记" target="_blank">史记</a>
-  <a href="/search/content?keyword=资治通鉴" target="_blank">资治通鉴</a>
-  <a href="/search/content?keyword=清史稿" target="_blank">清史稿</a>
-  <a href="/search/content?keyword=二十四史" target="_blank">二十四史</a>
-  <a href="/search/content?keyword=佛教" target="_blank">佛教</a>
-  <a href="/search/content?keyword=大藏经" target="_blank">大藏经</a>
-  <a href="/hotkeywords" target="_blank">更多</a>
-</div>
-  </div>
-</div>
-  </div>
- </div>
-    </div>
-    <div class="head_right">  <div class="region region-head-right">
-    <div id="block-obcustom-shopping-cart" class="block block-obcustom">
-
-    
-  <div class="content">
-    <div id="shopping-cart-block">
-  <dl class="">
-  <dt class="ld"><s></s><span class="shopping"><span id="shopping-amount"></span></span><a id="cart-url" href="/cart">去购物车结算</a> <b></b> 
-  </dt>
-  </dl>
-</div>  </div>
-</div>
-  </div>
-</div>
-   </div>
-  </div>
-</div>
-</div>
+	<div id="header-wrapper1" th:replace="index::#header-wrapper1"></div>sss
 
 <div class="head_nav">
     <div class="head_nav_innner">
@@ -947,17 +856,32 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
     <div id="cart-form-pane"><form action="/cart" method="post" id="uc-cart-view-form" accept-charset="UTF-8"><div><div class="uc-default-submit"><input type="submit" id="edit-update" name="update-cart" value="更新购物车" class="form-submit" /></div><table class="sticky-enabled">
  <thead><tr><th>移除</th><th>产品</th><th></th><th><abbr title="数量">数量</abbr></th><th>总计</th> </tr></thead>
 <tbody>
- <tr class="odd"><td class="remove"><input type="submit" id="edit-items-0-remove" name="remove-0" value="移除" class="form-submit" /></td><td class="image"><a href="book.html"><img data-src="sites/default/files/styles/uc_cart/public/cover/4_29.jpg?itok=WMke34c0" src="sites/all/modules/lazyloader/image_placeholder.gif" width="50" height="50" alt="" /><noscript><img src="sites/default/files/styles/uc_cart/public/cover/4_29.jpg?itok=WMke34c0" width="50" height="50" alt="" /></noscript></a></td><td class="desc"><a href="book.html">论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一</a></td><td class="qty"><div class="form-item form-type-uc-quantity form-item-items-0-qty">
-  <label class="element-invisible" for="edit-items-0-qty">数量 <span class="form-required" title="此项必填。">*</span></label>
- <input type="text" id="edit-items-0-qty" name="items[0][qty]" value="1" size="5" maxlength="6" class="form-text required" />
-</div>
-</td><td class="price"><span class="uc-price">¥20.80</span></td> </tr>
- <tr class="even"><td class="remove"><input type="submit" id="edit-items-1-remove" name="remove-1" value="移除" class="form-submit" /></td><td class="image"><a href="book.html"><img data-src="sites/default/files/styles/uc_cart/public/cover/978710113628901.jpg?itok=EUwZVg7A" src="sites/all/modules/lazyloader/image_placeholder.gif" width="50" height="50" alt="" /><noscript><img src="sites/default/files/styles/uc_cart/public/cover/978710113628901.jpg?itok=EUwZVg7A" width="50" height="50" alt="" /></noscript></a></td><td class="desc"><a href="book.html">隋书（精）--点校本二十四史修订本</a></td><td class="qty"><div class="form-item form-type-uc-quantity form-item-items-1-qty">
-  <label class="element-invisible" for="edit-items-1-qty">数量 <span class="form-required" title="此项必填。">*</span></label>
- <input type="text" id="edit-items-1-qty" name="items[1][qty]" value="1" size="5" maxlength="6" class="form-text required" />
-</div>
-</td><td class="price"><span class="uc-price">¥304.00</span></td> </tr>
- <tr class="odd"><td colspan="5" class="subtotal"><span id="subtotal-title">小计：</span> <span class="uc-price">¥324.80</span></td> </tr>
+	<tr th:each=" c : ${carts}" class="odd">
+		<td class="remove"><input type="submit"
+			id="edit-items-0-remove" name="remove-0" value="移除"
+			class="form-submit" /></td>
+		<td class="image"><a href="book.html"><img
+				th:data-src="${c.book.pic}"
+				src="sites/all/modules/lazyloader/image_placeholder.gif"
+				width="50" height="50" alt="" />
+			<noscript>
+					<img
+						th:data-src="${c.book.pic}"
+						width="50" height="50" alt="" />
+				</noscript></a></td>
+		<td class="desc"><a href="book.html" th:text="${c.book.name}">论语译注（简体字本）--徐德琳老师推荐北京今年高考必考好书之一</a></td>
+		<td class="qty"><div
+				class="form-item form-type-uc-quantity form-item-items-0-qty">
+				<label class="element-invisible" for="edit-items-0-qty">数量
+					<span class="form-required" title="此项必填。">*</span>
+				</label> <input type="text" id="edit-items-0-qty"
+					name="items[0][qty]"  th:value="${c.cnt}" size="5" maxlength="6"
+					class="form-text required" />
+			</div></td>
+		<td class="price"><span class="uc-price" th:text="${c.book.price}">¥20.80</span></td>
+	</tr>
+
+	<tr class="odd"><td colspan="5" class="subtotal"><span id="subtotal-title">小计：</span> <span class="uc-price">¥324.80</span></td> </tr>
 </tbody>
 </table>
 <div class="entity entity-uc-cart-item uc-cart-item-uc-cart-item clearfix">
