@@ -2,8 +2,13 @@ package com.yc.crbook.bean;
 
 import java.util.Date;
 
-public class CrCart {
-    private Integer id;
+public class CrCart implements java.io.Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer uid;
 

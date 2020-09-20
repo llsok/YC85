@@ -5,7 +5,12 @@ import java.util.Date;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-public class CrUser {
+public class CrUser  implements java.io.Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
     private Integer id;
 
     @NotEmpty(message = "账号不能为空")
